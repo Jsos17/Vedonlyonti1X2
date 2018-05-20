@@ -20,6 +20,6 @@ Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin 
 
 ### Alustava luokkakaavio ja tietokantakaavio
 
-![Bet1X2 luokkakaavio]()
+![Bet1X2 luokkakaavio](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/dokumentaatio/Bet1X2_luokkakaavio.jpg)
 
-![Bet1X2 tietokantakaavio]()
+![Bet1X2 tietokantakaavio](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/dokumentaatio/Bet1X2_tietokantakaavio.jpg)
