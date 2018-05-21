@@ -25,3 +25,7 @@ Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin 
 ### Alustava tietokantakaavio
 
 ![Bet1X2 tietokantakaavio](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/dokumentaatio/Bet1X2_tietokantakaavio.jpg)
+
+### Linkki viikon 1 demo-app
+
+[hello.py](https://tsoha-python-demo427.herokuapp.com/)
