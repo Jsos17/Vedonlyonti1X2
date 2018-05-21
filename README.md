@@ -14,7 +14,7 @@ Tarjottuun vetoon liittyy siis kertoimet, jotka lasketaan aluksi alkuperäisten 
 
 Asiakas voi muuttaa käyttäjätunnustaan, salasanaansa ja lisätä saldoaan. Lisäksi asiakas voi poistaa tilinsä, jos hänellä ei ole avoimia vetoja, muulloin asiakas joutuu odottamaan, että avoimet vedot ratkeavat ja tämän jälkeen asiakas voi poistaa tilinsä. 
 
-Asiakas ei voi perua vetoa, sen jälkeen kun se on lyöty. Vedon lyötyään asiakas näkee mahdollisen voiton määrän. Asiakas voi lyödä useita vetoja samasta kohteesta maksimipanostuksen sallimissa rajoissa.
+Asiakas ei voi perua vetoa sen jälkeen kun se on lyöty. Vedon lyötyään asiakas näkee mahdollisen voiton määrän. Asiakas voi lyödä useita vetoja samasta kohteesta maksimipanostuksen sallimissa rajoissa.
 
 Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin voi tarkastella kaikkien kohteiden vaihtoja ja maksettuja voittoja sekä käytettävissä olevien otteluiden listoja. Lisäksi admin voi tarkastella asiakkaiden vedonlyönnin menestyksellisyyttä heidän vetohistorian kautta.
 
