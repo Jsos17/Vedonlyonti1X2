@@ -1,4 +1,4 @@
-# Vedonlyonti1X2/Tietokantasovellus alkukesä 2018
+# Bet1X2App/Tietokantasovellus alkukesä 2018
 
 ## Vedonvälittäjä Bet1X2
 
