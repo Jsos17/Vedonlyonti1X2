@@ -9,8 +9,8 @@ class Sport_match(db.Model):
     prob_2 = db.Column(db.Float, nullable=False)
     time = db.Column(db.DateTime, nullable=False)
 
-    betoffer = db.relationship('Betting_offer', backref='sport_match', lazy=True)
-    result = db.relationship('Match_result', backref='sport_match', lazy=True)
+    betoffer = db.relationship('Betting_offer', backref='sport_match', lazy=True, uselist=False)
+    result = db.relationship('Match_result', backref='sport_match', lazy=True, uselist=False)
 
     def __init__(self, home, away, prob_1, prob_x, prob_2, time):
         self.home = home
