@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
-    <tr>
+  <table cellspacing="8">
+    <tr align="left">
       <th>Home team</th>
       <th>Away team</th>
       <th>Home win probability</th>
@@ -11,7 +11,7 @@
       <th>Date and time</th>
     </tr>
     {% for match in matches %}
-    <tr>
+    <tr align="left">
       <td>{{ match.home }}</td>
       <td>{{ match.away }}</td>
       <td>{{ match.prob_1 }}</td>
