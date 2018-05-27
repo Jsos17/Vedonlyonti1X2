@@ -20,11 +20,11 @@ Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin 
 
 ### Alustava luokkakaavio
 
-![Bet1X2 luokkakaavio](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/dokumentaatio/Bet1X2_luokkakaavio.jpg)
+![Bet1X2 luokkakaavio](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/documentation/Bet1X2_luokkakaavio.jpg)
 
 ### Alustava tietokantakaavio
 
-![Bet1X2 tietokantakaavio](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/dokumentaatio/Bet1X2_tietokantakaavio.jpg)
+![Bet1X2 tietokantakaavio](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/documentation/Bet1X2_tietokantakaavio.jpg)
 
 ### Linkki viikon 1 demo-app
 
