@@ -6,7 +6,12 @@
   </head>
 
   <body>
-    {% block body %}
+    <ul>
+	  <li><a href="{{ url_for('matches_index') }}">List matches</a></li>
+	  <li><a href="{{ url_for('matches_form') }}">Add a match</a></li>
+    </ul>
+    
+  {% block body %}
       <p>
         Content.
       </p>
