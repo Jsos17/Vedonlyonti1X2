@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<form method="POST" action="{{ url_for('matches_update') }}">
+  <table>
+    <tr>
+			<td>
+				{{ form.home.label }}
+			</td>
+			<td>
+				{{ form.home }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.home.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.away.label }}
+			</td>
+			<td>
+				{{ form.away }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.away.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.prob1.label }}
+			</td>
+			<td>
+				{{ form.prob1 }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.prob1.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.probx.label }}
+			</td>
+			<td>
+				{{ form.probx }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.probx.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.prob2.label }}
+			</td>
+			<td>
+				{{ form.prob2 }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.prob2.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.start_time.label }}
+			</td>
+			<td>
+				{{ form.start_time }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.start_time.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="submit" value="Add a new match"/>
+			</td>
+  </tr>
+</form>
+{% endblock %}
