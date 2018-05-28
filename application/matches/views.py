@@ -12,13 +12,6 @@ def matches_index():
 def matches_form():
     return render_template("matches/new.html", form = MatchForm())
 
-# @app.route("/matches/<match_id>/", methods=["POST"])
-# def update_match(match_id):
-#     return render_template("matches/update.html", match = Sport_match.query.get(match_id))
-
-# @app.route("matches/update/")
-# def matches_update():
-
 @app.route("/matches/", methods=["POST"])
 def matches_create():
     form = MatchForm(request.form)
