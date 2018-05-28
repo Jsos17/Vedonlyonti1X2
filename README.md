@@ -32,6 +32,10 @@ Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin 
 
 [User stories](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/documentation/user_stories.md)
 
+### Linkki herokuun
+
+[Bet1X2App](https://bet1x2-app.herokuapp.com/)
+
 ### Linkki viikon 1 demo-app
 
 [hello.py](https://tsoha-python-demo427.herokuapp.com/)
