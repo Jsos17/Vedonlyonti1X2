@@ -30,7 +30,7 @@ Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin 
 
 ### User stories
 
-[User stories]()
+[User stories](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/documentation/user_stories.md)
 
 ### Linkki viikon 1 demo-app
 
