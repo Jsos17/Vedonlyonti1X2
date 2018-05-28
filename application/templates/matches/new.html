@@ -2,21 +2,101 @@
   
 {% block body %}
 <form method="POST" action="{{ url_for('matches_create') }}">
-  Home team<br/>
-  <input type="text" name="hometeam" required/><br/>
-  Away team<br/>
-  <input type="text" name="awayteam" required/><br/>
-  Home win probability (%)<br/>
-  <input type="number" step="1" min="0" max="100" name="prob_home" required/><br/>
-  Draw probability (%)<br/>
-  <input type="number" step="1" min="0" max="100" name="prob_draw" required/><br/>
-  Away win probability (%)<br/>
-  <input type="number" step="1" min="0" max="100" name="prob_away" required/><br/>
-  Date<br/>
-  <input type="date" name="date" required/><br/>
-  Time<br/>
-  <input type="time" name="time" required/><br/>
-  <br/>
-  <input type="submit" value="Add a match"/>
+  <table>
+    <tr>
+			<td>
+				{{ form.home.label }}
+			</td>
+			<td>
+				{{ form.home }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.home.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.away.label }}
+			</td>
+			<td>
+				{{ form.away }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.away.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.prob1.label }}
+			</td>
+			<td>
+				{{ form.prob1 }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.prob1.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.probx.label }}
+			</td>
+			<td>
+				{{ form.probx }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.probx.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.prob2.label }}
+			</td>
+			<td>
+				{{ form.prob2 }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.prob2.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.start_time.label }}
+			</td>
+			<td>
+				{{ form.start_time }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.start_time.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="submit" value="Add a new match"/>
+			</td>
+  </tr>
 </form>
 {% endblock %}

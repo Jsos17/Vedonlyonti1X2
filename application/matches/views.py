@@ -2,6 +2,7 @@ from application import app, db
 from flask import redirect, render_template, request, url_for
 import datetime
 from application.matches.models import Sport_match
+from application.matches.forms import MatchForm
 
 @app.route("/matches", methods=["GET"])
 def matches_index():
@@ -9,23 +10,21 @@ def matches_index():
 
 @app.route("/matches/new/")
 def matches_form():
-    return render_template("matches/new.html")
+    return render_template("matches/new.html", form = MatchForm())
 
 @app.route("/matches/", methods=["POST"])
 def matches_create():
-    home = request.form.get("hometeam")
-    away = request.form.get("awayteam")
-    prob1 = int(request.form.get("prob_home"))
-    probx = int(request.form.get("prob_draw"))
-    prob2 = int(request.form.get("prob_away"))
-    prob = prob1 + probx + prob2
+    form = MatchForm(request.form)
 
-    if prob != 100:
-        return render_template("matches/new.html")
-
-    dt = datetime.datetime.strptime(request.form.get("date"), "%Y-%m-%d")
-    tm = datetime.datetime.strptime(request.form.get("time"), "%H:%M")
-    start_time = datetime.datetime.combine(dt.date(),tm.time())
+    if not form.validate():
+        return render_template("matches/new.html", form = form)
+    
+    home = form.home.data
+    away = form.away.data
+    prob1 = form.prob1.data
+    probx = form.probx.data
+    prob2 = form.prob2.data
+    start_time = form.start_time.data
 
     m = Sport_match(home, away, prob1/100, probx/100, prob2/100, start_time)
 
