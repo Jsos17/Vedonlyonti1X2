@@ -15,14 +15,19 @@ def matches_form():
 def matches_create():
     home = request.form.get("hometeam")
     away = request.form.get("awayteam")
-    prob1 = request.form.get("prob_home")
-    probx = request.form.get("prob_draw")
-    prob2 = request.form.get("prob_away")    
+    prob1 = int(request.form.get("prob_home"))
+    probx = int(request.form.get("prob_draw"))
+    prob2 = int(request.form.get("prob_away"))
+    prob = prob1 + probx + prob2
+
+    if prob != 100:
+        return render_template("matches/new.html")
+
     dt = datetime.datetime.strptime(request.form.get("date"), "%Y-%m-%d")
     tm = datetime.datetime.strptime(request.form.get("time"), "%H:%M")
     start_time = datetime.datetime.combine(dt.date(),tm.time())
 
-    m = Sport_match(home, away, prob1, probx, prob2, start_time)
+    m = Sport_match(home, away, prob1/100, probx/100, prob2/100, start_time)
 
     db.session().add(m)
     db.session().commit()
