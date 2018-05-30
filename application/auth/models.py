@@ -9,11 +9,20 @@ class Bettor(db.Model):
 
     bets = db.relationship('Bet', backref='bettor', lazy=True)
 
-    def __init__(self, username, password):
+    def __init__(self, username, password, balance_eur, balance_cent):
         self.username = username
         self.password = password
-        self.balance_eur = 0
-        self.balance_cent = 0
+        self.balance_eur = balance_eur
+        self.balance_cent = balance_cent
 
     def get_id(self):
         return self.id
+
+    def is_active(self):
+        return True
+    
+    def is_anonymous(self):
+        return False
+
+    def is_authenticated(self):
+        return True

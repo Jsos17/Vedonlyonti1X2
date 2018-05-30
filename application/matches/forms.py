@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import Form, DateTimeField, IntegerField, StringField, validators
+from wtforms import DateTimeField, IntegerField, StringField, validators
 
 def validate_probabilities(form, field):
     try:

@@ -6,15 +6,23 @@
   </head>
 
   <body>
+		{% if current_user.is_authenticated %}
+      <p>
+				Username {{ current_user.username }} is logged in. <a href="{{ url_for('auth_logout') }}">Log out</a>
+      </p>
+      {% else %}
+      <a href="{{ url_for('auth_login') }}">Login</a>
+      {% endif %}
+      
     <ul>
-	  <li><a href="{{ url_for('matches_index') }}">List matches</a></li>
-	  <li><a href="{{ url_for('matches_form') }}">Add a match</a></li>
+	  	<li><a href="{{ url_for('matches_index') }}">List matches</a></li>
+	  	<li><a href="{{ url_for('matches_form') }}">Add a match</a></li>
     </ul>
     
-  {% block body %}
-      <p>
-        Content.
-      </p>
-    {% endblock %}
+  	{% block body %}
+    	<p>
+      	Content.
+    	</p>
+  	{% endblock %}
   </body>
 </html>
