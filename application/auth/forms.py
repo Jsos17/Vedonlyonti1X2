@@ -15,10 +15,10 @@ def validate_username(form, field):
         raise validators.ValidationError("Username exists already")
 
 class BettorForm(FlaskForm):
-    username = StringField("Username", [validators.Length(min=8, max=144), validate_username])
-    password = PasswordField("Password", [validators.Length(min=8, max=144)])
-    balance_eur = IntegerField("Initial balance/Eur", [validators.NumberRange(min=0, max=9999)])
-    balance_cent = IntegerField("Initial balance/Cent", [validators.NumberRange(min=0, max=99)])
+    username = StringField("Username (length 8-144)", [validators.Length(min=8, max=144), validate_username])
+    password = PasswordField("Password (length 8-144)", [validators.Length(min=8, max=144)])
+    balance_eur = IntegerField("Initial balance/Eur (0-9999)", [validators.NumberRange(min=0, max=9999)])
+    balance_cent = IntegerField("Initial balance/Cent (0-99)", [validators.NumberRange(min=0, max=99)])
 
     class Meta:
         csrf = False

@@ -9,6 +9,7 @@
       <th>Draw probability</th>
       <th>Away win probability</th>
       <th>Date and time</th>
+			<th>Result</th>
     </tr>
     {% for match in matches %}
     <tr align="left">
@@ -18,6 +19,12 @@
       <td>{{ match.prob_x }}</td>
       <td>{{ match.prob_2 }}</td>
       <td>{{ match.start_time }}</td>
+			<td>{{ match.result_1x2 }}</td>
+			<td>
+				<form method="POST" action="{{ url_for('matches_set_result', match_id=match.id) }}">
+	  			<input type="submit" value="Update match information"/>
+				</form>
+      </td>
     </tr>
     {% endfor %}
   </table>

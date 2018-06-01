@@ -36,6 +36,3 @@ Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin 
 
 [Bet1X2App](https://bet1x2-app.herokuapp.com/)
 
-### Linkki viikon 1 demo-app
-
-[hello.py](https://tsoha-python-demo427.herokuapp.com/)

@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<form method="POST" action="{{ url_for('betting_offers_create') }}">
+  <table>
+    <tr>
+			<td>
+				{{ form.odds1.label }}
+			</td>
+			<td>
+				{{ form.odds1 }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.odds1.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.oddsx.label }}
+			</td>
+			<td>
+				{{ form.oddsx }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.oddsx.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.odds2.label }}
+			</td>
+			<td>
+				{{ form.odds2 }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.odds2.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.max_stake.label }}
+			</td>
+			<td>
+				{{ form.max_stake }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.max_stake.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.active.label }}
+			</td>
+			<td>
+				{{ form.active }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.active.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.closed.label }}
+			</td>
+			<td>
+				{{ form.closed }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.closed.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		
+		<tr>
+			<td colspan="5">
+				<input type="submit" value="Add betting offer"/>
+			</td>
+  	</tr>
+</form>
+{% endblock %}

@@ -2,7 +2,7 @@ from application import db
 
 class Bettor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(144), nullable=False)
+    username = db.Column(db.String(144), unique=True, nullable=False)
     password = db.Column(db.String(144), nullable=False)
     balance_eur = db.Column(db.Integer, nullable=False)
     balance_cent = db.Column(db.Integer, nullable=False)

@@ -10,10 +10,9 @@ db = SQLAlchemy(app)
 from application import views
 
 from application.matches import models
-from application.bettingoffers import models
-from application.results import models
+from application.betting_offers import views
 from application.bets import models
-from application.bettingoffers_of_bet import models
+from application.betting_offers_of_bet import models
 from application.matches import views
 
 from application.auth import models
