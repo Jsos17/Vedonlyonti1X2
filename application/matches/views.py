@@ -35,6 +35,14 @@ def matches_update(match_id):
 
     return redirect(url_for("matches_index"))
 
+@app.route("/matches/<match_id>/delete/", methods=["POST"])
+def matches_delete(match_id):
+    m = Sport_match.query.get(match_id)
+    db.session().delete(m)
+    db.session().commit()
+
+    return redirect(url_for("matches_index"))
+
 @app.route("/matches/", methods=["POST"])
 def matches_create():
     form = MatchForm(request.form)
