@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, flash
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required
 
 from application import app, db
 from application.auth.models import Bettor
@@ -17,7 +17,6 @@ def auth_login():
         return render_template("auth/loginform.html", form = loginform, error="No such username or password")
 
     login_user(bettor)
-    print("User " + bettor.username + " was identified")
 
     return redirect(url_for("index"))
 
@@ -36,16 +35,53 @@ def bettor_create():
 
     if not form.validate():
         return render_template("auth/new_bettor.html", form = form)
-    
-    username = form.username.data
-    password = form.password.data
-    balance_eur = form.balance_eur.data
-    balance_cent = form.balance_cent.data
 
-    b = Bettor(username, password, balance_eur, balance_cent)
-
+    b = Bettor(form.username.data, form.password.data, form.balance_eur.data, form.balance_cent.data)
     db.session().add(b)
     db.session().commit()
-
     flash("Account created successfully, please login to your account")
+
     return redirect(url_for("auth_login"))
+
+@app.route("/auth/show/<id>", methods=["GET"])
+@login_required
+def bettor_show(id):
+    b = Bettor.query.get(id)
+    return render_template("auth/show_user.html", bettor = b)
+
+@app.route("/auth/cancel_update/<id>",  methods=["POST"])
+@login_required
+def bettor_cancel_update(id):
+    return render_template("auth/show_user.html", bettor = Bettor.query.get(id))
+
+@app.route("/auth/update/<id>",  methods=["GET", "POST"])
+@login_required
+def bettor_update(id):
+    if request.method == "POST":
+        form = BettorForm(request.form)
+        if not form.validate():
+            return render_template("auth/update_user.html", form = form, id = id)
+
+        b = Bettor.query.get(id)
+        b.username = form.username.data
+        b.password = form.password.data
+        b.balance_eur = form.balance_eur.data
+        b.balance_cent = form.balance_cent.data
+
+        db.session().commit()
+
+        flash("Account updated!")
+        return redirect(url_for("bettor_show", id = id))
+    else:
+        form = BettorForm(obj=Bettor.query.get(id))
+        return render_template("auth/update_user.html", form = form, id = id)
+
+@app.route("/auth/delete/<id>", methods=["POST"])
+@login_required
+def bettor_delete(id):
+    b = Bettor.query.get(id)
+    db.session().delete(b)
+    db.session().commit()
+    flash("Account deleted successfully")
+
+    return redirect(url_for("index"))

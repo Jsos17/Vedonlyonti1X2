@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<table cellspacing="8">
+  <tr align="left">
+    <th>User name</th>
+    <th>Balance Eur</th>
+    <th>Balance Cent</th>
+  </tr>
+  <tr align="left">
+    <td>{{ bettor.username }}</td>
+    <td>{{ bettor.balance_eur }}</td>
+    <td>{{ bettor.balance_cent }}</td>
+  </tr>
+  </tr>
+    <td>
+      <form method="GET" action="{{ url_for('bettor_update', id=bettor.id) }}">
+        <input type="submit" value="Update details"/>
+      </form>
+    </td>
+  </tr>
+</tr>
+  <td>
+    <form method="POST" action="{{ url_for('bettor_delete', id=bettor.id) }}">
+      <input type="submit" value="Delete account"/>
+    </form>
+  </td>
+</tr>
+</table>
+{% endblock %}

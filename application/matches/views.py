@@ -49,16 +49,9 @@ def matches_create():
 
     if not form.validate():
         return render_template("matches/new.html", form = form)
-    
-    home = form.home.data
-    away = form.away.data
-    prob1 = form.prob_1.data
-    probx = form.prob_x.data
-    prob2 = form.prob_2.data
-    start_time = form.start_time.data
-    result_1x2 =form.result_1x2.data
 
-    m = Sport_match(home, away, prob1, probx, prob2, start_time, result_1x2)
+    m = Sport_match(form.home.data, form.away.data, form.prob_1.data, form.prob_x.data,
+            form.prob_2.data, form.start_time.data, form.result_1x2.data)
 
     db.session().add(m)
     db.session().commit()

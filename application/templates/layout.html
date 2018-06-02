@@ -17,21 +17,22 @@
   <body>
 		{% if current_user.is_authenticated %}
       <p>
-				Username {{ current_user.username }} is logged in. <a href="{{ url_for('auth_logout') }}">Log out</a>
+				Username {{ current_user.username }} is logged in. <a href="{{ url_for('auth_logout') }}">Log out</a><br>
+        <a href="{{ url_for('bettor_show', id = current_user.id) }}">Show account</a>
       </p>
       {% else %}
       <a href="{{ url_for('auth_login') }}">Login</a>
       <br>
       <a href="{{ url_for('bettors_form') }}">Create an account</a>
       {% endif %}
-      
+
     <ul>
 	  	<li><a href="{{ url_for('matches_index') }}">List matches</a></li>
 	  	<li><a href="{{ url_for('matches_form') }}">Add a match</a></li>
 		<li><a href="{{ url_for('betting_offers_index') }}">List betting offers</a></li>
 		<li><a href="{{ url_for('betting_offers_form') }}">Add a betting_offer</a></li>
     </ul>
-    
+
   	{% block body %}
     	<p>
       	Content.
