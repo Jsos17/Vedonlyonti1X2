@@ -12,28 +12,31 @@ def matches_index():
 def matches_form():
     return render_template("matches/new.html", form = MatchForm())
 
-@app.route("/matches/<match_id>/", methods=["POST"])
-def matches_set_result(match_id):
-    form = MatchForm(obj=Sport_match.query.get(match_id))
-    return render_template("matches/update.html", form = form, match_id = match_id)
+@app.route("/matches/show/<match_id>", methods=["GET"])
+def matches_show(match_id):
+    return render_template("matches/show_match.html", match = Sport_match.query.get(match_id))
 
-@app.route("/matches/update/<match_id>/", methods=["POST"])
+@app.route("/matches/update/<match_id>/", methods=["GET", "POST"])
 def matches_update(match_id):
-    form = MatchForm(request.form)
-    if not form.validate():
+    if request.method == "POST":
+        form = MatchForm(request.form)
+        if not form.validate():
+            return render_template("matches/update.html", form = form, match_id = match_id)
+
+        match = Sport_match.query.get(match_id)
+        match.home = form.home.data
+        match.away = form.away.data
+        match.prob_1 = form.prob_1.data
+        match.prob_x = form.prob_x.data
+        match.prob_2 = form.prob_2.data
+        match.start_time = form.start_time.data
+        match.result_1x2 = form.result_1x2.data
+        db.session().commit()
+
+        return redirect(url_for("matches_index"))
+    else:
+        form = MatchForm(obj=Sport_match.query.get(match_id))
         return render_template("matches/update.html", form = form, match_id = match_id)
-
-    match = Sport_match.query.get(match_id)
-    match.home = form.home.data
-    match.away = form.away.data
-    match.prob_1 = form.prob_1.data
-    match.prob_x = form.prob_x.data
-    match.prob_2 = form.prob_2.data
-    match.start_time = form.start_time.data
-    match.result_1x2 = form.result_1x2.data
-    db.session().commit()
-
-    return redirect(url_for("matches_index"))
 
 @app.route("/matches/<match_id>/delete/", methods=["POST"])
 def matches_delete(match_id):
@@ -46,7 +49,6 @@ def matches_delete(match_id):
 @app.route("/matches/", methods=["POST"])
 def matches_create():
     form = MatchForm(request.form)
-
     if not form.validate():
         return render_template("matches/new.html", form = form)
 

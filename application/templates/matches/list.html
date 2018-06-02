@@ -21,14 +21,9 @@
       <td>{{ match.start_time }}</td>
 			<td>{{ match.result_1x2 }}</td>
 			<td>
-				<form method="POST" action="{{ url_for('matches_set_result', match_id=match.id) }}">
-	  			<input type="submit" value="Update match information"/>
+				<form method="GET" action="{{ url_for('matches_show', match_id = match.id) }}">
+	  			<input type="submit" value="Access match information"/>
         </form>
-      </td>
-      <td>
-        <form method="POST" action="{{ url_for('matches_delete', match_id=match.id) }}">
-	  			<input type="submit" value="Delete match"/>
-				</form>
       </td>
     </tr>
     {% endfor %}

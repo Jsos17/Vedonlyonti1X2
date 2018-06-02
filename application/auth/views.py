@@ -46,10 +46,9 @@ def bettor_create():
 @app.route("/auth/show/<id>", methods=["GET"])
 @login_required
 def bettor_show(id):
-    b = Bettor.query.get(id)
-    return render_template("auth/show_user.html", bettor = b)
+    return render_template("auth/show_user.html", bettor = Bettor.query.get(id))
 
-@app.route("/auth/cancel_update/<id>",  methods=["POST"])
+@app.route("/auth/cancel_update/<id>", methods=["POST"])
 @login_required
 def bettor_cancel_update(id):
     return render_template("auth/show_user.html", bettor = Bettor.query.get(id))
