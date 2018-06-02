@@ -20,6 +20,11 @@
     <td>{{ match.start_time }}</td>
     <td>{{ match.result_1x2 }}</td>
     <td>
+      <form method="GET" action="{{ url_for('betting_offers_form', match_id = match.id, home = match.home, away = match.away) }}">
+        <input type="submit" value="Add offer to match"/>
+      </form>
+    </td>
+    <td>
       <form method="GET" action="{{ url_for('matches_update', match_id = match.id) }}">
         <input type="submit" value="Update match"/>
       </form>

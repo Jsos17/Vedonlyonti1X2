@@ -1,36 +1,42 @@
 from application import app, db
-from flask import redirect, render_template, request, url_for
+from flask import redirect, render_template, request, url_for, flash
 import datetime
+from application.matches.models import Sport_match
+from application.matches import views
 from application.betting_offers.models import Betting_offer
 from application.betting_offers.forms import Betting_offerForm
 
 @app.route("/betting_offers", methods=["GET"])
 def betting_offers_index():
-    return render_template("betting_offers/offer_list.html", betting_offers = Betting_offer.query.all())
+    offers = Betting_offer.query.all()
+    match_offer_tuples = []
+    for offer in offers:
+        match = Sport_match.query.get(offer.match_id)
+        match_offer_tuples.append((match, offer))
+    return render_template("betting_offers/offer_list.html", match_offer_tuples = match_offer_tuples)
 
-@app.route("/betting_offers/new/")
-def betting_offers_form():
+@app.route("/betting_offers/new/<match_id>", methods=["GET"])
+def betting_offers_form(match_id):
+    bo = Betting_offer.query.filter_by(match_id = match_id).first()
+    if bo == None:
+        m = Sport_match.query.get(match_id)
+        return render_template("betting_offers/new_offer.html", form = Betting_offerForm(), match_id = match_id, home = m.home, away = m.away)
+    else:
+        flash("Betting offer exists already")
+        return redirect(url_for("matches_show", match_id = match_id))
 
 
-    return render_template("betting_offers/new_offer.html", form = Betting_offerForm())
-
-@app.route("/betting_offers/", methods=["POST"])
-def betting_offers_create():
+@app.route("/betting_offers/<match_id>", methods=["POST"])
+def betting_offers_create(match_id):
     form = Betting_offerForm(request.form)
-
     if not form.validate():
-        return render_template("betting_offers/new_offer.html", form = form)
+        return render_template("betting_offers/new_offer.html", form = form, match_id = match_id)
 
-    o1 = form.odds1.data
-    ox = form.oddsx.data
-    o2 = form.odds2.data
-    ms = form.max_stake.data
-    a = form.active.data
-    c = form.closed.data
+    offer = Betting_offer(form.odds_1.data, form.odds_x.data, form.odds_2.data,
+            form.max_stake.data, form.active.data, form.closed.data)
+    offer.match_id = match_id
 
-    bo = Betting_offer(o1, ox, o2, ms, a, c)
-
-    db.session().add(bo)
+    db.session().add(offer)
     db.session().commit()
 
     return redirect(url_for("betting_offers_index"))

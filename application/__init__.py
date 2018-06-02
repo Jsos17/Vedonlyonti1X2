@@ -8,9 +8,9 @@ app.config["SQLALCHEMY_ECHO"] = True
 db = SQLAlchemy(app)
 
 from application import views
-
 from application.matches import models
 from application.betting_offers import views
+from application.betting_offers import models
 from application.bets import models
 from application.betting_offers_of_bet import models
 from application.matches import views

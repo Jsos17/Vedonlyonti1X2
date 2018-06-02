@@ -71,7 +71,7 @@ def bettor_update(id):
 
         flash("Account updated!")
         return redirect(url_for("bettor_show", id = id))
-    else:
+    elif request.method == "GET":
         form = BettorForm(obj=Bettor.query.get(id))
         return render_template("auth/update_user.html", form = form, id = id)
 

@@ -1,7 +1,8 @@
 from application import app, db
-from flask import redirect, render_template, request, url_for
+from flask import redirect, render_template, request, url_for, flash
 import datetime
 from application.matches.models import Sport_match
+from application.betting_offers.models import Betting_offer
 from application.matches.forms import MatchForm
 
 @app.route("/matches", methods=["GET"])
@@ -34,18 +35,23 @@ def matches_update(match_id):
         db.session().commit()
 
         return redirect(url_for("matches_index"))
-    else:
+    elif request.method == "GET":
         form = MatchForm(obj=Sport_match.query.get(match_id))
         return render_template("matches/update.html", form = form, match_id = match_id)
 
 @app.route("/matches/<match_id>/delete/", methods=["POST"])
 def matches_delete(match_id):
-    m = Sport_match.query.get(match_id)
-    db.session().delete(m)
-    db.session().commit()
+    bo = Betting_offer.query.filter_by(match_id = match_id).first()
+    if bo == None:
+        m = Sport_match.query.get(match_id)
+        db.session().delete(m)
+        db.session().commit()
 
-    return redirect(url_for("matches_index"))
-
+        return redirect(url_for("matches_index"))
+    else:
+        flash("There are betting offers related to the match, deletion denied")
+        return redirect(url_for("matches_show", match_id = match_id))
+        
 @app.route("/matches/", methods=["POST"])
 def matches_create():
     form = MatchForm(request.form)

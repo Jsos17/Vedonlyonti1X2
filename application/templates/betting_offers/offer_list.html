@@ -3,6 +3,8 @@
 {% block body %}
   <table cellspacing="8">
     <tr align="left">
+      <th>Home team</th>
+			<th>Away team</th>
       <th>Odds for home win</th>
 			<th>Odds for draw</th>
       <th>Odds for away win</th>
@@ -10,14 +12,16 @@
       <th>Active</th>
       <th>Closed</th>
     </tr>
-    {% for offer in betting_offers %}
+    {% for match_offer in match_offer_tuples %}
     <tr align="left">
-      <td>{{ offer.odds_1 }}</td>
-      <td>{{ offer.odds_x }}</td>
-      <td>{{ offer.odds_2 }}</td>
-      <td>{{ offer.max_stake }}</td>
-      <td>{{ offer.active }}</td>
-      <td>{{ offer.closed }}</td>
+      <td>{{ match_offer[0].home }}</td>
+      <td>{{ match_offer[0].away }}</td>
+      <td>{{ match_offer[1].odds_1 }}</td>
+      <td>{{ match_offer[1].odds_x }}</td>
+      <td>{{ match_offer[1].odds_2 }}</td>
+      <td>{{ match_offer[1].max_stake }}</td>
+      <td>{{ match_offer[1].active }}</td>
+      <td>{{ match_offer[1].closed }}</td>
     </tr>
     {% endfor %}
   </table>

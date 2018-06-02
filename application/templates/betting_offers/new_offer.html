@@ -1,18 +1,23 @@
 {% extends "layout.html" %}
-  
+
 {% block body %}
-<form method="POST" action="{{ url_for('betting_offers_create') }}">
+<form method="POST" action="{{ url_for('betting_offers_create', match_id = match_id) }}">
   <table>
     <tr>
+      <td>
+				{{ home }} {{ "VS" }} {{ away }}
+			</td>
+    </tr>
+    <tr>
 			<td>
-				{{ form.odds1.label }}
+				{{ form.odds_1.label }}
 			</td>
 			<td>
-				{{ form.odds1 }}
+				{{ form.odds_1 }}
 			</td>
 			<td>
 				<ul>
-					{% for error in form.odds1.errors %}
+					{% for error in form.odds_1.errors %}
 					<li>{{ error }}</li>
 					{% endfor %}
 				</ul>
@@ -20,14 +25,14 @@
 		</tr>
 		<tr>
 			<td>
-				{{ form.oddsx.label }}
+				{{ form.odds_x.label }}
 			</td>
 			<td>
-				{{ form.oddsx }}
+				{{ form.odds_x }}
 			</td>
 			<td>
 				<ul>
-					{% for error in form.oddsx.errors %}
+					{% for error in form.odds_x.errors %}
 					<li>{{ error }}</li>
 					{% endfor %}
 				</ul>
@@ -35,14 +40,14 @@
 		</tr>
 		<tr>
 			<td>
-				{{ form.odds2.label }}
+				{{ form.odds_2.label }}
 			</td>
 			<td>
-				{{ form.odds2 }}
+				{{ form.odds_2 }}
 			</td>
 			<td>
 				<ul>
-					{% for error in form.odds2.errors %}
+					{% for error in form.odds_2.errors %}
 					<li>{{ error }}</li>
 					{% endfor %}
 				</ul>
@@ -93,7 +98,7 @@
 				</ul>
 			</td>
 		</tr>
-		
+
 		<tr>
 			<td colspan="5">
 				<input type="submit" value="Add betting offer"/>
