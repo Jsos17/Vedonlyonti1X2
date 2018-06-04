@@ -30,7 +30,7 @@ Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin 
 
 [User stories](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/documentation/user_stories.md)
 
-### Rekisteröity käytttäjä:
+### Rekisteröity käyttäjä:
 
 username: pelaaja1
 
