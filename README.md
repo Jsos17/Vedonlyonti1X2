@@ -36,7 +36,7 @@ username: pelaaja1
 
 password: 12345678
 
-### Linkki herokuun (ei vielä päivitetty)
+### Linkki herokuun (päivitetty)
 
 [Bet1X2App](https://bet1x2-app.herokuapp.com/)
 
