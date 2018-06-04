@@ -33,6 +33,7 @@ Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin 
 ### Rekisteröity käytttäjä:
 
 username: pelaaja1
+
 password: 12345678
 
 ### Linkki herokuun (ei vielä päivitetty)
