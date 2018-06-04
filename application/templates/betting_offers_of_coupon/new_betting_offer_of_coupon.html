@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('betting_offers_of_coupon_create', betting_offer_id = betting_offer.id, bet_coupon_id = bet_coupon_id) }}">
+  <table>
+    <tr>
+      <td>
+				{{ match.home }} {{ "VS" }} {{ match.away }}
+			</td>
+    </tr>
+    <tr>
+      <td>Odds for home win</td>
+      <td>{{ betting_offer.odds_1}}</td>
+    </tr>
+    <tr>
+      <td>Odds for draw</td>
+      <td>{{ betting_offer.odds_x}}</td>
+    </tr>
+    <tr>
+      <td>Odds for away win</td>
+      <td>{{ betting_offer.odds_2}}</td>
+    </tr>
+    <tr>
+			<td>{{ form.choice_1x2.label }}</td>
+			<td>{{ form.choice_1x2 }}</td>
+			<td>
+				<ul>
+					{% for error in form.choice_1x2.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<input type="submit" value="Add betting offer to bet"/>
+			</td>
+  	</tr>
+  </table>
+</form>
+{% endblock %}

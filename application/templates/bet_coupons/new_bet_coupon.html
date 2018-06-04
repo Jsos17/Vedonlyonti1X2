@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('bet_coupons_create', betting_offer_id = match_offer_tuples[0][1].id) }}">
+  <table>
+    <tr>
+      <td>
+        <ul>
+					{% for match_offer in match_offer_tuples %}
+          {{ match_offer[0].home }} {{ "-"}} {{ match_offer[0].away }}
+					<li>{{ "Home win:" }} {{ match_offer[1].odds_1 }}</li>
+          <li>{{ "Draw:" }} {{ match_offer[1].odds_x }}</li>
+          <li>{{ "Away win:" }} {{ match_offer[1].odds_2 }}</li>
+          <br>
+					{% endfor %}
+				</ul>
+			</td>
+    </tr>
+    <tr>
+			<td>
+				{{ form.choice_1x2.label }}
+			</td>
+			<td>
+				{{ form.choice_1x2 }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.choice_1x2.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td>
+				{{ form.stake_eur.label }}
+			</td>
+			<td>
+				{{ form.stake_eur }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.stake_eur.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.stake_cent.label }}
+			</td>
+			<td>
+				{{ form.stake_cent }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.stake_cent.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<input type="submit" value="Place bet"/>
+			</td>
+  	</tr>
+  </table>
+</form>
+{% endblock %}

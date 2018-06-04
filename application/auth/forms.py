@@ -22,3 +22,10 @@ class BettorForm(FlaskForm):
 
     class Meta:
         csrf = False
+
+class UpdateUserForm(FlaskForm):
+    balance_eur = IntegerField("Initial balance/Eur (0-9999)", [validators.NumberRange(min=0, max=9999)])
+    balance_cent = IntegerField("Initial balance/Cent (0-99)", [validators.NumberRange(min=0, max=99)])
+
+    class Meta:
+        csrf = False

@@ -15,7 +15,7 @@
   </head>
 
   <body>
-		{% if current_user.is_authenticated %}
+		  {% if current_user.is_authenticated %}
       <p>
 				Username {{ current_user.username }} is logged in. <a href="{{ url_for('auth_logout') }}">Log out</a><br>
         <a href="{{ url_for('bettor_show', id = current_user.id) }}">Show account</a>

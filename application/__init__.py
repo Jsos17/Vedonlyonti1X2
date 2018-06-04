@@ -8,15 +8,17 @@ app.config["SQLALCHEMY_ECHO"] = True
 db = SQLAlchemy(app)
 
 from application import views
+
+from application.matches import views
 from application.matches import models
 from application.betting_offers import views
 from application.betting_offers import models
-from application.bets import models
-from application.betting_offers_of_bet import models
-from application.matches import views
-
-from application.auth import models
+from application.bet_coupons import views
+from application.bet_coupons import models
+from application.betting_offers_of_coupon import views
+from application.betting_offers_of_coupon import models
 from application.auth import views
+from application.auth import models
 
 from application.auth.models import Bettor
 from os import urandom

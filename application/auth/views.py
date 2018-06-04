@@ -1,9 +1,10 @@
 from flask import render_template, request, redirect, url_for, flash
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 
 from application import app, db
+from application.bet_coupons.models import Bet_coupon
 from application.auth.models import Bettor
-from application.auth.forms import LoginForm, BettorForm
+from application.auth.forms import LoginForm, BettorForm, UpdateUserForm
 
 @app.route("/auth/login", methods= ["GET", "POST"])
 def auth_login():
@@ -21,7 +22,13 @@ def auth_login():
     return redirect(url_for("index"))
 
 @app.route("/auth/logout")
+@login_required
 def auth_logout():
+    bets = Bet_coupon.query.filter_by(bettor_id = current_user.id, bet_status = "no bets").all()
+    for bet in bets:
+        db.session().delete(bet)
+        db.session().commit()
+
     logout_user()
     return redirect(url_for("index"))
 
@@ -53,26 +60,28 @@ def bettor_show(id):
 def bettor_cancel_update(id):
     return render_template("auth/show_user.html", bettor = Bettor.query.get(id))
 
-@app.route("/auth/update/<id>",  methods=["GET", "POST"])
+@app.route("/auth/update/<id>", methods=["GET", "POST"])
 @login_required
 def bettor_update(id):
     if request.method == "POST":
-        form = BettorForm(request.form)
+        #form = BettorForm(request.form)
+        form = UpdateUserForm(request.form)
         if not form.validate():
             return render_template("auth/update_user.html", form = form, id = id)
 
         b = Bettor.query.get(id)
-        b.username = form.username.data
-        b.password = form.password.data
+        #b.username = form.username.data
+        #b.password = form.password.data
         b.balance_eur = form.balance_eur.data
         b.balance_cent = form.balance_cent.data
 
         db.session().commit()
-
         flash("Account updated!")
+
         return redirect(url_for("bettor_show", id = id))
     elif request.method == "GET":
-        form = BettorForm(obj=Bettor.query.get(id))
+        #form = BettorForm(obj=Bettor.query.get(id))
+        form = UpdateUserForm()
         return render_template("auth/update_user.html", form = form, id = id)
 
 @app.route("/auth/delete/<id>", methods=["POST"])

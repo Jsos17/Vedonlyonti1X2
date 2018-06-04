@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table cellspacing="8">
+    <tr align="left">
+      <th>Combined odds</th>
+			<th>Stake eur</th>
+      <th>Stake cent</th>
+			<th>Possible win eur</th>
+      <th>Possible win cent</th>
+      <th>Bet status</th>
+    </tr>
+    {% for bet_coupon in user_coupons %}
+    <tr align="left">
+      <td>{{ bet_coupon.combined_odds }}</td>
+      <td>{{ bet_coupon.stake_eur }}</td>
+      <td>{{ bet_coupon.stake_cent }}</td>
+      <td>{{ bet_coupon.possible_win_eur }}</td>
+      <td>{{ bet_coupon.possible_win_cent }}</td>
+      <td>{{ bet_coupon.bet_status }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

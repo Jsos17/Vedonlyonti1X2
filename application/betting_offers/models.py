@@ -17,3 +17,11 @@ class Betting_offer(db.Model):
         self.max_stake = max_stake
         self.active = active
         self.closed = closed
+
+    def odds_for_choice(self, choice):
+        if choice == "1":
+            return self.odds_1
+        elif choice == "x":
+            return self.odds_x
+        elif choice == "2":
+            return self.odds_2

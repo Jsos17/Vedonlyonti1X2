@@ -7,7 +7,7 @@ class Bettor(db.Model):
     balance_eur = db.Column(db.Integer, nullable=False)
     balance_cent = db.Column(db.Integer, nullable=False)
 
-    bets = db.relationship('Bet', backref='bettor', lazy=True)
+    bet_coupons = db.relationship('Bet_coupon', backref='bettor', lazy=True)
 
     def __init__(self, username, password, balance_eur, balance_cent):
         self.username = username
@@ -20,7 +20,7 @@ class Bettor(db.Model):
 
     def is_active(self):
         return True
-    
+
     def is_anonymous(self):
         return False
 

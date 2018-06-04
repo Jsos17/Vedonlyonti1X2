@@ -12,19 +12,24 @@
     <td>{{ bettor.balance_eur }}</td>
     <td>{{ bettor.balance_cent }}</td>
   </tr>
-  </tr>
+  <tr>
     <td>
       <form method="GET" action="{{ url_for('bettor_update', id=bettor.id) }}">
         <input type="submit" value="Update details"/>
       </form>
     </td>
   </tr>
-</tr>
-  <td>
-    <form method="POST" action="{{ url_for('bettor_delete', id=bettor.id) }}">
-      <input type="submit" value="Delete account"/>
-    </form>
-  </td>
-</tr>
+  <!-- <tr>
+    <td>
+      <form method="POST" action="{{ url_for('bettor_delete', id=bettor.id) }}">
+        <input type="submit" value="Delete account"/>
+      </form>
+    </td>
+  </tr> -->
+  <tr>
+    <td>
+      <a href="{{ url_for('bet_coupons_index') }}">Show bet coupons</a>
+    </td>
+  </tr>
 </table>
 {% endblock %}

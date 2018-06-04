@@ -34,7 +34,7 @@ def matches_update(match_id):
         match.result_1x2 = form.result_1x2.data
         db.session().commit()
 
-        return redirect(url_for("matches_index"))
+        return redirect(url_for("matches_show", match_id = match_id))
     elif request.method == "GET":
         form = MatchForm(obj=Sport_match.query.get(match_id))
         return render_template("matches/update.html", form = form, match_id = match_id)
@@ -51,7 +51,7 @@ def matches_delete(match_id):
     else:
         flash("There are betting offers related to the match, deletion denied")
         return redirect(url_for("matches_show", match_id = match_id))
-        
+
 @app.route("/matches/", methods=["POST"])
 def matches_create():
     form = MatchForm(request.form)
