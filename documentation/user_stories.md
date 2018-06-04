@@ -4,6 +4,8 @@
 
 * Admin voi liittää otteluihin vetokohteita (Betting_offer), kertoimet määrittyvät automaattisesti todennäköisyyksien ja palautusprosentin perusteella, mutta niitä voi myös muokata (yli 90 % aiheuttaa tällä hetkellä pienemmän kuin 1 kertoimen palautusprosentin vuoksi, jolloin lomaketta ei hyväksytä ilman kertoimien alentamista)
 
+* Admin voi poistaa vetokohteen, jos siitä ei ole lyöty vetoa (CRUD)
+
 * Pelaaja voi rekisteröityä, muokata tiliä, nähdä tilinsä tiedot, ja poistaa tilinsä (CRUD) (poisto ehdollinen)
 (poisto toiminto otettu hetkellisesti pois käytöstä, jotta joku ei käy poistamasta pelaaja1 tiliä)
 
