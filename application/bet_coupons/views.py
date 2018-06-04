@@ -25,7 +25,7 @@ def bet_coupons_form():
             match_offer_tuples.append((match, offer))
 
     if len(match_offer_tuples) != 1:
-        flash("Add one betting offer to coupon")
+        flash("Add  exactly one betting offer to coupon")
         return redirect(url_for("betting_offers_index"))
 
     return render_template("bet_coupons/new_bet_coupon.html", form = Bet_couponForm(), match_offer_tuples = match_offer_tuples)

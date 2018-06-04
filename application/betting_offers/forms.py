@@ -5,7 +5,7 @@ def validate_risk(form, field):
     try:
         ret_percent = 1 / (1/form.odds_1.data + 1/form.odds_x.data + 1/form.odds_2.data)
         if ret_percent > 0.90:
-            raise validators.ValidationError("The percentage returned to bettors exceeds 90 %")
+            raise validators.ValidationError("The percentage returned to bettors exceeds 90 %, lower the odds")
     except TypeError:
         raise validators.ValidationError()
 
