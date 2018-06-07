@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('bettor_update', id = id) }}">
+<form method="POST" action="{{ url_for('bettor_update') }}">
   <table>
 		<tr>
 			<td>
@@ -36,7 +36,7 @@
 		<tr>
 			<td colspan="5">
 				<input type="submit" value="Update details"/>
-        <input type="submit" value="Cancel" formaction="{{ url_for('bettor_cancel_update', id=id) }}"/>
+        <input type="submit" value="Cancel" formaction="{{ url_for('bettor_cancel_update') }}"/>
 			</td>
   	</tr>
 </form>

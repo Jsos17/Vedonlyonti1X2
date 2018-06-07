@@ -50,26 +50,26 @@ def bettor_create():
 
     return redirect(url_for("auth_login"))
 
-@app.route("/auth/show/<id>", methods=["GET"])
+@app.route("/auth/show/", methods=["GET"])
 @login_required
-def bettor_show(id):
-    return render_template("auth/show_user.html", bettor = Bettor.query.get(id))
+def bettor_show():
+    return render_template("auth/show_user.html")
 
-@app.route("/auth/cancel_update/<id>", methods=["POST"])
+@app.route("/auth/cancel_update/", methods=["POST"])
 @login_required
-def bettor_cancel_update(id):
-    return render_template("auth/show_user.html", bettor = Bettor.query.get(id))
+def bettor_cancel_update():
+    return render_template("auth/show_user.html")
 
-@app.route("/auth/update/<id>", methods=["GET", "POST"])
+@app.route("/auth/update/", methods=["GET", "POST"])
 @login_required
-def bettor_update(id):
+def bettor_update():
     if request.method == "POST":
         #form = BettorForm(request.form)
         form = UpdateUserForm(request.form)
         if not form.validate():
-            return render_template("auth/update_user.html", form = form, id = id)
+            return render_template("auth/update_user.html", form = form)
 
-        b = Bettor.query.get(id)
+        b = Bettor.query.get(current_user.id)
         #b.username = form.username.data
         #b.password = form.password.data
         b.balance_eur = form.balance_eur.data
@@ -78,16 +78,16 @@ def bettor_update(id):
         db.session().commit()
         flash("Account updated!")
 
-        return redirect(url_for("bettor_show", id = id))
+        return redirect(url_for("bettor_show"))
     elif request.method == "GET":
         #form = BettorForm(obj=Bettor.query.get(id))
         form = UpdateUserForm()
-        return render_template("auth/update_user.html", form = form, id = id)
+        return render_template("auth/update_user.html", form = form)
 
-@app.route("/auth/delete/<id>", methods=["POST"])
+@app.route("/auth/delete/", methods=["POST"])
 @login_required
-def bettor_delete(id):
-    b = Bettor.query.get(id)
+def bettor_delete():
+    b = Bettor.query.get(current_user.id)
     db.session().delete(b)
     db.session().commit()
     flash("Account deleted successfully")

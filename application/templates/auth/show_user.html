@@ -8,20 +8,20 @@
     <th>Balance Cent</th>
   </tr>
   <tr align="left">
-    <td>{{ bettor.username }}</td>
-    <td>{{ bettor.balance_eur }}</td>
-    <td>{{ bettor.balance_cent }}</td>
+    <td>{{ current_user.username }}</td>
+    <td>{{ current_user.balance_eur }}</td>
+    <td>{{ current_user.balance_cent }}</td>
   </tr>
   <tr>
     <td>
-      <form method="GET" action="{{ url_for('bettor_update', id=bettor.id) }}">
+      <form method="GET" action="{{ url_for('bettor_update') }}">
         <input type="submit" value="Update details"/>
       </form>
     </td>
   </tr>
   <!-- <tr>
     <td>
-      <form method="POST" action="{{ url_for('bettor_delete', id=bettor.id) }}">
+      <form method="POST" action="{{ url_for('bettor_delete') }}">
         <input type="submit" value="Delete account"/>
       </form>
     </td>
