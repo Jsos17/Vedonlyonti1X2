@@ -13,8 +13,8 @@ def validate_probabilities(form, field):
         raise validators.ValidationError()
 
 class MatchForm(FlaskForm):
-    home = StringField("Home team", [validators.InputRequired()])
-    away = StringField("Away team", [validators.InputRequired()])
+    home = StringField("Home team", [validators.InputRequired(), validators.Length(min=2, max=144)])
+    away = StringField("Away team", [validators.InputRequired(), validators.Length(min=2, max=144)])
     prob_1 = IntegerField("Home win probability (integer value 1-100 %)", [validators.NumberRange(min=1, max=100), validate_probabilities])
     prob_x = IntegerField("Draw probability (integer value 1-100 %)", [validators.NumberRange(min=1, max=100), validate_probabilities])
     prob_2 = IntegerField("Away win probability (integer value 1-100 %)", [validators.NumberRange(min=1, max=100), validate_probabilities])

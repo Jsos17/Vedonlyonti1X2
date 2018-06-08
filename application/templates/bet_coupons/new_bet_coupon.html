@@ -1,18 +1,17 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('bet_coupons_create', offer_id_1 = offer_id_1, offer_id_2 = offer_id_2, offer_id_3 = offer_id_3,
-                        offer_id_4 = offer_id_4, offer_id_5 = offer_id_5, offer_id_6 = offer_id_6) }}">
+<form method="POST" action="{{ url_for('bet_coupons_create') }}">
     {% for match_offer in match_offer_tuples %}
     <table border="1" cellspacing="8">
       <tr>
         <th>{{ match_offer[0].home }}</th>
-        <th>{{ " - " }}</th>
+        <th></th>
         <th>{{ match_offer[0].away }}</th>
       </tr>
       <tr>
-        <td>Home win:</td>
-        <td>Draw:</td>
+        <td>Home win</td>
+        <td>Draw</td>
         <td>Away win</td>
       </tr>
       <tr>
@@ -24,6 +23,7 @@
         <td><input type="radio" name={{ match_offer[1].id }} value="1" checked="checked">1</td>
         <td><input type="radio" name={{ match_offer[1].id }} value="x" checked="checked">x</td>
         <td><input type="radio" name={{ match_offer[1].id }} value="2" checked="checked">2</td>
+        <td><input type="hidden" name={{ "hidden" ~ match_offer[1].id }} value={{ match_offer[1].id }}></td>
       </tr>
     </table>
     <br>

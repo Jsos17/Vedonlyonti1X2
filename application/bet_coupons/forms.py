@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, StringField, validators
+from wtforms import IntegerField, StringField, FieldList, RadioField, validators
 
 class Bet_couponForm(FlaskForm):
     stake_eur = IntegerField("Stake eur", validators=[validators.NumberRange(min=0)])
