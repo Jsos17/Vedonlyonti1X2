@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Bet1X2</title>
     {% with messages = get_flashed_messages() %}
   		{% if messages %}
@@ -17,7 +18,7 @@
 
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-	     <a class="navbar-brand" href="#">Bet1XApplication</a>
+	     <a class="navbar-brand" href="#">Bet1X2 Application</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
 	       </button>
@@ -37,12 +38,14 @@
             {% if current_user.is_authenticated %}
             <p>
       				Username {{ current_user.username }} is logged in. <a href="{{ url_for('auth_logout') }}">Log out</a><br>
-              <a href="{{ url_for('bettor_show', id = current_user.id) }}">Show account</a>
+              <a href="{{ url_for('bettor_show', id = current_user.id) }}">Show account</a><br>
+              <a href="{{ url_for('bet_coupons_index') }}">Show all your bet coupons</a><br>
             </p>
             {% else %}
-            <a href="{{ url_for('auth_login') }}">Login</a>
-            <br>
-            <a href="{{ url_for('bettors_form') }}">Create an account</a>
+            <p>
+              <a href="{{ url_for('auth_login') }}">Login</a><br>
+              <a href="{{ url_for('bettors_form') }}">Create an account</a>
+            </p>
             {% endif %}
           </div>
 	       </div>

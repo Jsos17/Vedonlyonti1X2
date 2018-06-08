@@ -1,23 +1,30 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table cellspacing="8">
+  <table border="1" cellspacing="8">
     <tr align="left">
       <th>Combined odds</th>
-			<th>Stake eur</th>
-      <th>Stake cent</th>
-			<th>Possible win eur</th>
-      <th>Possible win cent</th>
+			<th>Stake</th>
       <th>Bet status</th>
     </tr>
     {% for bet_coupon in user_coupons %}
     <tr align="left">
       <td>{{ bet_coupon.combined_odds }}</td>
-      <td>{{ bet_coupon.stake_eur }}</td>
-      <td>{{ bet_coupon.stake_cent }}</td>
-      <td>{{ bet_coupon.possible_win_eur }}</td>
-      <td>{{ bet_coupon.possible_win_cent }}</td>
+      <td>
+        {% if bet_coupon.stake_cent < 10 %}
+          {% set money = bet_coupon.stake_eur ~ ".0" ~ bet_coupon.stake_cent %}
+            {{ money }}
+        {% else %}
+          {% set money = bet_coupon.stake_eur ~ "." ~ bet_coupon.stake_cent %}
+            {{ money }}
+        {% endif %}
+      </td>
       <td>{{ bet_coupon.bet_status }}</td>
+      <td>
+				<form method="GET" action="{{ url_for('bet_coupons_show', bet_coupon_id = bet_coupon.id) }}">
+	  			<input type="submit" value="Show coupon"/>
+        </form>
+      </td>
     </tr>
     {% endfor %}
   </table>

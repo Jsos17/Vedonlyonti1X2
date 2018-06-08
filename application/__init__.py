@@ -14,8 +14,6 @@ else:
 db = SQLAlchemy(app)
 
 from application import views
-from application.util import ListConverter
-app.url_map.converters['list'] = ListConverter
 
 from application.matches import views
 from application.matches import models
