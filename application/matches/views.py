@@ -59,7 +59,7 @@ def matches_create():
         return render_template("matches/new.html", form = form)
 
     m = Sport_match(form.home.data, form.away.data, form.prob_1.data, form.prob_x.data,
-            form.prob_2.data, form.start_time.data, form.result_1x2.data)
+        form.prob_2.data, form.start_time.data, form.result_1x2.data)
 
     db.session().add(m)
     db.session().commit()

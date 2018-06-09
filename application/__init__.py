@@ -25,6 +25,7 @@ from application.betting_offers_of_coupon import views
 from application.betting_offers_of_coupon import models
 from application.auth import views
 from application.auth import models
+from application.statistics import views
 
 from application.auth.models import Bettor
 from os import urandom

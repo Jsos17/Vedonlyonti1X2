@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table border="1" cellspacing="8">
+    <tr align="left">
+      <th>Home team</th>
+      <th>Away team</th>
+      <th>Match id</th>
+      <th>Betting offer id</th>
+      <th>How many coupons include betting offer</th>
+      <th>Money betted on betting offer (Eur)</th>
+      <th>Date and time</th>
+    </tr>
+    {% for r in results  %}
+    <tr align="left">
+      <td>{{ r[0] }}</td>
+      <td>{{ r[1] }}</td>
+      <td>{{ r[2] }}</td>
+      <td>{{ r[3] }}</td>
+      <td>{{ r[4] }}</td>
+      <td>
+        {% if r[6] < 10 %}
+          {% set money = r[5] ~ ".0" ~ r[6] %}
+            {{ money }}
+        {% else %}
+          {% set money = r[5] ~ "." ~ r[6] %}
+            {{ money }}
+        {% endif %}
+      </td>
+      <td>{{ r[7] }}</td>
+			<!-- <td>
+				<form method="GET" action="{{ url_for('show_distribution', offer_id = r[4]) }}">
+	  			<input type="submit" value="Show distribution of turnover"/>
+        </form>
+      </td> -->
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

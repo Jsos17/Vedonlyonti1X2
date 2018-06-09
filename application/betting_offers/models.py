@@ -1,4 +1,6 @@
 from application import db
+from sqlalchemy.sql import text
+from application.money_handler import sum_eur_cent
 
 class Betting_offer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -25,3 +27,28 @@ class Betting_offer(db.Model):
             return self.odds_x
         elif choice == "2":
             return self.odds_2
+
+    @staticmethod
+    def betting_offer_turnovers():
+        stmt = text("SELECT sport_match.home, sport_match.away, sport_match.id as match_id, betting_offer.id as offer_id, \
+                     COUNT(bet_coupon.id) as coupons, SUM(bet_coupon.stake_eur) as eur, SUM(bet_coupon.stake_cent) as cent, sport_match.start_time \
+                     FROM sport_match, betting_offer, bet_coupon, betting_offer_of_coupon WHERE betting_offer.match_id = sport_match.id \
+                     AND betting_offer_of_coupon.betting_offer_id = betting_offer.id AND betting_offer_of_coupon.bet_coupon_id = bet_coupon.id GROUP BY sport_match.id")
+
+        res = db.engine.execute(stmt)
+
+        results = []
+        for row in res:
+            eur_cent = sum_eur_cent(row[5], row[6])
+            results.append((row[0], row[1], row[2], row[3], row[4], eur_cent[0], eur_cent[1], row[7]))
+
+        return results
+
+    @staticmethod
+    def choice_distribution():
+        stmt = text("SELECT sport_match.home, sport_match.away, COUNT(bet_coupon.id) as coupons, betting_offer_of_coupon.choice_1x2, \
+                     SUM(bet_coupon.stake_eur) as eur, SUM(bet_coupon.stake_cent) as cent, sport_match.start_time \
+                     FROM sport_match, betting_offer, bet_coupon, betting_offer_of_coupon \
+                     WHERE betting_offer_id = 3 AND betting_offer.match_id = sport_match.id \
+                     AND betting_offer_of_coupon.betting_offer_id = betting_offer.id AND betting_offer_of_coupon.bet_coupon_id = bet_coupon.id \
+                     GROUP BY sport_match.id, betting_offer_of_coupon.choice_1x2")

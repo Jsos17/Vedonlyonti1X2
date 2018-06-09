@@ -44,6 +44,8 @@ def bet_coupons_create():
                 offer = Betting_offer.query.get(offer_ids[i])
                 match = Sport_match.query.get(offer.match_id)
                 match_offer_tuples.append((match, offer))
+
+        flash("Please, re-check your betting selections")
         return render_template("bet_coupons/new_bet_coupon.html", form = form, match_offer_tuples = match_offer_tuples)
 
     coupon = Bet_coupon()
@@ -77,6 +79,7 @@ def bet_coupons_create():
 def bet_coupons_show(bet_coupon_id):
     coupon = Bet_coupon.query.get(bet_coupon_id)
     if coupon.bettor_id != current_user.id:
+        flash("Please use the links provided to navigate the site")
         return redirect(url_for("bet_coupons_index"))
 
     offers_of_coupon = Betting_offer_of_coupon.query.filter_by(bet_coupon_id = bet_coupon_id).all()
