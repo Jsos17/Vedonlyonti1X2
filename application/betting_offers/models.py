@@ -51,7 +51,7 @@ class Betting_offer(db.Model):
                      FROM sport_match, betting_offer, bet_coupon, betting_offer_of_coupon \
                      WHERE betting_offer_id = :offer_id AND betting_offer.match_id = sport_match.id \
                      AND betting_offer_of_coupon.betting_offer_id = betting_offer.id AND betting_offer_of_coupon.bet_coupon_id = bet_coupon.id \
-                     GROUP BY sport_match.id, betting_offer_of_coupon.choice_1x2;").params(offer_id = offer_id)
+                     GROUP BY sport_match.id, betting_offer_of_coupon.choice_1x2").params(offer_id = offer_id)
 
         res = db.engine.execute(stmt)
 
@@ -64,6 +64,8 @@ class Betting_offer(db.Model):
             cent_sum += cents
             d[row[3]] = [row[2], cents]
 
+        if cent_sum == 0:
+            return ("Nothing", 0, 0.0, 0, 0.00, 0)
         l = ["1", "x", "2"]
         results = []
         for i in range(3):
