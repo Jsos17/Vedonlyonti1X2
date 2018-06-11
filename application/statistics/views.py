@@ -11,8 +11,8 @@ from application import money_handler
 
 @app.route("/statistics/turnover")
 def turnover_index():
-    return render_template("/statistics/distribution.html", results = Betting_offer.betting_offer_turnovers())
+    return render_template("statistics/turnovers.html", results = Betting_offer.betting_offer_turnovers())
 
-@app.route("/statistics/turnover/show/<offer_id>", methods=["GET"])
-def show_distribution(offer_id):
-    print("")
+@app.route("/statistics/turnover/show/<home>/<away>/<offer_id>/", methods=["GET"])
+def show_distribution(home, away, offer_id):
+    return render_template("statistics/show_distribution.html", results = Betting_offer.choice_distribution(offer_id), home = home, away = away)

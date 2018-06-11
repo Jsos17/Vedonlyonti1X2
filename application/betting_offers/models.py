@@ -1,6 +1,6 @@
 from application import db
 from sqlalchemy.sql import text
-from application.money_handler import sum_eur_cent
+from application.money_handler import sum_eur_cent, to_cents, distribution
 
 class Betting_offer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -45,10 +45,32 @@ class Betting_offer(db.Model):
         return results
 
     @staticmethod
-    def choice_distribution():
-        stmt = text("SELECT sport_match.home, sport_match.away, COUNT(bet_coupon.id) as coupons, betting_offer_of_coupon.choice_1x2, \
-                     SUM(bet_coupon.stake_eur) as eur, SUM(bet_coupon.stake_cent) as cent, sport_match.start_time \
+    def choice_distribution(offer_id):
+        stmt = text("SELECT sport_match.home, sport_match.away, COUNT(bet_coupon.id), betting_offer_of_coupon.choice_1x2, \
+                     SUM(bet_coupon.stake_eur), SUM(bet_coupon.stake_cent), sport_match.prob_1, sport_match.prob_x, sport_match.prob_2 \
                      FROM sport_match, betting_offer, bet_coupon, betting_offer_of_coupon \
-                     WHERE betting_offer_id = 3 AND betting_offer.match_id = sport_match.id \
+                     WHERE betting_offer_id = :offer_id AND betting_offer.match_id = sport_match.id \
                      AND betting_offer_of_coupon.betting_offer_id = betting_offer.id AND betting_offer_of_coupon.bet_coupon_id = bet_coupon.id \
-                     GROUP BY sport_match.id, betting_offer_of_coupon.choice_1x2")
+                     GROUP BY sport_match.id, betting_offer_of_coupon.choice_1x2;").params(offer_id = offer_id)
+
+        res = db.engine.execute(stmt)
+
+        d = {}
+        probs = [0, 0, 0]
+        cent_sum = 0
+        for row in res:
+            probs = [row[6], row[7], row[8]]
+            cents = to_cents(row[4], row[5])
+            cent_sum += cents
+            d[row[3]] = [row[2], cents]
+
+        l = ["1", "x", "2"]
+        results = []
+        for i in range(3):
+            choice = l[i]
+            if choice not in d:
+                results.append((choice, 0, 0.00, probs[i], 0.00, round(cent_sum/100, 2)))
+            else:
+                results.append((choice, d[choice][0], round(100*d[choice][1]/cent_sum, 2), probs[i], round(d[choice][1]/100, 2), round(cent_sum/100, 2)))
+
+        return results
