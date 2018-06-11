@@ -65,7 +65,8 @@ class Betting_offer(db.Model):
             d[row[3]] = [row[2], cents]
 
         if cent_sum == 0:
-            return ("Nothing", 0, 0.0, 0, 0.00, 0)
+            return [("Nothing", 0, 0, 0, 0, 0), ("Nothing", 0, 0, 0, 0, 0), ("Nothing", 0, 0, 0, 0, 0)]
+            
         l = ["1", "x", "2"]
         results = []
         for i in range(3):
