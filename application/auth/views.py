@@ -84,9 +84,21 @@ def bettor_update():
         form = UpdateUserForm()
         return render_template("auth/update_user.html", form = form)
 
-@app.route("/auth/delete/", methods=["POST"])
+@app.route("/auth/delete/", methods=["GET"])
 @login_required
 def bettor_delete():
+    coupons = Bet_coupon.query.filter_by(bettor_id = current_user.id).all()
+    for coupon in coupons:
+        if coupon.bet_status == "tbd":
+            flash("You have bets that are not determined yet")
+            flash("You can delete your account when all your bets have been determined")
+            return render_template("auth/show_user.html")
+
+    return render_template("auth/delete_confirmation.html")
+
+@app.route("/auth/delete/", methods=["POST"])
+@login_required
+def bettor_delete_confirmation():
     b = Bettor.query.get(current_user.id)
     db.session().delete(b)
     db.session().commit()

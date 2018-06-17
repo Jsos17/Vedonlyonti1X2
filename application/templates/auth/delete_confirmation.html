@@ -1,0 +1,13 @@
+{% extends "layout.html" %} 
+
+{% block body %}
+<h1>Account deletion</h1>
+<h2>{{ current_user.username }}</h2>
+<p>Do you want to delete your account?</p>
+<form method="POST" action="{{ url_for('bettor_delete_confirmation') }}">
+  <input type="submit" value="Yes, delete my account" />
+</form>
+<form method="GET" action="{{ url_for('bettor_show') }}">
+  <input type="submit" value="No, don't delete my account" />
+</form>
+{% endblock %}

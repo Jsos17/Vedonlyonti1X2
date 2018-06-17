@@ -34,7 +34,7 @@ def betting_offers_of_coupon_create(betting_offer_id, bet_coupon_id):
     if not form.validate():
         m = Sport_match.query.get(bo.match_id)
         return render_template("betting_offers_of_coupon/new_betting_offer_of_coupon.html", form = form,
-                    betting_offer = bo, match = m)
+                               betting_offer = bo, match = m)
 
     odds = bo.odds_for_choice(form.choice_1x2.data)
 
