@@ -19,7 +19,7 @@ def betting_offers_of_coupon_form(betting_offer_id, bet_coupon_id):
     bo = Betting_offer.query.get(betting_offer_id)
     m = Sport_match.query.get(bo.match_id)
     return render_template("betting_offers_of_coupon/new_betting_offer_of_coupon.html", form = Betting_offer_of_couponForm(),
-                betting_offer = bo, match = m)
+                           betting_offer = bo, match = m)
 
 # @app.route("/betting_offers_of_coupon/show/", methods=["GET"])
 # @login_required

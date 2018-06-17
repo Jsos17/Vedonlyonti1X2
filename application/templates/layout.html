@@ -4,15 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Bet1X2</title>
-    {% with messages = get_flashed_messages() %}
-  		{% if messages %}
-    		<ul class=flashes>
-    		{% for message in messages %}
-      		<li>{{ message }}</li>
-    		{% endfor %}
-    		</ul>
-  		{% endif %}
-		{% endwith %}
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
 
@@ -36,6 +28,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('turnover_index') }}">Turnover statistics</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('admin_betting_offers_index') }}">Manage betting offers</a>
+            </li>
           </ul>
           <div class="form-inline mt-2 mt-md-0">
             {% if current_user.is_authenticated %}
@@ -54,6 +49,15 @@
 	       </div>
       </nav>
       <main role="main" class="container">
+        {% with messages = get_flashed_messages() %}
+      		{% if messages %}
+        		<ul class=flashes>
+        		{% for message in messages %}
+          		<li>{{ message }}</li>
+        		{% endfor %}
+        		</ul>
+      		{% endif %}
+    		{% endwith %}
       	{% block body %}
         	<p>
           	Content.

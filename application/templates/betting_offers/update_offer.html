@@ -1,5 +1,5 @@
 {% extends "layout.html" %} {% block body %}
-<form method="POST" action="{{ url_for('betting_offers_create', match_id = match.id) }}">
+<form method="POST" action="{{ url_for('betting_offers_update', offer_id = offer_id) }}">
 	<table>
 		<tr>
 			<td>
@@ -99,7 +99,7 @@
 
 		<tr>
 			<td colspan="5">
-				<input type="submit" value="Add betting offer" />
+				<input type="submit" value="Update betting offer" />
 			</td>
 		</tr>
 	</table>
