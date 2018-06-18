@@ -76,7 +76,7 @@ Jos kohteesta ei ole lyöty vetoa niin tämän näkymän kautta kohteen voi pois
 
 Jotta kohteen voi poistaa on se ensin asetettava ei-aktiiviseksi, jotta se ei näy enää pelaajille *List betting offers* listauksessa.
 
-HUOMAUTUS (Samanaikaisuuden hallinnan ongelma): Tilannetta jossa admin on poistamassa pelikohdetta samalla kun pelaaja on jo valinnut kohteen kupongilleen, ja sitten admin poistaa kohteen ennenkuin pelaaja asettaa vedon ei ole testattu/tämä luultavasti aiheuttaa ongelmia. Eli siis pelaaja on valinnut kohteen kupongille ja siirtynyt pelivaihtoehtojen ja panoksen valintanäkymään ennen kuin admin ehti muuttamaan kohteen ei-aktiiviseksi.
+HUOMAUTUS (Samanaikaisuuden hallinnan ongelma): Tilannetta jossa admin on poistamassa pelikohdetta samalla kun pelaaja on jo valinnut kohteen kupongilleen, ja sitten admin poistaa kohteen ennenkuin pelaaja asettaa vedon ei ole testattu/tämä luultavasti aiheuttaa ongelmia. Eli siis pelaaja on valinnut kohteen kupongille ja siirtynyt pelivaihtoehtojen ja panoksen valintanäkymään ennen kuin admin ehti muuttamaan kohteen ei-aktiiviseksi, mutta samalla admin voi poistaa kohteen koska vielä kohteesta ei ole lyöty vetoa.
 
 #### List betting offers
 
