@@ -11,12 +11,20 @@ from application.betting_offers_of_coupon.models import Betting_offer_of_coupon
 @app.route("/bet_coupons/")
 @login_required
 def bet_coupons_index():
+    if (current_user.role == "ADMIN"):
+        flash("Administrator cannot place bets")
+        return render_template("index.html")
+
     bet_coupons = Bet_coupon.query.filter_by(bettor_id = current_user.id).all()
     return render_template("bet_coupons/bet_coupon_list.html", user_coupons = bet_coupons)
 
 @app.route("/bet_coupons/new/", methods=["POST"])
 @login_required
 def bet_coupons_form():
+    if (current_user.role == "ADMIN"):
+        flash("Administrator cannot place bets")
+        return render_template("index.html")
+
     offers = Betting_offer.query.all()
     match_offer_tuples = []
     for offer in offers:
@@ -29,6 +37,10 @@ def bet_coupons_form():
 @app.route("/bet_coupons/", methods=["POST"])
 @login_required
 def bet_coupons_create():
+    if (current_user.role == "ADMIN"):
+        flash("Administrator cannot place bets")
+        return render_template("index.html")
+
     offers = Betting_offer.query.all()
     offer_ids = []
     for offer in offers:
@@ -77,6 +89,10 @@ def bet_coupons_create():
 @app.route("/bet_coupons/show/<bet_coupon_id>", methods=["GET"])
 @login_required
 def bet_coupons_show(bet_coupon_id):
+    if (current_user.role == "ADMIN"):
+        flash("Administrator cannot place bets")
+        return render_template("index.html")
+        
     coupon = Bet_coupon.query.get(bet_coupon_id)
     if coupon.bettor_id != current_user.id:
         flash("Please use the links provided to navigate the site")

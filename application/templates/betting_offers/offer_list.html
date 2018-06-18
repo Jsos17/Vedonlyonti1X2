@@ -20,14 +20,18 @@
       <td>{{ match_offer[1].odds_2 }}</td>
       <td>{{ match_offer[1].max_stake }}</td>
       <td>
+        {% if current_user.role != "ADMIN" %}
         <input type="radio" name={{ match_offer[1].id }} value="Add" checked="checked"> Add to bet coupon
         <input type="radio" name={{ match_offer[1].id }} value="Remove" checked="checked"> Remove from bet coupon
+        {% endif %}
       </td>
     </tr>
     {% endfor %}
     <tr>
       <td>
+        {% if current_user.role != "ADMIN" %}
         <input type="submit" value="Create a bet coupon"/>
+        {% endif %}
       </td>
     </tr>
   </table>

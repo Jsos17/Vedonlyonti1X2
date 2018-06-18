@@ -16,6 +16,7 @@
 	       </button>
 	        <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
+            {% if current_user.role == "ADMIN" %}
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('matches_index') }}">List matches</a>
             </li>
@@ -28,6 +29,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('admin_betting_offers_index') }}">Manage betting offers</a>
             </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('betting_offers_index') }}">List betting offers</a>
             </li>
@@ -36,8 +38,10 @@
             {% if current_user.is_authenticated %}
             <p>
       				Username {{ current_user.username }} is logged in. <a href="{{ url_for('auth_logout') }}">Log out</a><br>
+              {% if current_user.role != "ADMIN" %}
               <a href="{{ url_for('bettor_show', id = current_user.id) }}">Show account</a><br>
               <a href="{{ url_for('bet_coupons_index') }}">Show all your bet coupons</a><br>
+              {%  endif %}
             </p>
             {% else %}
             <p>

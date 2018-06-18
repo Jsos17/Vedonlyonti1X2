@@ -1,6 +1,6 @@
 from application import db
 from sqlalchemy.sql import text
-from application.money_handler import sum_eur_cent, to_cents, distribution
+from application.money_handler import sum_eur_cent, to_cents
 
 class Betting_offer(db.Model):
     id = db.Column(db.Integer, primary_key=True)

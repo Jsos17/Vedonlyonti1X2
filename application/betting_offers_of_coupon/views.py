@@ -21,11 +21,6 @@ def betting_offers_of_coupon_form(betting_offer_id, bet_coupon_id):
     return render_template("betting_offers_of_coupon/new_betting_offer_of_coupon.html", form = Betting_offer_of_couponForm(),
                            betting_offer = bo, match = m)
 
-# @app.route("/betting_offers_of_coupon/show/", methods=["GET"])
-# @login_required
-# def betting_offers_of_coupon_show():
-#     return render_template("betting_offers_of_coupon/show_betting_offer_of_coupon.html")
-
 @app.route("/betting_offers_of_coupon/<betting_offer_id>/<bet_coupon_id>/", methods=["POST"])
 @login_required
 def betting_offers_of_coupon_create(betting_offer_id, bet_coupon_id):

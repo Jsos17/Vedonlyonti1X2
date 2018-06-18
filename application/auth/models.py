@@ -6,6 +6,7 @@ class Bettor(db.Model):
     password = db.Column(db.String(144), nullable=False)
     balance_eur = db.Column(db.Integer, nullable=False)
     balance_cent = db.Column(db.Integer, nullable=False)
+    role = db.Column(db.String(50), nullable=False)
 
     bet_coupons = db.relationship('Bet_coupon', backref='bettor', lazy=True)
 
@@ -14,6 +15,7 @@ class Bettor(db.Model):
         self.password = password
         self.balance_eur = balance_eur
         self.balance_cent = balance_cent
+        self.role = "CUSTOMER"
 
     def get_id(self):
         return self.id
