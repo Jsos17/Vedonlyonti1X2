@@ -28,7 +28,7 @@ Nappi *Start account deletion process* ohjaa sinut sivulle missä voit varmistaa
 
 ## Admin
 
-Normaalin pelaajatilin voi muuttaa Admin-tiliksi asettmalla komentoriviltä 
+Normaalin pelaajatilin voi muuttaa Admin-tiliksi asettamalla komentoriviltä 
 
     UPDATE bettor SET role='ADMIN' WHERE username = <haluttu username> tai
 
