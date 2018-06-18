@@ -14,9 +14,9 @@ Asiakas voi muuttaa käyttäjätunnustaan, salasanaansa ja lisätä saldoaan. Li
 
 Asiakas ei voi perua vetoa sen jälkeen kun se on lyöty. Vedon lyötyään asiakas näkee mahdollisen voiton määrän. Asiakas voi lyödä useita vetoja samasta kohteesta maksimipanostuksen sallimissa rajoissa.
 
-Asiakas voi yhdistellä useita kohteita samaan vetoon. Asiakas voittaa jos kaikki vedon kohteet ovat oikein ja häviää muulloin. Vetoon liitettyjen vetokohteiden määrä on rajattu, ja tämä raja tarkentuu myöhemmin.
+Asiakas voi yhdistellä useita kohteita samaan vetoon. Asiakas voittaa jos kaikki vedon kohteet ovat oikein ja häviää muulloin.
 
-Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin voi tarkastella kaikkien kohteiden vaihtoja ja maksettuja voittoja sekä käytettävissä olevien otteluiden listoja. Lisäksi admin voi tarkastella asiakkaiden vedonlyönnin menestyksellisyyttä heidän vetohistorian kautta.
+Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin voi tarkastella kaikkien kohteiden vaihtoja ja käytettävissä olevien otteluiden listoja.
 
 ### Alustava luokkakaavio
 
