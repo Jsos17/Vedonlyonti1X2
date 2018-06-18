@@ -30,13 +30,32 @@ Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin 
 
 [User stories](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/documentation/user_stories.md)
 
-### Rekisteröity käyttäjä: (Kaikki taulut poistettiin ja asennettiin uudelleen hetkellä ma 18.6.2018 n. klo 21:20, joitain tietoja ei välttämättä näy juuri tällä ajanhetkellä)
+### Rekisteröity käyttäjä:
 
 username: pelaaja1
 
 password: 12345678
 
-### Linkki herokuun (päivitetty)
+Tavallinen käyttäjä näkee pelkästään vetotarjoukset listana ja  voi lyödä vetoja niistä. Lisäksi käyttäjä näkee oman tilinsä.
+
+### Admin
+
+username: hallinto
+
+password: 12345678
+
+Admin näkee: 
+* ottelulistan, voi lisätä otteluita, 
+
+* voi lisätä vetokohteen (betting_offer) otteluun, jos otteluun ei vielä liity vetokohdetta, 
+
+* näkee pelivaihdon (turnover statistics) ja rahan jakautumisen eri vaihtoehtojen kesken, 
+
+* voi hallinnoida vetotarjouksia esim. muuttamalla sen ei-aktiiviseksi jolloin kohde ei enää näy tavalliselle käyttäjälle 
+
+* admin ei voi asettaa vetoja
+
+### Linkki herokuun (HUOM! Kaikki taulut poistettiin ja asennettiin uudelleen ma 18.6.2018 n. klo 21.20 ja siksi esim. ottelulistan vetokohteet voivat olla tyhjiä)
 
 [Bet1X2App](https://bet1x2-app.herokuapp.com/)
 
