@@ -29,9 +29,7 @@
       </td>
       <td>{{ r[7] }}</td>
 			<td>
-				<form method="GET" action="{{ url_for('show_distribution', offer_id = r[3], home = r[0], away = r[1]) }}">
-	  			<input type="submit" value="Show distribution of turnover"/>
-        </form>
+        <a href="{{ url_for('show_distribution', offer_id = r[3], home = r[0], away = r[1]) }}">Show distribution of turnover</a>
       </td>
     </tr>
     {% endfor %}

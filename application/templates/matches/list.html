@@ -21,9 +21,7 @@
       <td>{{ match.start_time }}</td>
 			<td>{{ match.result_1x2 }}</td>
 			<td>
-				<form method="GET" action="{{ url_for('matches_show', match_id = match.id) }}">
-	  			<input type="submit" value="Access match information"/>
-        </form>
+        <a href="{{ url_for('matches_show', match_id = match.id) }}">Access match information</a>
       </td>
     </tr>
     {% endfor %}

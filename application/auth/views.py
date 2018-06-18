@@ -46,6 +46,7 @@ def bettor_create():
     b = Bettor(form.username.data, form.password.data, form.balance_eur.data, form.balance_cent.data)
     db.session().add(b)
     db.session().commit()
+
     flash("Account created successfully, please login to your account")
 
     return redirect(url_for("auth_login"))

@@ -21,9 +21,7 @@
       </td>
       <td>{{ bet_coupon.bet_status }}</td>
       <td>
-				<form method="GET" action="{{ url_for('bet_coupons_show', bet_coupon_id = bet_coupon.id) }}">
-	  			<input type="submit" value="Show coupon"/>
-        </form>
+        <a href="{{ url_for('bet_coupons_show', bet_coupon_id = bet_coupon.id) }}">Show coupon</a>
       </td>
     </tr>
     {% endfor %}
