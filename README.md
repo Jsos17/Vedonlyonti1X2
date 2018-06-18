@@ -34,6 +34,10 @@ Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin 
 
 [Asennusohje](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/documentation/asennusohje.md)
 
+### Käyttöohje
+
+[Käyttöohje](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/documentation/kaytto-ohje.md)
+
 ### Rekisteröity käyttäjä:
 
 username: pelaaja1
