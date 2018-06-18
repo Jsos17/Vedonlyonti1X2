@@ -53,7 +53,7 @@ username: hallinto
 password: 12345678
 
 Admin näkee: 
-* ottelulistan, voi lisätä otteluita, 
+* ottelulistan, voi lisätä otteluita 
 
 * voi lisätä vetokohteen (betting_offer) otteluun, jos otteluun ei vielä liity vetokohdetta, 
 
@@ -63,7 +63,7 @@ Admin näkee:
 
 * admin ei voi asettaa vetoja
 
-### Linkki herokuun (HUOM! Kaikki taulut poistettiin ja asennettiin uudelleen ma 18.6.2018 n. klo 21.20 ja siksi esim. ottelulistan vetokohteet voivat olla tyhjiä)
+### Linkki herokuun (HUOM! Kaikki taulut poistettiin ja asennettiin uudelleen ma 18.6.2018 n. klo 21.20 ja siksi sisältö voi olla tyhjää, admin tunnuksilla lisääminen kuitenkin onnistuu)
 
 [Bet1X2App](https://bet1x2-app.herokuapp.com/)
 
