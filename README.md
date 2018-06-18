@@ -32,7 +32,7 @@ Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin 
 
 ### Asennusohje
 
-[Asennusohje]()
+[Asennusohje](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/documentation/asennusohje.md)
 
 ### Rekisteröity käyttäjä:
 
