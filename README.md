@@ -61,5 +61,8 @@ Admin näkee:
 
 Huomioita:
 
-Tilin poisto on jäädytetty, jotta kukaan ei poista esimerkkitiliä, samoin päivitys on muokattu koskemaan vain saldoa. Maksimipanosta tai pelaajan varallisuutta ei tällä hetkellä tarkisteta. Jos tapahtuman todennäköisyys on 90 % tai yli niin kertoimet menevät alle 1:n johtuen vielä puutteellisesta laskentamekanismista, ja tällöin kertoimia pitää säätää manuaalisesti jotta lomake validoidaan. Ottelun voi poistaa vain jos siihen ei liity vetokohdetta tällä hetkellä.
+Tilin poisto on jäädytetty, jotta kukaan ei poista esimerkkitiliä, samoin päivitys on muokattu koskemaan vain saldoa. Maksimipanosta tai pelaajan varallisuutta ei tällä hetkellä tarkisteta. Jos tapahtuman todennäköisyys on 90 % tai yli niin kertoimet menevät alle 1:n johtuen vielä puutteellisesta laskentamekanismista, ja tällöin kertoimia pitää säätää manuaalisesti jotta lomake validoidaan. 
+
+* Ottelun (sport_match) voi poistaa vain jos siihen ei liity vetokohdetta (betting_offer).
+* Vetokohteen (betting_offer) voi poistaa, jos kohteesta ei ole lyöty vetoa
 
