@@ -7,6 +7,7 @@ from application.betting_offers.models import Betting_offer
 from application.bet_coupons.models import Bet_coupon
 from application.bet_coupons.forms import Bet_couponForm
 from application.betting_offers_of_coupon.models import Betting_offer_of_coupon
+from application.money_handler import sum_eur_cent, to_cents
 
 @app.route("/bet_coupons/")
 @login_required
@@ -84,6 +85,16 @@ def bet_coupons_create():
     coupon.set_bet_details(combined_odds, form.stake_eur.data, form.stake_cent.data)
     db.session().commit()
 
+    # subtract stake from bettor's balance
+    stake_cents = to_cents(form.stake_eur.data, form.stake_cent.data)
+    balance_cents= to_cents(current_user.balance_eur, current_user.balance_cent)
+    new_balance = sum_eur_cent(0, balance_cents - stake_cents)
+    
+    b = Bettor.query.get(current_user.id)
+    b.balance_eur = new_balance[0]
+    b.balance_cent = new_balance[1]
+    db.session().commit()
+
     return redirect(url_for("bet_coupons_index"))
 
 @app.route("/bet_coupons/show/<bet_coupon_id>", methods=["GET"])
@@ -92,7 +103,7 @@ def bet_coupons_show(bet_coupon_id):
     if (current_user.role == "ADMIN"):
         flash("Administrator cannot place bets")
         return render_template("index.html")
-        
+
     coupon = Bet_coupon.query.get(bet_coupon_id)
     if coupon.bettor_id != current_user.id:
         flash("Please use the links provided to navigate the site")

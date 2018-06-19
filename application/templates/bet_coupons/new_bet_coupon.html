@@ -61,6 +61,30 @@
 				</ul>
 			</td>
 		</tr>
+    <tr>
+			<td>
+				{{ form.bettor_balance_eur(value=current_user.balance_eur) }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.bettor_balance_eur.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td>
+				{{ form.bettor_balance_cent(value=current_user.balance_cent) }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.bettor_balance_cent.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
 		<tr>
 			<td colspan="5">
 				<input type="submit" value="Place bet"/>
