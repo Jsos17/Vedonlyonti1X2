@@ -33,6 +33,10 @@ def bet_coupons_form():
             match = Sport_match.query.get(offer.match_id)
             match_offer_tuples.append((match, offer))
 
+    if len(match_offer_tuples) == 0:
+        flash("Add at least one betting offer to coupon")
+        return redirect(url_for("betting_offers_index"))
+
     return render_template("bet_coupons/new_bet_coupon.html", form = Bet_couponForm(), match_offer_tuples = match_offer_tuples)
 
 @app.route("/bet_coupons/", methods=["POST"])
@@ -89,7 +93,7 @@ def bet_coupons_create():
     stake_cents = to_cents(form.stake_eur.data, form.stake_cent.data)
     balance_cents= to_cents(current_user.balance_eur, current_user.balance_cent)
     new_balance = sum_eur_cent(0, balance_cents - stake_cents)
-    
+
     b = Bettor.query.get(current_user.id)
     b.balance_eur = new_balance[0]
     b.balance_cent = new_balance[1]
