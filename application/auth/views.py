@@ -12,13 +12,11 @@ def auth_login():
         return render_template("auth/loginform.html", form = LoginForm())
 
     loginform = LoginForm(request.form)
-
     bettor = Bettor.query.filter_by(username=loginform.username.data, password=loginform.password.data).first()
     if not bettor:
         return render_template("auth/loginform.html", form = loginform, error="No such username or password")
 
     login_user(bettor)
-
     return redirect(url_for("index"))
 
 @app.route("/auth/logout")

@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('matches_set_result', match_id=match_id) }}">
+  <table border="1">
+		<tr>
+			<td>
+				{{ form.result_1x2.label }}
+			</td>
+			<td>
+				{{ form.result_1x2 }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.result_1x2.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td>
+				{{ form.old_result(value=old_result) }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.old_result.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<input type="submit" value="Set result"/>
+			</td>
+  	</tr>
+</form>
+{% endblock %}

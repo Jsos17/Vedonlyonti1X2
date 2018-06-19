@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import DateTimeField, IntegerField, StringField, validators
+from wtforms import DateTimeField, IntegerField, StringField, HiddenField, validators
 
 def validate_probabilities(form, field):
     try:
@@ -19,7 +19,17 @@ class MatchForm(FlaskForm):
     prob_x = IntegerField("Draw probability (integer value 1-100 %)", [validators.NumberRange(min=1, max=100), validate_probabilities])
     prob_2 = IntegerField("Away win probability (integer value 1-100 %)", [validators.NumberRange(min=1, max=100), validate_probabilities])
     start_time = DateTimeField("Starting time (format: YYYY-mm-dd HH:MM)", format='%Y-%m-%d %H:%M')
-    result_1x2 = StringField("Result (tbd, void, 1, x, 2)", [validators.AnyOf(values=("tbd", "void", "1", "x", "2"))])
+
+    class Meta:
+        csrf = False
+
+def validate_old_result(form, field):
+    if form.old_result.data != "tbd":
+        raise validators.ValidationError("The result of the match has already been determined")
+
+class SetResultForm(FlaskForm):
+    result_1x2 = StringField("Result (void, 1, x, 2)", [validators.AnyOf(values=("void", "1", "x", "2"))])
+    old_result = HiddenField("", validators=[validate_old_result])
 
     class Meta:
         csrf = False
