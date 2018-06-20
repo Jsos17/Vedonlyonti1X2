@@ -3,25 +3,29 @@ from wtforms import IntegerField, StringField, FieldList, RadioField, HiddenFiel
 from application.money_handler import sum_eur_cent, to_cents
 
 def validate_min_max_stake(form, field):
-    eur = form.stake_eur.data
-    cent = form.stake_cent.data
-    if eur == 0 and cent < 10:
-        raise validators.ValidationError("Stake must be at least 10 cents")
-        return
+    try:
+        eur = form.stake_eur.data
+        cent = form.stake_cent.data
+        if eur == 0 and cent < 10:
+            raise validators.ValidationError("Stake must be at least 10 cents")
+            return
 
-    stake = to_cents(eur, cent)
-    if stake > float(form.max_stake.data) * 100:
-        raise validators.ValidationError("Your stake is larger than the smallest maximum stake of the selected offers " + form.max_stake.data + " eur")
+        stake = to_cents(eur, cent)
+        if stake > float(form.max_stake.data) * 100:
+            raise validators.ValidationError("Your stake is larger than the smallest maximum stake of the selected offers " + form.max_stake.data + " eur")
+    except (TypeError, ValueError):
+        raise validators.ValidationError("Please, select a stake")
 
 def validate_balance(form, field):
-    stake_cents = to_cents(form.stake_eur.data, form.stake_cent.data)
+    stake_cents = 0
     balance_cents = 0
     try:
+        stake_cents = to_cents(form.stake_eur.data, form.stake_cent.data)
         b_eur = int(form.bettor_balance_eur.data)
         b_cent = int(form.bettor_balance_cent.data)
         balance_cents = to_cents(b_eur, b_cent)
-    except ValueError:
-        raise validators.ValidationError("Something went wrong. If the problem persists, please contact the administrator")
+    except (TypeError, ValueError):
+        raise validators.ValidationError("Please, select a stake")
         return
 
     if stake_cents > balance_cents:
