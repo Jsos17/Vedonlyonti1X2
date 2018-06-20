@@ -32,19 +32,29 @@ Normaalin pelaajatilin voi muuttaa Admin-tiliksi asettamalla komentoriviltä
 
     UPDATE bettor SET role='ADMIN' WHERE username = <haluttu username> tai
 
-    UPDATE bettor SET role='ADMIN' WHERE id = <haluttu id> tai
+    UPDATE bettor SET role='ADMIN' WHERE id = <haluttu id>
 
 Admin tilin voi muuttaa takaisin Normaaliksi pelaaja-tiliksi asettamalla komentoriviltä
 
     UPDATE bettor SET role='CUSTOMER' WHERE username = <haluttu username> tai
 
-    UPDATE bettor SET role='CUSTOMER' WHERE id = <haluttu id> tai
+    UPDATE bettor SET role='CUSTOMER' WHERE id = <haluttu id>
 
 ### Admin-näkymät
 
 #### List matches
 
 Listaa kaikki käytettävissä olevat ottelut ja niiden todennäköisyysarviot
+
+#### Access match information
+
+* *Add offer* to match -ohjaa vetokohteen lisäämisnäkymään, jos kohdetta ei vielä ole olemassa
+
+* *Update match* -ohjaa päivitysnäkymään, jossa voi päivittää kaikkia ottelun tietoja, paitsi tulosta kts. alla
+ 
+* *Set result* -ohjaa ottelutuloksen asetusnäkymään. Tämä toimenpide on "lopullinen" (komentoriviltä tuloksen muutos toki onnistuu, mutta ei sovelluksen kautta enää), sillä se käynnistää ottelutuloksesta riippuvaisten tietokohteiden päivityksen ja esimerkiksi mahdolliset voitonmaksut. Tämän vuoksi tuloksen varmistustoimenpide on tarkoitus lisätä.
+
+* *Delete match* - poistaa ottelun yhdellä klikkauksella, jos otteluun ei vielä ole liitetty vetokohdetta
 
 #### Add a match
 
