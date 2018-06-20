@@ -17,7 +17,10 @@
 
 * Lisäksi admin voi tarkastella tarkemmin yksittäisen kohteen pelivaihdon jakautumista eri vaihtoehtojen kesken
 
-* Admin voi asettaa ottelun tuloksen, ja sen jälkeen kaikki tuloksesta riippuvat tapahtumat ja päivitykset käynnistyvät:
-kupongilla olevien vetokohteiden statuksen päivitys, kupongin merkitseminen voitoksi tai tappioksi, pelaajan saldon lisäys,jos kuponki on voitollinen. Tällä hetkellä void vaihtoehtoa ei ole toteutettu. Jos ottelu mitätöidään, niin silloin tulos merkittäisiin void, ja panokset palautettaisiin pelaajille. Jos yksikin kohde kupongilla on väärin, niin kuponki merkitään heti tappioksi, vaikka osa kupongilla olevista muista kohteista olisi vielä ratkeamatta.
+* Admin voi asettaa ottelun tuloksen, ja sen jälkeen kaikki tuloksesta riippuvien tietokohteiden tapahtumat käynnistyvät:
+
+Kupongilla olevien vetokohteiden statuksen päivitys ("hit" tai "miss", kupongin merkitseminen voitoksi tai tappioksi ("win" tai "loss"), pelaajan saldon lisäys,jos kuponki on voitollinen. Jos yksikin kohde kupongilla on väärin, niin kuponki merkitään heti tappioksi, vaikka osa kupongilla olevista muista kohteista olisi vielä ratkeamatta. 
+
+Tällä hetkellä void vaihtoehtoa ei ole toteutettu. Void-vaihtoehdon tarkoitus olisi seuraava: Jos ottelu mitätöidään, niin silloin tulos merkittäisiin void, ja panokset palautettaisiin pelaajille. 
 
 * Pelaaja voi nähdä vetohistoriaansa pelatun rahan ja voittojen sekä vetokuponkien määrän muodossa (ei toteutettu vielä/kupongeista pelkkä listaus)
