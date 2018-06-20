@@ -29,7 +29,7 @@
     {% endfor %}
     <tr>
       <td>
-        {% if current_user.role != "ADMIN" and match_offer_tuples|length != 0 %}
+        {% if current_user.role != "ADMIN" and match_offer_tuples|length > 0 %}
         <input type="submit" value="Create a bet coupon"/>
         {% endif %}
       </td>
