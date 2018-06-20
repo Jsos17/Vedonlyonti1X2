@@ -22,4 +22,5 @@ Sovellukselle luodaan paikka Herokuun komennolla (Vedonlyonti1X2-kansiossa):
 
 eli *heroku create* -komentoa seuraa antamasi sovelluksen nimi, tai jos jätät sen tyhjäksi niin se saa Herokun antaman satunnaisen nimen.
 
+(kesken)
 
