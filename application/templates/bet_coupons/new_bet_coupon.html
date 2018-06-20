@@ -32,6 +32,9 @@
     {% endfor %}
   <table>
     <tr>
+      <th>{{ "The maximum stake is" }} {{ max_stake }} {{ "eur" }}</th>
+    </tr>
+    <tr>
 			<td>
 				{{ form.stake_eur.label }}
 			</td>
@@ -80,6 +83,18 @@
 			<td>
 				<ul>
 					{% for error in form.bettor_balance_cent.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td>
+				{{ form.max_stake(value=max_stake) }}
+			</td>
+			<td>
+				<ul>
+					{% for error in form.max_stake.errors %}
 					<li>{{ error }}</li>
 					{% endfor %}
 				</ul>

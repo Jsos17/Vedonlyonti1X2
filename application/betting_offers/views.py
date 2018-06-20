@@ -14,8 +14,9 @@ def betting_offers_index():
     offers = Betting_offer.query.filter_by(active=True, closed=False).all()
     match_offer_tuples = []
     for offer in offers:
-        match = Sport_match.query.get(offer.match_id)
-        match_offer_tuples.append((match, offer))
+        match = Sport_match.query.filter_by(id =offer.match_id, result_1x2="tbd").first()
+        if match != None:
+            match_offer_tuples.append((match, offer))
     return render_template("betting_offers/offer_list.html", match_offer_tuples = match_offer_tuples)
 
 @app.route("/betting_offers/admin", methods=["GET"])

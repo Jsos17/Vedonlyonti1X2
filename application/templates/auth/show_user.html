@@ -14,16 +14,12 @@
   </tr>
   <tr>
     <td>
-      <form method="GET" action="{{ url_for('bettor_update') }}">
-        <input type="submit" value="Update details"/>
-      </form>
+      <a href="{{ url_for('bettor_update') }}">Update details</a>
     </td>
   </tr>
   <tr>
     <td>
-      <form method="GET" action="{{ url_for('bettor_delete') }}">
-        <input type="submit" value="Start account deletion process"/>
-      </form>
+      <a href="{{ url_for('bettor_delete') }}">Start account deletion process</a>
     </td>
   </tr>
 </table>

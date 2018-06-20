@@ -28,16 +28,20 @@ def bet_coupons_form():
 
     offers = Betting_offer.query.all()
     match_offer_tuples = []
+    maximum_stake = 100
     for offer in offers:
         if request.form.get(str(offer.id), "Remove") == "Add":
             match = Sport_match.query.get(offer.match_id)
             match_offer_tuples.append((match, offer))
 
+            if offer.max_stake < maximum_stake:
+                maximum_stake = offer.max_stake
+
     if len(match_offer_tuples) == 0:
         flash("Add at least one betting offer to coupon")
         return redirect(url_for("betting_offers_index"))
 
-    return render_template("bet_coupons/new_bet_coupon.html", form = Bet_couponForm(), match_offer_tuples = match_offer_tuples)
+    return render_template("bet_coupons/new_bet_coupon.html", form = Bet_couponForm(), match_offer_tuples = match_offer_tuples, max_stake = maximum_stake)
 
 @app.route("/bet_coupons/", methods=["POST"])
 @login_required
@@ -56,14 +60,18 @@ def bet_coupons_create():
     form = Bet_couponForm(request.form)
     if not form.validate():
         match_offer_tuples = []
+        maximum_stake = 100
         for i in range(len(offer_ids)):
             if offer_ids[i] != None:
                 offer = Betting_offer.query.get(offer_ids[i])
                 match = Sport_match.query.get(offer.match_id)
                 match_offer_tuples.append((match, offer))
 
+                if offer.max_stake < maximum_stake:
+                    maximum_stake = offer.max_stake
+
         flash("Please, re-check your betting selections")
-        return render_template("bet_coupons/new_bet_coupon.html", form = form, match_offer_tuples = match_offer_tuples)
+        return render_template("bet_coupons/new_bet_coupon.html", form = form, match_offer_tuples = match_offer_tuples, max_stake = maximum_stake)
 
     coupon = Bet_coupon()
     coupon.bettor_id = current_user.id

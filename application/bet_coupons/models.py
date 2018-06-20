@@ -25,7 +25,7 @@ class Bet_coupon(db.Model):
         self.possible_win_cent = win % 100
 
     def set_bet_details(self, combined_odds, stake_eur, stake_cent):
-        self.combined_odds = combined_odds
+        self.combined_odds = round(combined_odds, 2)
         self.stake_eur = stake_eur
         self.stake_cent = stake_cent
         self.calculate_win()
