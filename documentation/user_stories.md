@@ -11,7 +11,7 @@
 
 * Pelaaja voi muuttaa salasanaansa (ei toteutettu)
 
-* Pelaaja voi lisätä tai vähentää saldoaan (toteutettu, mutta toteutustyyli on kehno, tarkoitus päivittää)
+* Pelaaja voi lisätä tai vähentää saldoaan (toteutettu, mutta toteutustyyli on kehno eli uudet arvot vain syötetään, tarkoitus päivittää)
 
 * Pelaaja voi rekisteröityä, jonka jälkeen hän voi kirjautua ja sen jälkeen lyödä vetoa liittämällä vetokuponkiin (Bet_coupon) yhden tai useamman vetokohteen (Betting_offer)
 
