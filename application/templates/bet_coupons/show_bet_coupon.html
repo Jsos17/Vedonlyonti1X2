@@ -1,4 +1,4 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 
 {% block body %}
 <header>
@@ -15,21 +15,21 @@
       <td>{{ matches_offers_of_coupon|length }}</td>
       <td>{{ coupon.combined_odds }}</td>
       <td>
-        {% if coupon.stake_cent < 10 %} 
-          {% set money=coupon.stake_eur ~ ".0" ~ coupon.stake_cent %} 
-            {{ money }} 
-        {% else %} 
-          {% set money=c oupon.stake_eur ~ "." ~ coupon.stake_cent %} 
-            {{ money }} 
-        {% endif %} 
+        {% if coupon.stake_cent < 10 %}
+          {% set money = coupon.stake_eur ~ ".0" ~ coupon.stake_cent %}
+            {{ money }}
+        {% else %}
+          {% set money = coupon.stake_eur ~ "." ~ coupon.stake_cent %}
+            {{ money }}
+        {% endif %}
       </td>
       <td>
-        {% if coupon.possible_win_cent < 10 %} 
-        {% set money=c oupon.possible_win_eur ~ ".0" ~ coupon.possible_win_cent %} 
-          {{ money }} 
-        {% else %} {% set money=c oupon.possible_win_eur ~ "." ~ coupon.possible_win_cent %} 
-          {{ money }} 
-        {% endif %} 
+        {% if coupon.possible_win_cent < 10 %}
+        {% set money = coupon.possible_win_eur ~ ".0" ~ coupon.possible_win_cent %} 
+          {{ money }}
+        {% else %} {% set money = coupon.possible_win_eur ~ "." ~ coupon.possible_win_cent %}
+          {{ money }}
+        {% endif %}
       </td>
       <td>{{ coupon.bet_status }}</td>
     </tr>

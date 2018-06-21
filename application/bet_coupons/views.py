@@ -76,6 +76,7 @@ def bet_coupons_create():
     coupon = Bet_coupon()
     coupon.bettor_id = current_user.id
     db.session().add(coupon)
+    # commit tyhjä coupon jotta sen id saadaan tietoon
     db.session().commit()
 
     combined_odds = 1
@@ -90,12 +91,9 @@ def bet_coupons_create():
                 boc = Betting_offer_of_coupon(choice, odds)
                 boc.bet_coupon_id = coupon.id
                 boc.betting_offer_id = offer_id
-
                 db.session().add(boc)
-                db.session().commit()
 
     coupon.set_bet_details(combined_odds, form.stake_eur.data, form.stake_cent.data)
-    db.session().commit()
 
     # subtract stake from bettor's balance
     stake_cents = to_cents(form.stake_eur.data, form.stake_cent.data)
@@ -105,6 +103,8 @@ def bet_coupons_create():
     b = Bettor.query.get(current_user.id)
     b.balance_eur = new_balance[0]
     b.balance_cent = new_balance[1]
+
+    # commit kaikkien Betting_offer_of_coupongien lisäys, Bet_couponin ja Bettorin päivitys
     db.session().commit()
 
     return redirect(url_for("bet_coupons_index"))
