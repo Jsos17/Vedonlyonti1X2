@@ -1,4 +1,4 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 
 {% block body %}
 <table border="1" cellspacing="8">
@@ -19,11 +19,13 @@
     <td>{{ r[3] }}</td>
     <td>{{ r[4] }}</td>
     <td>
-      {% if r[6] < 10 %} 
-        {% set money=r [5] ~ ".0" ~ r[6] %} {{ money }} 
-      {% else %} 
-        {% set money=r [5] ~ "." ~ r[6] %} {{ money }} 
-      {% endif %} 
+      {% if r[6] < 10 %}
+        {% set money = r[5] ~ ".0" ~ r[6] %}
+          {{ money }}
+      {% else %}
+        {% set money = r[5] ~ "." ~ r[6] %}
+          {{ money }} 
+      {% endif %}
     </td>
     <td>{{ r[7] }}</td>
     <td>

@@ -1,4 +1,4 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 
 {% block body %}
 <form method="POST" action="{{ url_for('bet_coupons_form') }}">
@@ -22,14 +22,16 @@
       <td>
         {% if current_user.role != "ADMIN" %}
         <input type="radio" name={{ match_offer[1].id }} value="Add" checked="checked"> Add to bet coupon
-        <input type="radio" name={{ match_offer[1].id }} value="Remove" checked="checked"> Remove from bet coupon {% endif %}
+        <input type="radio" name={{ match_offer[1].id }} value="Remove" checked="checked"> Remove from bet coupon
+        {% endif %}
       </td>
     </tr>
     {% endfor %}
     <tr>
       <td>
         {% if current_user.role != "ADMIN" and match_offer_tuples|length > 0 %}
-        <input type="submit" value="Create a bet coupon" /> {% endif %}
+        <input type="submit" value="Create a bet coupon"/>
+        {% endif %}
       </td>
     </tr>
   </table>
