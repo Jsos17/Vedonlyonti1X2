@@ -1,61 +1,59 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} 
 
 {% block body %}
-  <header>
-    <h1>Bet coupon</h1>
-    <table border="1" cellspacing="8">
-      <tr align="left">
-        <th>Bets in coupon</th>
-        <th>Combined odds</th>
-        <th>Stake</th>
-        <th>Possible win</th>
-        <th>Coupon status</th>
-      </tr>
-      <tr align="left">
-        <td>{{ matches_offers_of_coupon|length }}</td>
-        <td>{{ coupon.combined_odds }}</td>
-        <td>
-          {% if coupon.stake_cent < 10 %}
-            {% set money = coupon.stake_eur ~ ".0" ~ coupon.stake_cent %}
-              {{ money }}
-          {% else %}
-            {% set money = coupon.stake_eur ~ "." ~ coupon.stake_cent %}
-              {{ money }}
-          {% endif %}
-        </td>
-        <td>
-          {% if coupon.possible_win_cent < 10 %}
-            {% set money = coupon.possible_win_eur ~ ".0" ~ coupon.possible_win_cent %}
-              {{ money }}
-          {% else %}
-            {% set money = coupon.possible_win_eur ~ "." ~ coupon.possible_win_cent %}
-              {{ money }}
-          {% endif %}
-        </td>
-        <td>{{ coupon.bet_status }}</td>
-      </tr>
-    </table>
-    <br>
-    <h2>Bets included in coupon</h2>
-    {% for mofc in matches_offers_of_coupon %}
-    <table border="1" cellspacing="8">
-      <tr align="left">
-        <th>Home team</th>
-  			<th>Away team</th>
-        <th>Choice</th>
-        <th>Odds</th>
-        <th>Bet status</th>
-      </tr>
-      <tr align="left">
-        <td>{{ mofc[0].home }}</td>
-        <td>{{ mofc[0].away }}</td>
-        <td>{{ mofc[1].choice_1x2 }}</td>
-        <td>{{ mofc[1].odds }}</td>
-        <td>{{ mofc[1].status }}</td>
-      </tr>
-    </table>
-    <br>
-    {% endfor %}
-    <a href="{{ url_for('bet_coupons_index') }}">Show all your bet coupons</a>
-  </header>
+<header>
+  <h1>Bet coupon</h1>
+  <table border="1" cellspacing="8">
+    <tr align="left">
+      <th>Bets in coupon</th>
+      <th>Combined odds</th>
+      <th>Stake</th>
+      <th>Possible win</th>
+      <th>Coupon status</th>
+    </tr>
+    <tr align="left">
+      <td>{{ matches_offers_of_coupon|length }}</td>
+      <td>{{ coupon.combined_odds }}</td>
+      <td>
+        {% if coupon.stake_cent < 10 %} 
+          {% set money=coupon.stake_eur ~ ".0" ~ coupon.stake_cent %} 
+            {{ money }} 
+        {% else %} 
+          {% set money=c oupon.stake_eur ~ "." ~ coupon.stake_cent %} 
+            {{ money }} 
+        {% endif %} 
+      </td>
+      <td>
+        {% if coupon.possible_win_cent < 10 %} 
+        {% set money=c oupon.possible_win_eur ~ ".0" ~ coupon.possible_win_cent %} 
+          {{ money }} 
+        {% else %} {% set money=c oupon.possible_win_eur ~ "." ~ coupon.possible_win_cent %} 
+          {{ money }} 
+        {% endif %} 
+      </td>
+      <td>{{ coupon.bet_status }}</td>
+    </tr>
+  </table>
+  <br>
+  <h2>Bets included in coupon</h2>
+  {% for mofc in matches_offers_of_coupon %}
+  <table border="1" cellspacing="8">
+    <tr align="left">
+      <th>Home team</th>
+      <th>Away team</th>
+      <th>Choice</th>
+      <th>Odds</th>
+      <th>Bet status</th>
+    </tr>
+    <tr align="left">
+      <td>{{ mofc[0].home }}</td>
+      <td>{{ mofc[0].away }}</td>
+      <td>{{ mofc[1].choice_1x2 }}</td>
+      <td>{{ mofc[1].odds }}</td>
+      <td>{{ mofc[1].status }}</td>
+    </tr>
+  </table>
+  <br> {% endfor %}
+  <a href="{{ url_for('bet_coupons_index') }}">Show all your bet coupons</a>
+</header>
 {% endblock %}

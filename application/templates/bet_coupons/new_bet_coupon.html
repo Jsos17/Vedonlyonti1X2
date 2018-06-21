@@ -1,40 +1,42 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} 
 
 {% block body %}
 <form method="POST" action="{{ url_for('bet_coupons_create') }}">
-    {% for match_offer in match_offer_tuples %}
-    <table border="1" cellspacing="8">
-      <tr>
-        <th>{{ match_offer[0].home }}</th>
-        <th></th>
-        <th>{{ match_offer[0].away }}</th>
-      </tr>
-      <tr>
-        <td>Home win</td>
-        <td>Draw</td>
-        <td>Away win</td>
-      </tr>
-      <tr>
-        <td>{{ match_offer[1].odds_1 }}</td>
-        <td>{{ match_offer[1].odds_x }}</td>
-        <td>{{ match_offer[1].odds_2 }}</td>
-      </tr>
-      <tr>
-        <td><input type="radio" name={{ match_offer[1].id }} value="1" checked="checked">1</td>
-        <td><input type="radio" name={{ match_offer[1].id }} value="x" checked="checked">x</td>
-        <td><input type="radio" name={{ match_offer[1].id }} value="2" checked="checked">2</td>
-      </tr>
-      <tr>
-        <input type="hidden" name={{ "hidden" ~ match_offer[1].id }} value={{ match_offer[1].id }}>
-      </tr>
-    </table>
-    <br>
-    {% endfor %}
-  <table>
-    <tr>
-      <th>{{ "The maximum stake is" }} {{ max_stake }} {{ "eur" }}</th>
-    </tr>
-    <tr>
+	{% for match_offer in match_offer_tuples %}
+	<table border="1" cellspacing="8">
+		<tr>
+			<th>{{ match_offer[0].home }}</th>
+			<th></th>
+			<th>{{ match_offer[0].away }}</th>
+		</tr>
+		<tr>
+			<td>Home win</td>
+			<td>Draw</td>
+			<td>Away win</td>
+		</tr>
+		<tr>
+			<td>{{ match_offer[1].odds_1 }}</td>
+			<td>{{ match_offer[1].odds_x }}</td>
+			<td>{{ match_offer[1].odds_2 }}</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="radio" name={{ match_offer[1].id }} value="1" checked="checked">1</td>
+			<td>
+				<input type="radio" name={{ match_offer[1].id }} value="x" checked="checked">x</td>
+			<td>
+				<input type="radio" name={{ match_offer[1].id }} value="2" checked="checked">2</td>
+		</tr>
+		<tr>
+			<input type="hidden" name={{ "hidden" ~ match_offer[1].id }} value={{ match_offer[1].id }}>
+		</tr>
+	</table>
+	<br> {% endfor %}
+	<table>
+		<tr>
+			<th>{{ "The maximum stake is" }} {{ max_stake }} {{ "eur" }}</th>
+		</tr>
+		<tr>
 			<td>
 				{{ form.stake_eur.label }}
 			</td>
@@ -64,7 +66,7 @@
 				</ul>
 			</td>
 		</tr>
-    <tr>
+		<tr>
 			<td>
 				{{ form.bettor_balance_eur(value=current_user.balance_eur) }}
 			</td>
@@ -76,7 +78,7 @@
 				</ul>
 			</td>
 		</tr>
-    <tr>
+		<tr>
 			<td>
 				{{ form.bettor_balance_cent(value=current_user.balance_cent) }}
 			</td>
@@ -88,7 +90,7 @@
 				</ul>
 			</td>
 		</tr>
-    <tr>
+		<tr>
 			<td>
 				{{ form.max_stake(value=max_stake) }}
 			</td>
@@ -102,9 +104,9 @@
 		</tr>
 		<tr>
 			<td colspan="5">
-				<input type="submit" value="Place bet"/>
+				<input type="submit" value="Place bet" />
 			</td>
-  	</tr>
-  </table>
+		</tr>
+	</table>
 </form>
 {% endblock %}

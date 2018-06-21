@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} 
 
 {% block body %}
 <table border="1" cellspacing="8">
@@ -20,19 +20,19 @@
     <td>{{ match.start_time }}</td>
     <td>{{ match.result_1x2 }}</td>
     {% if match.result_1x2 == "tbd" %}
-      <td>
-        <a href="{{ url_for('betting_offers_form', match_id = match.id, home = match.home, away = match.away) }}">Add offer to match</a>
-      </td>
-      <td>
-        <a href="{{ url_for('matches_update', match_id = match.id) }}">Update match</a>
-      </td>
-      <td>
-        <a href="{{ url_for('matches_set_result', match_id = match.id) }}">Set result</a>
-      </td>
+    <td>
+      <a href="{{ url_for('betting_offers_form', match_id = match.id, home = match.home, away = match.away) }}">Add offer to match</a>
+    </td>
+    <td>
+      <a href="{{ url_for('matches_update', match_id = match.id) }}">Update match</a>
+    </td>
+    <td>
+      <a href="{{ url_for('matches_set_result', match_id = match.id) }}">Set result</a>
+    </td>
     {% endif %}
     <td>
       <form method="POST" action="{{ url_for('matches_delete', match_id = match.id) }}">
-        <input type="submit" value="Delete match"/>
+        <input type="submit" value="Delete match" />
       </form>
     </td>
   </tr>

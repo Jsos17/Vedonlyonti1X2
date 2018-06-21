@@ -1,9 +1,9 @@
-{% extends "layout.html" %}
-  
+{% extends "layout.html" %} 
+
 {% block body %}
 <form method="POST" action="{{ url_for('bettor_create') }}">
-  <table>
-    <tr>
+	<table>
+		<tr>
 			<td>
 				{{ form.username.label }}
 			</td>
@@ -63,11 +63,11 @@
 				</ul>
 			</td>
 		</tr>
-		
+
 		<tr>
 			<td colspan="5">
-				<input type="submit" value="Create an account"/>
+				<input type="submit" value="Create an account" />
 			</td>
-  	</tr>
+		</tr>
 </form>
 {% endblock %}

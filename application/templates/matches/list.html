@@ -1,29 +1,29 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} 
 
 {% block body %}
-  <table border="1" cellspacing="8">
-    <tr align="left">
-      <th>Home team</th>
-      <th>Away team</th>
-      <th>Home win probability</th>
-      <th>Draw probability</th>
-      <th>Away win probability</th>
-      <th>Date and time</th>
-			<th>Result</th>
-    </tr>
-    {% for match in matches %}
-    <tr align="left">
-      <td>{{ match.home }}</td>
-      <td>{{ match.away }}</td>
-      <td>{{ match.prob_1 }}</td>
-      <td>{{ match.prob_x }}</td>
-      <td>{{ match.prob_2 }}</td>
-      <td>{{ match.start_time }}</td>
-			<td>{{ match.result_1x2 }}</td>
-			<td>
-        <a href="{{ url_for('matches_show', match_id = match.id) }}">Access match information</a>
-      </td>
-    </tr>
-    {% endfor %}
-  </table>
+<table border="1" cellspacing="8">
+  <tr align="left">
+    <th>Home team</th>
+    <th>Away team</th>
+    <th>Home win probability</th>
+    <th>Draw probability</th>
+    <th>Away win probability</th>
+    <th>Date and time</th>
+    <th>Result</th>
+  </tr>
+  {% for match in matches %}
+  <tr align="left">
+    <td>{{ match.home }}</td>
+    <td>{{ match.away }}</td>
+    <td>{{ match.prob_1 }}</td>
+    <td>{{ match.prob_x }}</td>
+    <td>{{ match.prob_2 }}</td>
+    <td>{{ match.start_time }}</td>
+    <td>{{ match.result_1x2 }}</td>
+    <td>
+      <a href="{{ url_for('matches_show', match_id = match.id) }}">Access match information</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
 {% endblock %}

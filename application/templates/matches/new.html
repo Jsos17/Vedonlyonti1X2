@@ -1,9 +1,9 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} 
 
 {% block body %}
 <form method="POST" action="{{ url_for('matches_create') }}">
-  <table>
-    <tr>
+	<table>
+		<tr>
 			<td>
 				{{ form.home.label }}
 			</td>
@@ -95,9 +95,9 @@
 		</tr>
 		<tr>
 			<td colspan="5">
-				<input type="submit" value="Add a new match"/>
+				<input type="submit" value="Add a new match" />
 			</td>
-    </tr>
-  </table>
+		</tr>
+	</table>
 </form>
 {% endblock %}

@@ -1,9 +1,9 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} 
 
 {% block body %}
 <form method="POST" action="{{ url_for('matches_update', match_id=match_id) }}">
-  <table border="1">
-    <tr>
+	<table border="1">
+		<tr>
 			<td>
 				{{ form.home.label }}
 			</td>
@@ -95,8 +95,8 @@
 		</tr>
 		<tr>
 			<td colspan="5">
-				<input type="submit" value="Update the match"/>
+				<input type="submit" value="Update the match" />
 			</td>
-  	</tr>
+		</tr>
 </form>
 {% endblock %}

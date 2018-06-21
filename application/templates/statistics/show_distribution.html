@@ -1,42 +1,42 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} 
 
 {% block body %}
-  <table border="1" cellspacing="8">
-    <tr align="left">
-      <th>Match</th>
-      <th>{{ home }}</th>
-      <th>{{ "-" }}</th>
-      <th>{{ away }}</th>
-    </tr>
-    <tr align="left">
-      <td>{{ "Choice" }}</td>
-      <td>{{ results[0][0] }}</td>
-      <td>{{ results[1][0] }}</td>
-      <td>{{ results[2][0] }}</td>
-    </tr>
-    <tr align="left">
-      <td>{{ "Number of coupons" }}</td>
-      <td>{{ results[0][1] }}</td>
-      <td>{{ results[1][1] }}</td>
-      <td>{{ results[2][1] }}</td>
-    </tr>
-    <tr align="left">
-      <td>{{ "Money distribution %" }}</td>
-      <td>{{ results[0][2] }}</td>
-      <td>{{ results[1][2] }}</td>
-      <td>{{ results[2][2] }}</td>
-    </tr>
-    <tr align="left">
-      <td>{{ "Probability estimation %" }}</td>
-      <td>{{ results[0][3] }}</td>
-      <td>{{ results[1][3] }}</td>
-      <td>{{ results[2][3] }}</td>
-    </tr>
-    <tr align="left">
-      <td>{{ "Money total (Eur):" }} {{ results[0][5] }}</td>
-      <td>{{ results[0][4] }}</td>
-      <td>{{ results[1][4] }}</td>
-      <td>{{ results[2][4] }}</td>
-    </tr>
-  </table>
+<table border="1" cellspacing="8">
+  <tr align="left">
+    <th>Match</th>
+    <th>{{ home }}</th>
+    <th>{{ "-" }}</th>
+    <th>{{ away }}</th>
+  </tr>
+  <tr align="left">
+    <td>{{ "Choice" }}</td>
+    <td>{{ results[0][0] }}</td>
+    <td>{{ results[1][0] }}</td>
+    <td>{{ results[2][0] }}</td>
+  </tr>
+  <tr align="left">
+    <td>{{ "Number of coupons" }}</td>
+    <td>{{ results[0][1] }}</td>
+    <td>{{ results[1][1] }}</td>
+    <td>{{ results[2][1] }}</td>
+  </tr>
+  <tr align="left">
+    <td>{{ "Money distribution %" }}</td>
+    <td>{{ results[0][2] }}</td>
+    <td>{{ results[1][2] }}</td>
+    <td>{{ results[2][2] }}</td>
+  </tr>
+  <tr align="left">
+    <td>{{ "Probability estimation %" }}</td>
+    <td>{{ results[0][3] }}</td>
+    <td>{{ results[1][3] }}</td>
+    <td>{{ results[2][3] }}</td>
+  </tr>
+  <tr align="left">
+    <td>{{ "Money total (Eur):" }} {{ results[0][5] }}</td>
+    <td>{{ results[0][4] }}</td>
+    <td>{{ results[1][4] }}</td>
+    <td>{{ results[2][4] }}</td>
+  </tr>
+</table>
 {% endblock %}
