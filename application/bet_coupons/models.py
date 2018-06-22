@@ -2,7 +2,7 @@ from application import db
 
 class Bet_coupon(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    bettor_id = db.Column(db.Integer, db.ForeignKey('bettor.id'), nullable=False)
+    bettor_id = db.Column(db.Integer, db.ForeignKey('bettor.id'), nullable=True)
     combined_odds = db.Column(db.Float, nullable=False)
     stake_eur = db.Column(db.Integer, nullable=False)
     stake_cent = db.Column(db.Integer, nullable=False)

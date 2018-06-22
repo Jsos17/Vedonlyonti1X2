@@ -1,13 +1,18 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 
 {% block body %}
 <h1>Account deletion</h1>
-<h2>{{ current_user.username }} {{ "we are sad to see you go!" }}</h2>
-<p>Do you want to delete your account?</p>
+<h2>{{ "Dear " + current_user.username + "," }}</h2>
+<p>We are sad to see you go!</p>
+<br>
+<h2>Do you want to delete your account?</h2>
+<h3>Yes</h3>
 <form method="POST" action="{{ url_for('bettor_delete_confirmation') }}">
   <input type="submit" value="Yes, delete my account" />
 </form>
+<br>
+<h3>No</h3>
 <form method="GET" action="{{ url_for('bettor_show') }}">
-  <input type="submit" value="No, don't delete my account" />
+  <input type="submit" value="No, do not delete my account" />
 </form>
 {% endblock %}

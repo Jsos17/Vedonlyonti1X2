@@ -35,7 +35,8 @@ def matches_show(match_id):
         flash("Please use the provided links")
         return render_template("index.html")
 
-    return render_template("matches/show_match.html", match = Sport_match.query.get(match_id))
+    return render_template("matches/show_match.html", match = Sport_match.query.get(match_id),
+                           betting_offer = Betting_offer.query.filter_by(match_id = match_id).first())
 
 @app.route("/matches/update/<match_id>/", methods=["GET", "POST"])
 @login_required

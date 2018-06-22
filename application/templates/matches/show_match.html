@@ -1,4 +1,4 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 
 {% block body %}
 <table border="1" cellspacing="8">
@@ -30,11 +30,13 @@
       <a href="{{ url_for('matches_set_result', match_id = match.id) }}">Set result</a>
     </td>
     {% endif %}
+    {% if betting_offer == None %}
     <td>
       <form method="POST" action="{{ url_for('matches_delete', match_id = match.id) }}">
-        <input type="submit" value="Delete match" />
+        <input type="submit" value="Delete match"/>
       </form>
     </td>
+    {% endif %}
   </tr>
 </table>
 {% endblock %}
