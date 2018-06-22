@@ -75,6 +75,7 @@ def matches_set_result(match_id):
     old_result = m.result_1x2
     if request.method == "POST":
         form = SetResultForm(request.form)
+
         if not form.validate():
             return render_template("matches/set_result.html", form = form, match_id = match_id, old_result = old_result)
 

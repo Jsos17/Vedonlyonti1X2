@@ -1,4 +1,4 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 
 {% block body %}
 <form method="POST" action="{{ url_for('matches_set_result', match_id=match_id) }}">
@@ -20,6 +20,14 @@
 		</tr>
 		<tr>
 			<td>
+				{{ form.confirm.label }}
+			</td>
+			<td>
+				{{ form.confirm }}
+			</td>
+		</tr>
+		<tr>
+			<td>
 				{{ form.old_result(value=old_result) }}
 			</td>
 			<td>
@@ -32,8 +40,13 @@
 		</tr>
 		<tr>
 			<td colspan="5">
-				<input type="submit" value="Set result" />
+				<input type="submit" value="Set result"/>
 			</td>
 		</tr>
+	</table>
+</form>
+<br>
+<form method="GET" action="{{ url_for('matches_show', match_id=match_id) }}">
+	<input type="submit" value="Cancel"/>
 </form>
 {% endblock %}

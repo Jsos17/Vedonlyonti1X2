@@ -28,7 +28,8 @@ def validate_old_result(form, field):
         raise validators.ValidationError("The result of the match has already been determined")
 
 class SetResultForm(FlaskForm):
-    result_1x2 = StringField("Result (void, 1, x, 2)", [validators.AnyOf(values=("void", "1", "x", "2"))])
+    result_1x2 = StringField("Result (void, 1, x, 2)", [validators.AnyOf(values=("void", "1", "x", "2")), validators.EqualTo('confirm', message='The result must match')])
+    confirm = StringField("Confirm setting of result by typing it again (void, 1, x, 2)")
     old_result = HiddenField("", validators=[validate_old_result])
 
     class Meta:
