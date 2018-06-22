@@ -1,4 +1,4 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 
 {% block body %}
 <form method="POST" action="{{ url_for('bettor_create') }}">
@@ -38,7 +38,7 @@
 				{{ form.balance_eur.label }}
 			</td>
 			<td>
-				{{ form.balance_eur }}
+				{{ form.balance_eur(style="width: 70px") }}
 			</td>
 			<td>
 				<ul>
@@ -53,7 +53,7 @@
 				{{ form.balance_cent.label }}
 			</td>
 			<td>
-				{{ form.balance_cent }}
+				{{ form.balance_cent(style="width: 70px") }}
 			</td>
 			<td>
 				<ul>

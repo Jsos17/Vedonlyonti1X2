@@ -1,20 +1,35 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 
 {% block body %}
 <table cellspacing="8">
   <tr align="left">
     <th>User name</th>
+    {% if current_user.role != "ADMIN" %}
     <th>Balance Eur</th>
     <th>Balance Cent</th>
+    {% endif %}
   </tr>
   <tr align="left">
     <td>{{ current_user.username }}</td>
+    {% if current_user.role != "ADMIN" %}
     <td>{{ current_user.balance_eur }}</td>
     <td>{{ current_user.balance_cent }}</td>
+    {% endif %}
+  </tr>
   </tr>
   <tr>
     <td>
-      <a href="{{ url_for('bettor_update') }}">Update details</a>
+      <a href="{{ url_for('bettor_transfer_in') }}">Deposit money</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="{{ url_for('bettor_transfer_out') }}">Withdraw money</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="{{ url_for('bettor_change_password') }}">Change password</a>
     </td>
   </tr>
   <tr>

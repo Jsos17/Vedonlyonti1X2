@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('bettor_transfer_in') }}">
+  <table>
+    <tr align="left">
+      <th>User name</th>
+      <th>Balance Eur</th>
+      <th>Balance Cent</th>
+    </tr>
+    <tr align="left">
+      <td>{{ current_user.username }}</td>
+      <td>{{ current_user.balance_eur }}</td>
+      <td>{{ current_user.balance_cent }}</td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.money_in.label }}
+      </td>
+      <td>
+        {{ form.money_in }}
+      </td>
+      <td>
+				<ul>
+					{% for error in form.money_in.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="Deposit money to your betting account" />
+      </td>
+    </tr>
+</form>
+{% endblock %}

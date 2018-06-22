@@ -4,7 +4,8 @@ from flask_login import login_user, logout_user, login_required, current_user
 from application import app, db
 from application.bet_coupons.models import Bet_coupon
 from application.auth.models import Bettor
-from application.auth.forms import LoginForm, BettorForm, UpdateUserForm
+from application.auth.forms import LoginForm, BettorForm, PasswordChangeForm, MoneyInForm, MoneyOutForm
+from application.money_handler import to_cents, sum_eur_cent
 
 @app.route("/auth/login", methods= ["GET", "POST"])
 def auth_login():
@@ -59,30 +60,6 @@ def bettor_show():
 def bettor_cancel_update():
     return render_template("auth/show_user.html")
 
-@app.route("/auth/update/", methods=["GET", "POST"])
-@login_required
-def bettor_update():
-    if request.method == "POST":
-        #form = BettorForm(request.form)
-        form = UpdateUserForm(request.form)
-        if not form.validate():
-            return render_template("auth/update_user.html", form = form)
-
-        b = Bettor.query.get(current_user.id)
-        #b.username = form.username.data
-        #b.password = form.password.data
-        b.balance_eur = form.balance_eur.data
-        b.balance_cent = form.balance_cent.data
-
-        db.session().commit()
-        flash("Account updated!")
-
-        return redirect(url_for("bettor_show"))
-    elif request.method == "GET":
-        #form = BettorForm(obj=Bettor.query.get(id))
-        form = UpdateUserForm()
-        return render_template("auth/update_user.html", form = form)
-
 @app.route("/auth/delete/", methods=["GET"])
 @login_required
 def bettor_delete():
@@ -104,3 +81,63 @@ def bettor_delete_confirmation():
     flash("Account deleted successfully")
 
     return redirect(url_for("index"))
+@app.route("/auth/change_password", methods=["GET", "POST"])
+@login_required
+def bettor_change_password():
+    if request.method == "GET":
+        form = PasswordChangeForm()
+        return render_template("auth/change_password.html", form = form)
+    elif request.method == "POST":
+        form = PasswordChangeForm(request.form)
+        if not form.validate():
+            return render_template("auth/change_password.html", form = form)
+
+        b = Bettor.query.get(current_user.id)
+        b.password = form.new_password.data
+        db.session().commit()
+        flash("Password changed successfully!")
+        return render_template("auth/show_user.html")
+
+@app.route("/auth/money_out", methods=["GET", "POST"])
+@login_required
+def bettor_transfer_out():
+    if request.method == "GET":
+        form = MoneyOutForm()
+        return render_template("auth/money_out.html", form = form)
+    elif request.method == "POST":
+        form = MoneyOutForm(request.form)
+        if not form.validate():
+             return render_template("auth/money_out.html", form = form)
+
+        b = Bettor.query.get(current_user.id)
+        out_cents = int(100 * form.money_out.data)
+        new_bal_cents = to_cents(b.balance_eur, b.balance_cent) - out_cents
+        new_bal_eur_cent = sum_eur_cent(0, new_bal_cents)
+        b.balance_eur = new_bal_eur_cent[0]
+        b.balance_cent = new_bal_eur_cent[1]
+        db.session().commit()
+        flash("Money transferred successfully to your bank account")
+
+        return render_template("auth/show_user.html")
+
+@app.route("/auth/money_in", methods=["GET", "POST"])
+@login_required
+def bettor_transfer_in():
+    if request.method == "GET":
+        form = MoneyInForm()
+        return render_template("auth/money_in.html", form = form)
+    elif request.method == "POST":
+        form = MoneyInForm(request.form)
+        if not form.validate():
+             return render_template("auth/money_in.html", form = form)
+
+        b = Bettor.query.get(current_user.id)
+        in_cents = int(100 * form.money_in.data)
+        new_bal_cents = to_cents(b.balance_eur, b.balance_cent) + in_cents
+        new_bal_eur_cent = sum_eur_cent(0, new_bal_cents)
+        b.balance_eur = new_bal_eur_cent[0]
+        b.balance_cent = new_bal_eur_cent[1]
+        db.session().commit()
+        flash("Money transferred successfully to your betting account")
+
+        return render_template("auth/show_user.html")
