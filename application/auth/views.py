@@ -63,6 +63,10 @@ def bettor_cancel_update():
 @app.route("/auth/delete/", methods=["GET"])
 @login_required
 def bettor_delete():
+    if current_user.role == "ADMIN":
+        flash("Admin cannot delete account through the application")
+        return render_template("auth/show_user.html")
+
     coupons = Bet_coupon.query.filter_by(bettor_id = current_user.id).all()
     for coupon in coupons:
         if coupon.bet_status == "tbd":
@@ -75,6 +79,11 @@ def bettor_delete():
 @app.route("/auth/delete/", methods=["POST"])
 @login_required
 def bettor_delete_confirmation():
+    if current_user.role == "ADMIN":
+        flash("Admin cannot delete account through the application")
+        return render_template("auth/show_user.html")
+
+    coupons = Bet_coupon.query.filter_by(bettor_id = current_user.id).all()
     b = Bettor.query.get(current_user.id)
     db.session().delete(b)
     db.session().commit()

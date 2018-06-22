@@ -16,7 +16,12 @@
     <td>{{ current_user.balance_cent }}</td>
     {% endif %}
   </tr>
+  <tr>
+    <td>
+      <a href="{{ url_for('bettor_change_password') }}">Change password</a>
+    </td>
   </tr>
+  {% if current_user.role != "ADMIN" %}
   <tr>
     <td>
       <a href="{{ url_for('bettor_transfer_in') }}">Deposit money</a>
@@ -29,13 +34,9 @@
   </tr>
   <tr>
     <td>
-      <a href="{{ url_for('bettor_change_password') }}">Change password</a>
-    </td>
-  </tr>
-  <tr>
-    <td>
       <a href="{{ url_for('bettor_delete') }}">Start account deletion process</a>
     </td>
   </tr>
+  {% endif %}
 </table>
 {% endblock %}
