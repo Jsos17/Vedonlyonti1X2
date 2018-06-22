@@ -12,9 +12,9 @@ Vedonvälittäjällä työskentelee admin-oikeuksilla varustettuja henkilöitä,
 
 Asiakas voi muuttaa salasanaansa ja lisätä saldoaan. Lisäksi asiakas voi poistaa tilinsä, jos hänellä ei ole avoimia vetoja, muulloin asiakas joutuu odottamaan, että avoimet vedot ratkeavat ja tämän jälkeen asiakas voi poistaa tilinsä. 
 
-Asiakas ei voi perua vetoa sen jälkeen kun se on lyöty. Vedon lyötyään asiakas näkee mahdollisen voiton määrän. Asiakas voi lyödä useita vetoja samasta kohteesta.
+Asiakas ei voi perua vetoa sen jälkeen kun se on lyöty. Vedon lyötyään asiakas näkee mahdollisen voiton määrän. Asiakas voi lyödä useita vetoja samasta kohteesta (eri kupongeille).
 
-Asiakas voi yhdistellä useita kohteita samaan vetoon. Asiakas voittaa jos kaikki vedon kohteet ovat oikein ja häviää muulloin.
+Asiakas voi yhdistellä useita kohteita samaan vetokuponkiin. Asiakas voittaa jos kaikki vetokupongin kohteet ovat oikein ja häviää muulloin.
 
 Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin voi tarkastella kaikkien kohteiden vaihtoja ja käytettävissä olevien otteluiden listoja. Admin voi lisätä otteluita ja asettaa niiden tuloksen.
 
