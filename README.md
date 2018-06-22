@@ -63,16 +63,17 @@ Admin näkee:
 
 * admin ei voi asettaa vetoja
 
-* admin voi asettaa ottelun tuloksen, mikä käynnistää tulokseta riippuvien tietokohteiden päivityksen
+* admin voi asettaa ottelun tuloksen, mikä käynnistää tuloksesta riippuvien tietokohteiden päivityksen
 
-### Linkki herokuun (HUOM! Kaikki taulut poistettiin ja asennettiin uudelleen ma 18.6.2018 n. klo 21.20 ja siksi sisältö voi olla tyhjää, admin tunnuksilla lisääminen kuitenkin onnistuu)
+### Linkki herokuun (HUOM! Kaikki taulut poistettiin ja asennettiin uudelleen pe 22.6.2018 n.~ klo 3.45, koska bet_coupon vierasavain bettor_id muutettiin: nullable=True, jotta pelaajan tilin poisto onnistuu ja kupongit jäävät olemassa oleviksi tietokantaan vierasavaimena NULL (python None)
 
 [Bet1X2App](https://bet1x2-app.herokuapp.com/)
 
 Huomioita:
 
-Tilin poisto on jäädytetty, jotta kukaan ei poista esimerkkitiliä, samoin päivitys on muokattu koskemaan vain saldoa. Maksimipanosta tai pelaajan varallisuutta ei tällä hetkellä tarkisteta. Jos tapahtuman todennäköisyys on 90 % tai yli niin kertoimet menevät alle 1:n johtuen vielä puutteellisesta laskentamekanismista, ja tällöin kertoimia pitää säätää manuaalisesti jotta lomake validoidaan. 
+Jos tapahtuman todennäköisyys on 90 % tai yli niin kertoimet menevät alle 1:n johtuen vielä puutteellisesta laskentamekanismista, ja tällöin kertoimia pitää säätää manuaalisesti jotta lomake validoidaan. 
 
 * Ottelun (sport_match) voi poistaa vain jos siihen ei liity vetokohdetta (betting_offer).
 * Vetokohteen (betting_offer) voi poistaa, jos kohteesta ei ole lyöty vetoa
+* Admin ei voi poistaa tiliä (ainakaan vielä)
 
