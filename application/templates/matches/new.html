@@ -1,15 +1,11 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 
 {% block body %}
 <form method="POST" action="{{ url_for('matches_create') }}">
 	<table>
 		<tr>
-			<td>
-				{{ form.home.label }}
-			</td>
-			<td>
-				{{ form.home }}
-			</td>
+			<td>{{ form.home.label }}</td>
+			<td>{{ form.home }}</td>
 			<td>
 				<ul>
 					{% for error in form.home.errors %}
@@ -19,12 +15,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.away.label }}
-			</td>
-			<td>
-				{{ form.away }}
-			</td>
+			<td>{{ form.away.label }}</td>
+			<td>{{ form.away }}</td>
 			<td>
 				<ul>
 					{% for error in form.away.errors %}
@@ -34,12 +26,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.prob_1.label }}
-			</td>
-			<td>
-				{{ form.prob_1 }}
-			</td>
+			<td>{{ form.prob_1.label }}</td>
+			<td>{{ form.prob_1 }}</td>
 			<td>
 				<ul>
 					{% for error in form.prob_1.errors %}
@@ -49,12 +37,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.prob_x.label }}
-			</td>
-			<td>
-				{{ form.prob_x }}
-			</td>
+			<td>{{ form.prob_x.label }}</td>
+			<td>{{ form.prob_x }}</td>
 			<td>
 				<ul>
 					{% for error in form.prob_x.errors %}
@@ -64,12 +48,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.prob_2.label }}
-			</td>
-			<td>
-				{{ form.prob_2 }}
-			</td>
+			<td>{{ form.prob_2.label }}</td>
+			<td>{{ form.prob_2 }}</td>
 			<td>
 				<ul>
 					{% for error in form.prob_2.errors %}
@@ -79,12 +59,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.start_time.label }}
-			</td>
-			<td>
-				{{ form.start_time }}
-			</td>
+			<td>{{ form.start_time.label }}</td>
+			<td>{{ form.start_time }}</td>
 			<td>
 				<ul>
 					{% for error in form.start_time.errors %}

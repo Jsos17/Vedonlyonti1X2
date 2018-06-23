@@ -4,12 +4,8 @@
 <form method="POST" action="{{ url_for('matches_set_result', match_id=match_id) }}">
 	<table border="1">
 		<tr>
-			<td>
-				{{ form.result_1x2.label }}
-			</td>
-			<td>
-				{{ form.result_1x2 }}
-			</td>
+			<td>{{ form.result_1x2.label }}</td>
+			<td>{{ form.result_1x2 }}</td>
 			<td>
 				<ul>
 					{% for error in form.result_1x2.errors %}
@@ -19,17 +15,11 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.confirm.label }}
-			</td>
-			<td>
-				{{ form.confirm }}
-			</td>
+			<td>{{ form.confirm.label }}</td>
+			<td>{{ form.confirm }}</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.old_result(value=old_result) }}
-			</td>
+			<td>{{ form.old_result(value=old_result) }}</td>
 			<td>
 				<ul>
 					{% for error in form.old_result.errors %}

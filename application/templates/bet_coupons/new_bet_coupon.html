@@ -1,4 +1,4 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 
 {% block body %}
 <form method="POST" action="{{ url_for('bet_coupons_create') }}">
@@ -37,12 +37,8 @@
 			<th>{{ "The maximum stake is" }} {{ max_stake }} {{ "eur" }}</th>
 		</tr>
 		<tr>
-			<td>
-				{{ form.stake_eur.label }}
-			</td>
-			<td>
-				{{ form.stake_eur }}
-			</td>
+			<td>{{ form.stake_eur.label }}</td>
+			<td>{{ form.stake_eur }}</td>
 			<td>
 				<ul>
 					{% for error in form.stake_eur.errors %}
@@ -52,12 +48,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.stake_cent.label }}
-			</td>
-			<td>
-				{{ form.stake_cent }}
-			</td>
+			<td>{{ form.stake_cent.label }}</td>
+			<td>{{ form.stake_cent }}</td>
 			<td>
 				<ul>
 					{% for error in form.stake_cent.errors %}
@@ -67,9 +59,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.bettor_balance_eur(value=current_user.balance_eur) }}
-			</td>
+			<td>{{ form.bettor_balance_eur(value=current_user.balance_eur) }}</td>
 			<td>
 				<ul>
 					{% for error in form.bettor_balance_eur.errors %}
@@ -79,9 +69,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.bettor_balance_cent(value=current_user.balance_cent) }}
-			</td>
+			<td>{{ form.bettor_balance_cent(value=current_user.balance_cent) }}</td>
 			<td>
 				<ul>
 					{% for error in form.bettor_balance_cent.errors %}
@@ -91,9 +79,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.max_stake(value=max_stake) }}
-			</td>
+			<td>{{ form.max_stake(value=max_stake) }}</td>
 			<td>
 				<ul>
 					{% for error in form.max_stake.errors %}

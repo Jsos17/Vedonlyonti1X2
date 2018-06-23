@@ -111,7 +111,7 @@ def matches_set_result(match_id):
                                 new_balance = sum_eur_cent(b.balance_eur + coupon.possible_win_eur, b.balance_cent + coupon.possible_win_cent)
                                 b.balance_eur = new_balance[0]
                                 b.balance_cent = new_balance[1]
-                    # panokset palautetaan pelaajille
+                    # panos palautetaan
                     elif res == "void":
                         offer_of_coupon.status = "nil"
                         coupon.bet_status = "void"

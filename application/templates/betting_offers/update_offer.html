@@ -1,20 +1,14 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 
 {% block body %}
 <form method="POST" action="{{ url_for('betting_offers_update', offer_id = offer_id) }}">
 	<table>
 		<tr>
-			<td>
-				{{ match.home }} {{ "VS" }} {{ match.away }}
-			</td>
+			<td>{{ match.home }} {{ "VS" }} {{ match.away }}</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.odds_1.label }}
-			</td>
-			<td>
-				{{ form.odds_1 }}
-			</td>
+			<td>{{ form.odds_1.label }}</td>
+			<td>{{ form.odds_1 }}</td>
 			<td>
 				<ul>
 					{% for error in form.odds_1.errors %}
@@ -24,12 +18,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.odds_x.label }}
-			</td>
-			<td>
-				{{ form.odds_x }}
-			</td>
+			<td>{{ form.odds_x.label }}</td>
+			<td>{{ form.odds_x }}</td>
 			<td>
 				<ul>
 					{% for error in form.odds_x.errors %}
@@ -39,12 +29,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.odds_2.label }}
-			</td>
-			<td>
-				{{ form.odds_2 }}
-			</td>
+			<td>{{ form.odds_2.label }}</td>
+			<td>{{ form.odds_2 }}</td>
 			<td>
 				<ul>
 					{% for error in form.odds_2.errors %}
@@ -54,12 +40,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.max_stake.label }}
-			</td>
-			<td>
-				{{ form.max_stake }}
-			</td>
+			<td>{{ form.max_stake.label }}</td>
+			<td>{{ form.max_stake }}</td>
 			<td>
 				<ul>
 					{% for error in form.max_stake.errors %}
@@ -69,12 +51,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.active.label }}
-			</td>
-			<td>
-				{{ form.active }}
-			</td>
+			<td>{{ form.active.label }}</td>
+			<td>{{ form.active }}</td>
 			<td>
 				<ul>
 					{% for error in form.active.errors %}
@@ -84,12 +62,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.closed.label }}
-			</td>
-			<td>
-				{{ form.closed }}
-			</td>
+			<td>{{ form.closed.label }}</td>
+			<td>{{ form.closed }}</td>
 			<td>
 				<ul>
 					{% for error in form.closed.errors %}
@@ -98,7 +72,6 @@
 				</ul>
 			</td>
 		</tr>
-
 		<tr>
 			<td colspan="5">
 				<input type="submit" value="Update betting offer" />

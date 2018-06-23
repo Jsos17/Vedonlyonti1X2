@@ -4,12 +4,8 @@
 <form method="POST" action="{{ url_for('bettor_create') }}">
 	<table>
 		<tr>
-			<td>
-				{{ form.username.label }}
-			</td>
-			<td>
-				{{ form.username }}
-			</td>
+			<td>{{ form.username.label }}</td>
+			<td>{{ form.username }}</td>
 			<td>
 				<ul>
 					{% for error in form.username.errors %}
@@ -19,12 +15,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.password.label }}
-			</td>
-			<td>
-				{{ form.password }}
-			</td>
+			<td>{{ form.password.label }}</td>
+			<td>{{ form.password }}</td>
 			<td>
 				<ul>
 					{% for error in form.password.errors %}
@@ -34,12 +26,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				{{ form.confirm_password.label }}
-			</td>
-			<td>
-				{{ form.confirm_password }}
-			</td>
+			<td>{{ form.confirm_password.label }}</td>
+			<td>{{ form.confirm_password }}</td>
 			<td>
 				<ul>
 					{% for error in form.confirm_password.errors %}
