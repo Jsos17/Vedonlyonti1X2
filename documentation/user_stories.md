@@ -1,19 +1,22 @@
 # Käyttäjätarinat/User stories
 
-* Admin voi lisätä, muokata, nähdä ja poistaa otteluita (CRUD) (Poisto ehdollinen: riippuu siitä onko otteluun lisätty vetokohde eli betting_offer). Tuloksen asettamiseen on erillinen linkki ja muiden ottelun attribuuttien muokkaukseen oma näkymä. Tulos voidaan asettaa yhden kerran (tbd:stä -> void, 1, x, 2). Tähän on tarkoitus lisätä varmistustoimenpide tuloksesta (koska sitä ei voi sovelluksen kautta enää muuttaa).
+* Admin voi lisätä, muokata, nähdä ja poistaa otteluita (CRUD) (Poisto ehdollinen: riippuu siitä onko otteluun lisätty vetokohde eli betting_offer). Tuloksen asettamiseen on erillinen linkki ja muiden ottelun attribuuttien muokkaukseen oma näkymä. Tulos voidaan asettaa yhden kerran (tbd:stä -> void, 1, x, 2).
+
+* Tuloksen asetuksessa adminin pitää näppäillä kaksi kertaa sama tulos, jotta vältytään huolimattomuusvirheiltä, koska tuloksen asetus käynnistää mahdollisesti voitonmaksuja pelaajille.
 
 * Admin voi liittää otteluihin vetokohteita (Betting_offer), kertoimet määrittyvät automaattisesti todennäköisyyksien ja palautusprosentin perusteella, mutta niitä voi myös muokata (yli 90 % aiheuttaa tällä hetkellä pienemmän kuin 1 kertoimen palautusprosentin vuoksi, jolloin lomaketta ei hyväksytä ilman kertoimien alentamista)
 
 * Admin voi poistaa vetokohteen, jos siitä ei ole lyöty vetoa (CRUD)
 
-* Pelaaja voi rekisteröityä, muokata tiliä, nähdä tilinsä tiedot, ja poistaa tilinsä (CRUD) (poisto ehdollinen)
-(poisto toiminto otettu hetkellisesti pois käytöstä, jotta joku ei käy poistamasta pelaaja1 tiliä)
+* Pelaaja voi rekisteröityä, muokata tilitietoja (salasana, saldo), nähdä tilinsä tiedot, ja poistaa tilinsä (CRUD). Poisto on ehdollinen siten, että pelaajan kaikkien vetokuponkien tulee olla ratkennut. Eli jos yhdenkin bet_couponin bet_status on "tbd", niin poistoa ei sallita. 
 
-* Pelaaja voi muuttaa salasanaansa (ei toteutettu)
+* Kun pelaaja poistaa tilinsä, niin jos hänellä on ollut olemassa pelikuponkeja, niin niiden vierasavaimeksi tulee null, eli pelaajaan liittyviä pelikuponkeja ei poisteta järjestelmästä.
 
-* Pelaaja voi lisätä tai vähentää saldoaan (toteutettu, mutta toteutustyyli on kehno eli uudet arvot vain syötetään, tarkoitus päivittää)
+* Pelaaja voi muuttaa salasanaansa
 
-* Pelaaja voi rekisteröityä, jonka jälkeen hän voi kirjautua ja sen jälkeen lyödä vetoa liittämällä vetokuponkiin (Bet_coupon) yhden tai useamman vetokohteen (Betting_offer)
+* Pelaaja voi siirtää rahaa tililleen ja rahaa pois tililtä
+
+* Pelaaja voi rekisteröityä, jonka jälkeen hän voi kirjautua ja siirtää tililleen rahaa. Sen jälkeen hän voi lyödä vetoa liittämällä vetokuponkiin (Bet_coupon) yhden tai useamman vetokohteen (Betting_offer)
 
 * Admin voi tarkastella vetokohteisiin pelattua rahamäärää ja kuinka monella kupongilla kohde on (turnover statistics).
 
@@ -21,8 +24,8 @@
 
 * Admin voi asettaa ottelun tuloksen, ja sen jälkeen kaikki tuloksesta riippuvien tietokohteiden tapahtumat käynnistyvät:
   
-  Kupongilla olevien vetokohteiden statuksen päivitys ("hit" tai "miss", kupongin merkitseminen voitoksi tai tappioksi ("win" tai   "loss"), pelaajan saldon lisäys,jos kuponki on voitollinen. Jos yksikin kohde kupongilla on väärin, niin kuponki merkitään heti tappioksi, vaikka osa kupongilla olevista muista kohteista olisi vielä ratkeamatta.  
+  Kupongilla olevien vetokohteiden statuksen päivitys ("hit", "miss" tai "nil", kupongin merkitseminen voitoksi, tappioksi tai mitätöidyksi ("win", "loss", "void), pelaajan saldon lisäys,jos kuponki on voitollinen. Jos yksikin kohde kupongilla on väärin, niin kuponki merkitään heti tappioksi, vaikka osa kupongilla olevista muista kohteista olisi vielä ratkeamatta.  
     
-    Tällä hetkellä void vaihtoehtoa ei ole toteutettu. Void-vaihtoehdon tarkoitus olisi seuraava: Jos ottelu mitätöidään, niin silloin tulos merkittäisiin void, ja panokset palautettaisiin pelaajille. 
+    Jos ottelun tulos on void, eli ottelu on mitätöity, niin silloin kaikki kyseisen ottelun vetokohteeseen liittyvien betting_offer_of_coupon:ien status arvoksi asetetaan "nil" ja vastaavasti bet_coupon:in bet_status arvoksi asetetaan "void". Tämä tarkoittaa sitä, että kaikille pelaajille, joilla on kupongissa mitätöity ottelu palautetaan panokset. Eli vaikka kaikki muut ottelut olisivat oikein, niin yhdenkin ottelun mitätöinti aiheuttaa panoksien palautuksen. Todellisuudessa ottelutuloksien mitätöinti on hyvin harvinainen tapahtuma. 
 
 * Pelaaja voi nähdä vetohistoriaansa pelatun rahan ja voittojen sekä vetokuponkien määrän muodossa (ei toteutettu vielä/kupongeista pelkkä listaus)
