@@ -16,7 +16,7 @@ def auth_login():
     # etsi käyttäjä nimellä, käyttäjänimet ovat uniikkeja
     bettor = Bettor.query.filter_by(username = loginform.username.data).first()
     # varmista, että annettu salasana on oikea
-    if sha256_crypt.verify(loginform.password.data, bettor.password) == False:
+    if bettor == None or sha256_crypt.verify(loginform.password.data, bettor.password) == False:
         return render_template("auth/loginform.html", form = loginform, error="No such username or password")
 
     login_user(bettor)
