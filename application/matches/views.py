@@ -98,20 +98,27 @@ def matches_set_result(match_id):
                             count = len(offers_of_this_coupon)
                             i = 0
                             while i < count:
-                                if offers_of_this_coupon[i].status == "miss":
-                                    coupon.bet_status = "loss"
+                                if offers_of_this_coupon[i].status == "hit":
+                                    i += 1
+                                else:
+                                    if offers_of_this_coupon[i].status == "miss":
+                                        coupon.bet_status = "loss"
                                     break
-                                elif offers_of_this_coupon[i].status == "tbd":
-                                    break
-                                i += 1
-
+                            # voitonmaksu
                             if i == count:
                                 coupon.bet_status = "win"
                                 b = Bettor.query.get(coupon.bettor_id)
                                 new_balance = sum_eur_cent(b.balance_eur + coupon.possible_win_eur, b.balance_cent + coupon.possible_win_cent)
                                 b.balance_eur = new_balance[0]
                                 b.balance_cent = new_balance[1]
-
+                    # panokset palautetaan pelaajille
+                    elif res == "void":
+                        offer_of_coupon.status = "nil"
+                        coupon.bet_status = "void"
+                        b = Bettor.query.get(coupon.bettor_id)
+                        new_balance = sum_eur_cent(b.balance_eur + coupon.stake_eur, b.balance_cent + coupon.stake_cent)
+                        b.balance_eur = new_balance[0]
+                        b.balance_cent = new_balance[1]
                     else:
                         offer_of_coupon.status = "miss"
                         coupon.bet_status = "loss"
