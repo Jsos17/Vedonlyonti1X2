@@ -65,7 +65,11 @@ Admin näkee:
 
 * admin voi asettaa ottelun tuloksen, mikä käynnistää tuloksesta riippuvien tietokohteiden päivityksen
 
-### Linkki herokuun (HUOM! Kaikki taulut poistettiin ja asennettiin uudelleen pe 22.6.2018 n.~ klo 3.45, koska bet_coupon vierasavain bettor_id muutettiin: nullable=True, jotta pelaajan tilin poisto onnistuu ja kupongit jäävät olemassa oleviksi tietokantaan vierasavaimena NULL (python None)
+### Linkki herokuun 
+
+**HUOM** Kaikki taulut poistettiin ja asennettiin uudelleen pe 22.6.2018 n.~ klo 3.45, koska bet_coupon vierasavain bettor_id muutettiin: nullable=True, jotta pelaajan tilin poisto onnistuu ja kupongit jäävät olemassa oleviksi tietokantaan vierasavaimena NULL (python None)
+
+**HUOM2** Salasanojen tallennus hashattuna 23.6.2018 n. klo 21:51, minkä johdosta herokun käyttäjätaulujen entryjä poistetaan ja luodaan uudelleen hashatyillä salasanoilla
 
 [Bet1X2App](https://bet1x2-app.herokuapp.com/)
 
