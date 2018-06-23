@@ -16,12 +16,12 @@
     <td>{{ current_user.balance_cent }}</td>
     {% endif %}
   </tr>
+  {% if current_user.role != "ADMIN" %}
   <tr>
     <td>
       <a href="{{ url_for('bettor_change_password') }}">Change password</a>
     </td>
   </tr>
-  {% if current_user.role != "ADMIN" %}
   <tr>
     <td>
       <a href="{{ url_for('bettor_transfer_in') }}">Deposit money</a>

@@ -96,6 +96,10 @@ def bettor_delete_confirmation():
 @app.route("/auth/change_password", methods=["GET", "POST"])
 @login_required
 def bettor_change_password():
+    if current_user.role == "ADMIN":
+        flash("Admin password change is not activated at the moment")
+        return render_template("auth/show_user.html")
+
     if request.method == "GET":
         form = PasswordChangeForm()
         return render_template("auth/change_password.html", form = form)
