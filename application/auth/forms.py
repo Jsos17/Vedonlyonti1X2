@@ -2,7 +2,15 @@ from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, IntegerField, DecimalField, HiddenField, validators
 from application.auth.models import Bettor
 from application.money_handler import to_cents
-from decimal import ROUND_HALF_UP
+
+def validate_places(form, field):
+    if field.data == None:
+        raise validators.StopValidation("Field cannot be empty")
+    money_str = str(field.data)
+    if money_str.find(".") != -1:
+        split_eur_cent = money_str.split(".")
+        if len(split_eur_cent[1]) > 2:
+            raise validators.ValidationError("Only two decimal places allowed")
 
 class LoginForm(FlaskForm):
     username = StringField("Username")
@@ -18,9 +26,8 @@ def validate_username(form, field):
 
 class BettorForm(FlaskForm):
     username = StringField("Username (length 8-144)", [validators.Length(min=8, max=144), validate_username])
-    password = PasswordField("Password (length 8-144)", [validators.Length(min=8, max=144)])
-    balance_eur = IntegerField("Initial balance/Eur (0-9999)", [validators.NumberRange(min=0, max=9999)])
-    balance_cent = IntegerField("Initial balance/Cent (0-99)", [validators.NumberRange(min=0, max=99)])
+    password = PasswordField("Password (length 8-144)", [validators.Length(min=8, max=144), validators.EqualTo('confirm_password', message='Passwords must match')])
+    confirm_password = PasswordField("Confirm password")
 
     class Meta:
         csrf = False
@@ -48,18 +55,9 @@ class PasswordChangeForm(FlaskForm):
     class Meta:
         csrf = False
 
-def validate_places(form, field):
-    if field.data == None:
-        raise validators.StopValidation("Field cannot be empty")
-    money_str = str(field.data)
-    if money_str.find(".") != -1:
-        split_eur_cent = money_str.split(".")
-        if len(split_eur_cent[1]) > 2:
-            raise validators.ValidationError("Only two decimal places allowed")
-
 class MoneyInForm(FlaskForm):
-    money_in = DecimalField("Deposit: (min = 10.00 eur, max = 10 000.00 eur, format: eur.cent)",
-                            places = 2, rounding=ROUND_HALF_UP, validators=[validators.NumberRange(min=10.0, max=10000.0), validate_places])
+    money_in = DecimalField("Deposit: (min = 10.00 eur, max = 10 000.00 eur, format: eur.cent / eur)",
+                            places = 2, validators=[validators.NumberRange(min=10.0, max=10000.0), validate_places])
 
     class Meta:
         csrf = False
@@ -79,7 +77,7 @@ def validate_balance(form, field):
 
 class MoneyOutForm(FlaskForm):
     money_out = DecimalField("Withdraw: (min = 10.00 eur, max = 10 000.00 eur, format: eur.cent)",
-                             places = 2, rounding=ROUND_HALF_UP, validators=[validators.NumberRange(min=0.0, max=10000.0), validate_places, validate_balance])
+                             places = 2, validators=[validators.NumberRange(min=0.0, max=10000.0), validate_places, validate_balance])
     balance_eur = HiddenField("")
     balance_cent = HiddenField("")
 

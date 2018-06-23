@@ -42,11 +42,11 @@ def bettor_create():
     if not form.validate():
         return render_template("auth/new_bettor.html", form = form)
 
-    b = Bettor(form.username.data, form.password.data, form.balance_eur.data, form.balance_cent.data)
+    b = Bettor(form.username.data, form.password.data, 0, 0)
     db.session().add(b)
     db.session().commit()
-
     flash("Account created successfully, please login to your account")
+    flash("After you have logged in, you can transfer money to your account")
 
     return redirect(url_for("auth_login"))
 
