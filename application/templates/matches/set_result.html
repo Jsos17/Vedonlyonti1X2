@@ -29,6 +29,17 @@
 			</td>
 		</tr>
 		<tr>
+			<td>{{ form.accept_result.label }}</td>
+			<td>{{ form.accept_result }}</td>
+			<td>
+				<ul>
+					{% for error in form.accept_result.errors %}
+					<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td colspan="5">
 				<input type="submit" value="Set result"/>
 			</td>

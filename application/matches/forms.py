@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import DateTimeField, IntegerField, StringField, HiddenField, validators
+from wtforms import DateTimeField, IntegerField, StringField, HiddenField, BooleanField, validators
 
 def validate_probabilities(form, field):
     try:
@@ -30,6 +30,7 @@ def validate_old_result(form, field):
 class SetResultForm(FlaskForm):
     result_1x2 = StringField("Result (void, 1, x, 2)", [validators.AnyOf(values=("void", "1", "x", "2")), validators.EqualTo('confirm', message='The result must match')])
     confirm = StringField("Confirm setting of result by typing it again (void, 1, x, 2)")
+    accept_result = BooleanField("Check the box to confirm the result",validators=[validators.Required()])
     old_result = HiddenField("", validators=[validate_old_result])
 
     class Meta:
