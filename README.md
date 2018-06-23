@@ -71,6 +71,8 @@ Admin näkee:
 
 **HUOM2** Salasanojen tallennus hashattuna 23.6.2018 n. klo 21:51, minkä johdosta herokun käyttäjätaulujen entryjä poistetaan ja luodaan uudelleen hashatyillä salasanoilla
 
+**HUOM3 Adminin salasanan vaihto otettu pois käytöstä, jotta esimerkkitilin salasanaa ei pääse kukaan muuttamaan ja tilille pääsee**
+
 [Bet1X2App](https://bet1x2-app.herokuapp.com/)
 
 Huomioita:
