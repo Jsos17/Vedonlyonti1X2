@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, IntegerField, DecimalField, HiddenField, validators
 from application.auth.models import Bettor
 from application.money_handler import to_cents
+from passlib.hash import sha256_crypt
 
 def validate_places(form, field):
     if field.data == None:
@@ -43,7 +44,7 @@ def validate_old_password(form, field):
         raise validators.ValidationError("Something went wrong")
     else:
         b = Bettor.query.get(b_id)
-        if b.password != form.old_password.data:
+        if sha256_crypt.verify(form.old_password.data, b.password) == False:
             raise validators.ValidationError("Old password does not match")
 
 class PasswordChangeForm(FlaskForm):

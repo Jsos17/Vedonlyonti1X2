@@ -1,11 +1,11 @@
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
-
 from application import app, db
 from application.bet_coupons.models import Bet_coupon
 from application.auth.models import Bettor
 from application.auth.forms import LoginForm, BettorForm, PasswordChangeForm, MoneyInForm, MoneyOutForm
 from application.money_handler import to_cents, sum_eur_cent
+from passlib.hash import sha256_crypt
 
 @app.route("/auth/login", methods= ["GET", "POST"])
 def auth_login():
@@ -13,8 +13,10 @@ def auth_login():
         return render_template("auth/loginform.html", form = LoginForm())
 
     loginform = LoginForm(request.form)
-    bettor = Bettor.query.filter_by(username=loginform.username.data, password=loginform.password.data).first()
-    if not bettor:
+    # etsi käyttäjä nimellä, käyttäjänimet ovat uniikkeja
+    bettor = Bettor.query.filter_by(username = loginform.username.data).first()
+    # varmista, että annettu salasana on oikea
+    if sha256_crypt.verify(loginform.password.data, bettor.password) == False:
         return render_template("auth/loginform.html", form = loginform, error="No such username or password")
 
     login_user(bettor)
@@ -42,7 +44,8 @@ def bettor_create():
     if not form.validate():
         return render_template("auth/new_bettor.html", form = form)
 
-    b = Bettor(form.username.data, form.password.data, 0, 0)
+    pw = sha256_crypt.encrypt(form.password.data)
+    b = Bettor(form.username.data, pw, 0, 0)
     db.session().add(b)
     db.session().commit()
     flash("Account created successfully, please login to your account")
@@ -102,7 +105,7 @@ def bettor_change_password():
             return render_template("auth/change_password.html", form = form)
 
         b = Bettor.query.get(current_user.id)
-        b.password = form.new_password.data
+        b.password = sha256_crypt.encrypt(form.new_password.data)
         db.session().commit()
         flash("Password changed successfully!")
         return render_template("auth/show_user.html")
