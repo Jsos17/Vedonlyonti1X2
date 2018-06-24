@@ -1,7 +1,11 @@
 {% extends "layout.html" %}
 
 {% block body %}
+{% if type == "search" %}
+<h1>Available betting offers that matched the searched team</h1>
+{% else %}
 <h1>All available betting offers</h1>
+{% endif %}
 <br>
 <form method="POST" action="{{ url_for('bet_coupons_form') }}">
   <table border="1" cellspacing="8">

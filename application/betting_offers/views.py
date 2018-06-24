@@ -5,7 +5,7 @@ import datetime
 from application.matches.models import Sport_match
 from application.matches import views
 from application.betting_offers.models import Betting_offer
-from application.betting_offers.forms import Betting_offerForm
+from application.betting_offers.forms import Betting_offerForm, SearchOffersForm
 from application.betting_offers.bookmaker import Handicapper
 from application.betting_offers_of_coupon.models import Betting_offer_of_coupon
 
@@ -17,7 +17,7 @@ def betting_offers_index():
         match = Sport_match.query.filter_by(id = offer.match_id, result_1x2 = "tbd").first()
         if match != None:
             match_offer_tuples.append((match, offer))
-    return render_template("betting_offers/offer_list.html", match_offer_tuples = match_offer_tuples)
+    return render_template("betting_offers/offer_list.html", match_offer_tuples = match_offer_tuples, type = "all")
 
 @app.route("/betting_offers/admin", methods=["GET"])
 @login_required
@@ -128,3 +128,23 @@ def betting_offers_delete(offer_id):
         flash("Betting offer deleted")
 
     return redirect(url_for("admin_betting_offers_index"))
+
+@app.route("/betting_offers/search", methods=["GET", "POST"])
+def betting_offers_search():
+    if request.method == "GET":
+        form = SearchOffersForm()
+        return render_template("betting_offers/search.html", form = form)
+    elif request.method == "POST":
+        form = SearchOffersForm(request.form)
+        if not form.validate():
+            return render_template("betting_offers/search.html", form = form)
+
+        team = form.search.data
+        found_matches = Sport_match.query.filter(Sport_match.home.like("%" + team + "%") | Sport_match.away.like("%" + team + "%")).all()
+        match_offer_tuples = []
+        for match in found_matches:
+            offer = Betting_offer.query.filter_by(match_id=match.id).first()
+            if offer != None and offer.active == True and offer.closed == False and match.result_1x2 == "tbd":
+                match_offer_tuples.append((match, offer))
+
+        return render_template("betting_offers/offer_list.html", match_offer_tuples = match_offer_tuples, type = "search")

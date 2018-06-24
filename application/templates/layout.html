@@ -33,6 +33,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('betting_offers_index') }}">List betting offers</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('betting_offers_search') }}">Search betting offers</a>
+            </li>
           </ul>
           <div class="form-inline mt-2 mt-md-0">
             {% if current_user.is_authenticated %}

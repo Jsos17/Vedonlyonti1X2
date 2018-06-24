@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import BooleanField, DecimalField, validators
+from wtforms import BooleanField, DecimalField, StringField, validators
 
 def validate_risk(form, field):
     try:
@@ -16,6 +16,12 @@ class Betting_offerForm(FlaskForm):
     max_stake = DecimalField("Maximum stake (0-100)", [validators.NumberRange(min=0.0,max=100.0)])
     active = BooleanField("The betting offer is active")
     closed = BooleanField("The betting offer is closed")
+
+    class Meta:
+        csrf = False
+
+class SearchOffersForm(FlaskForm):
+    search = StringField("Search for betting offers by typing the team name:", [validators.Length(min=1, max=100)])
 
     class Meta:
         csrf = False

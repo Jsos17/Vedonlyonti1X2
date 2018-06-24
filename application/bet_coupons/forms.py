@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, StringField, DecimalField, HiddenField, validators
+from wtforms import DecimalField, HiddenField, validators
 from application.money_handler import sum_eur_cent, to_cents
 
 def validate_min_max_stake(form, field):
