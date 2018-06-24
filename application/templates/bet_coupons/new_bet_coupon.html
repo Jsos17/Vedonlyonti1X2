@@ -37,22 +37,11 @@
 			<th>{{ "The maximum stake is" }} {{ max_stake }} {{ "eur" }}</th>
 		</tr>
 		<tr>
-			<td>{{ form.stake_eur.label }}</td>
-			<td>{{ form.stake_eur }}</td>
+			<td>{{ form.stake.label }}</td>
+			<td>{{ form.stake }}</td>
 			<td>
 				<ul>
-					{% for error in form.stake_eur.errors %}
-					<li>{{ error }}</li>
-					{% endfor %}
-				</ul>
-			</td>
-		</tr>
-		<tr>
-			<td>{{ form.stake_cent.label }}</td>
-			<td>{{ form.stake_cent }}</td>
-			<td>
-				<ul>
-					{% for error in form.stake_cent.errors %}
+					{% for error in form.stake.errors %}
 					<li>{{ error }}</li>
 					{% endfor %}
 				</ul>

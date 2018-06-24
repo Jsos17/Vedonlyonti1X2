@@ -16,8 +16,29 @@ def bet_coupons_index():
         flash("Administrator cannot place bets")
         return render_template("index.html")
 
-    bet_coupons = Bet_coupon.query.filter_by(bettor_id = current_user.id).all()
-    return render_template("bet_coupons/bet_coupon_list.html", user_coupons = bet_coupons)
+    coupons = Bet_coupon.query.filter_by(bettor_id = current_user.id).all()
+    stakes_cent_total = 0
+    wins_cent_total = 0
+    pending = 0
+    for coupon in coupons:
+        stakes_cent_total += to_cents(coupon.stake_eur, coupon.stake_cent)
+        if coupon.bet_status == "win":
+            wins_cent_total += to_cents(coupon.possible_win_eur, coupon.possible_win_cent)
+        elif coupon.bet_status == "void":
+            wins_cent_total += to_cents(coupon.stake_eur, coupon.stake_cent)
+        elif coupon.bet_status == "tbd":
+            pending += 1
+
+    profit = sum_eur_cent(0, wins_cent_total - stakes_cent_total)
+    winnings = sum_eur_cent(0, wins_cent_total)
+    stakes = sum_eur_cent(0, stakes_cent_total)
+    tuple_list = [winnings, stakes, profit]
+
+    coupon_count = len(coupons)
+    determined = coupon_count - pending
+
+    return render_template("bet_coupons/bettor_history.html", tuple_list = tuple_list, coupon_count = coupon_count,
+                           pending = pending, determined = determined, user_coupons = coupons)
 
 @app.route("/bet_coupons/new/", methods=["POST"])
 @login_required
@@ -93,10 +114,11 @@ def bet_coupons_create():
                 boc.betting_offer_id = offer_id
                 db.session().add(boc)
 
-    coupon.set_bet_details(combined_odds, form.stake_eur.data, form.stake_cent.data)
+    stake_cents = int(100 * form.stake.data)
+    stake_eur_cent = sum_eur_cent(0, stake_cents)
+    coupon.set_bet_details(combined_odds, stake_eur_cent[0], stake_eur_cent[1])
 
     # subtract stake from bettor's balance
-    stake_cents = to_cents(form.stake_eur.data, form.stake_cent.data)
     balance_cents= to_cents(current_user.balance_eur, current_user.balance_cent)
     new_balance = sum_eur_cent(0, balance_cents - stake_cents)
 

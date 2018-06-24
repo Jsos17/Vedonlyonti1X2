@@ -87,6 +87,8 @@ def matches_set_result(match_id):
             match.result_1x2 = res
             offer = Betting_offer.query.filter_by(match_id=match.id).first()
             if offer != None:
+                offer.active = False
+                offer.closed  = True
                 offers_of_coupons = Betting_offer_of_coupon.query.filter_by(betting_offer_id = offer.id).all()
                 for offer_of_coupon in offers_of_coupons:
                     coupon = Bet_coupon.query.get(offer_of_coupon.bet_coupon_id)

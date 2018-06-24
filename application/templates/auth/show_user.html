@@ -5,15 +5,19 @@
   <tr align="left">
     <th>User name</th>
     {% if current_user.role != "ADMIN" %}
-    <th>Balance Eur</th>
-    <th>Balance Cent</th>
+    <th>Balance/Eur</th>
     {% endif %}
   </tr>
   <tr align="left">
     <td>{{ current_user.username }}</td>
     {% if current_user.role != "ADMIN" %}
-    <td>{{ current_user.balance_eur }}</td>
-    <td>{{ current_user.balance_cent }}</td>
+    <td>
+      {% if current_user.balance_cent < 10 %}
+        {{ current_user.balance_eur ~ ".0" ~ current_user.balance_cent }}
+      {% else %}
+        {{ current_user.balance_eur ~ "." ~ current_user.balance_cent }}
+      {% endif %}
+    </td>
     {% endif %}
   </tr>
   {% if current_user.role != "ADMIN" %}

@@ -9,8 +9,8 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-	     <a class="navbar-brand" href="#">Bet1X2 Application</a>
+    <nav class="navbar navbar-expand-md navbar-light" style="background-color: #4caf50;">
+	     <a class="navbar-brand" href="{{ url_for('index') }}">Bet1X2 Application</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
 	       </button>
@@ -40,8 +40,13 @@
       				Username {{ current_user.username }} is logged in. <a href="{{ url_for('auth_logout') }}">Log out</a><br>
               <a href="{{ url_for('bettor_show', id = current_user.id) }}">Show account</a><br>
               {% if current_user.role != "ADMIN" %}
-              <a href="{{ url_for('bet_coupons_index') }}">Show all your bet coupons</a><br>
-              {%  endif %}
+              <a href="{{ url_for('bet_coupons_index') }}">My betting history</a><br>
+                {% if current_user.balance_cent < 10 %}
+                  {{ "Balance: " ~ current_user.balance_eur ~ ".0" ~ current_user.balance_cent }}
+                {% else %}
+                  {{ "Balance: " ~ current_user.balance_eur ~ "." ~ current_user.balance_cent }}
+                {% endif %}
+              {% endif %}
             </p>
             {% else %}
             <p>
@@ -62,6 +67,7 @@
         		</ul>
       		{% endif %}
     		{% endwith %}
+        <br>
       	{% block body %}
         	<p>
           	Content.

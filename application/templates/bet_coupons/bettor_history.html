@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h2>My betting history</h2>
+<h2>{{ current_user.username }}</h2>
+<table border="1" cellspacing="8">
+  <tr align="left">
+    <th>Amount of coupons</th>
+    <th>Number of pending coupons</th>
+    <th>Number of determined coupons</th>
+    <th>Winnings total (refunds in case of void match included)/Eur</th>
+    <th>Placed stakes total/Eur</th>
+    <th>Profit total/Eur</th>
+  </tr>
+  <tr align="left">
+    <td>{{ coupon_count }}</td>
+    <td>{{ pending }}</td>
+    <td>{{ determined }}</td>
+    {% for tuple in tuple_list %}
+    <td>
+      {% if tuple[1] < 10 %}
+        {{ tuple[0] ~ ".0" ~ tuple[1] }}
+      {% else %}
+        {{ tuple[0] ~ "." ~ tuple[1] }}
+      {% endif %}
+    </td>
+    {% endfor %}
+  </tr>
+</table>
+<br>
+<table border="1" cellspacing="8">
+  <tr align="left">
+    <th>Id</th>
+    <th>Bet status</th>
+    <th>Combined odds</th>
+    <th>Stake</th>
+    <th>Win</th>
+    <th>Refund</th>
+  </tr>
+  {% for bet_coupon in user_coupons %}
+  <tr align="left">
+    <td>{{ bet_coupon.id }}</td>
+    <td>{{ bet_coupon.bet_status }}</td>
+    <td>{{ bet_coupon.combined_odds }}</td>
+    <td>
+      {% if bet_coupon.stake_cent < 10 %}
+        {{ bet_coupon.stake_eur ~ ".0" ~ bet_coupon.stake_cent }}
+      {% else %}
+        {{ bet_coupon.stake_eur ~ "." ~ bet_coupon.stake_cent }}
+      {% endif %}
+    </td>
+    <td>
+      {% if bet_coupon.bet_status == "win" %}
+        {% if bet_coupon.possible_win_cent < 10 %}
+          {{ bet_coupon.possible_win_eur ~ ".0" ~ bet_coupon.possible_win_cent }}
+        {% else %}
+          {{ bet_coupon.possible_win_eur ~ "." ~ bet_coupon.possible_win_cent }}
+        {% endif %}
+      {% else %}
+        {{ "0.00" }}
+      {% endif %}
+    </td>
+    <td>
+      {% if bet_coupon.bet_status == "void"  %}
+        {% if bet_coupon.stake_cent < 10 %}
+          {{ bet_coupon.stake_eur ~ ".0" ~ bet_coupon.stake_cent }}
+        {% else %}
+          {{ bet_coupon.stake_eur ~ "." ~ bet_coupon.stake_cent }}
+        {% endif %}
+      {% else %}
+        {{ "0.00" }}
+      {% endif %}
+    </td>
+    <td>
+      <a href="{{ url_for('bet_coupons_show', bet_coupon_id = bet_coupon.id) }}">Show coupon</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
