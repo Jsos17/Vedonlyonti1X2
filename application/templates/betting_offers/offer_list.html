@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<h1>All available betting offers</h1>
+<br>
 <form method="POST" action="{{ url_for('bet_coupons_form') }}">
   <table border="1" cellspacing="8">
     <tr align="left">
