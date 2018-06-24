@@ -28,4 +28,4 @@
     
     Jos ottelun tulos on void, eli ottelu on mitätöity, niin silloin kaikki kyseisen ottelun vetokohteeseen liittyvien betting_offer_of_coupon:ien status arvoksi asetetaan "nil" ja vastaavasti bet_coupon:in bet_status arvoksi asetetaan "void". Tämä tarkoittaa sitä, että kaikille pelaajille, joilla on kupongissa mitätöity ottelu palautetaan panokset. Eli vaikka kaikki muut ottelut olisivat oikein, niin yhdenkin ottelun mitätöinti aiheuttaa panoksien palautuksen. Todellisuudessa ottelutuloksien mitätöinti on hyvin harvinainen tapahtuma. 
 
-* Pelaaja voi nähdä vetohistoriaansa pelatun rahan ja voittojen sekä vetokuponkien määrän muodossa (ei toteutettu vielä/kupongeista pelkkä listaus)
+* Pelaaja voi nähdä vetohistoriaansa pelatun rahan ja voittojen sekä vetokuponkien määrän muodossa
