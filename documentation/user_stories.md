@@ -2,9 +2,7 @@
 
 ## Käyttäjäryhmät
 
-* Sovelluksella on oletuksena kaksi käyttäjäryhmää: CUSTOMER ja ADMIN, joille on oma taulu *Role* ja oletuksena uuteen käyttäjään liitetään aina rooli "CUSTOMER" ja komentoriviltä voi tavallisen käyttäjän asettaa "ADMIN":ksi ja suositeltavaa on, että samalla poistetaan entry "CUSTOMER" käyttäjältä, joka juuri asetettiin adminiksi. Role-taulun avulla käyttäjäryhmiä on tarpeen vaatiessa helppo laajentaa. 
-
-Sovellus tallentaa tietokantaan automaattisesti Role-tauluun entryt "CUSTOMER" ja "ADMIN":
+* Sovelluksella on oletuksena kaksi käyttäjäryhmää: CUSTOMER ja ADMIN, joille on oma taulu *Role* ja oletuksena uuteen käyttäjään liitetään aina rooli "CUSTOMER" ja komentoriviltä voi tavallisen käyttäjän asettaa "ADMIN":ksi ja suositeltavaa on, että samalla poistetaan entry "CUSTOMER" käyttäjältä, joka juuri asetettiin adminiksi. Role-taulun avulla käyttäjäryhmiä on tarpeen vaatiessa helppo laajentaa. Sovellus tallentaa tietokantaan automaattisesti Role-tauluun entryt "CUSTOMER" ja "ADMIN". Käyttäjän ja roolin välillä on liitostaulu user_role.
 
     ```SQL
     INSERT INTO role (name) VALUES = 'CUSTOMER';
@@ -41,7 +39,7 @@ Sovellus tallentaa tietokantaan automaattisesti Role-tauluun entryt "CUSTOMER" j
     UPDATE sport_match SET result_1x2 = '<haluttu tulos>' WHERE id = <haluttu id>;
     ```
 
-* Tuloksen asetuksessa adminin pitää näppäillä (sovelluksessa) kaksi kertaa sama tulos, jotta vältytään huolimattomuusvirheiltä, koska tuloksen asetus käynnistää mahdollisesti voitonmaksuja pelaajille. Lisäksi lomakkeessa on erillinen BooleanField hyväksyntä painike, joka pitää olla valittuna
+* Tuloksen asetuksessa adminin pitää näppäillä (sovelluksessa) kaksi kertaa sama tulos, jotta vältytään huolimattomuusvirheiltä, koska tuloksen asetus käynnistää mahdollisesti voitonmaksuja pelaajille. Lisäksi lomakkeessa on erillinen BooleanField hyväksyntä painike, joka pitää olla valittuna.
 
 * Admin voi liittää otteluihin vetokohteita (Betting_offer), kertoimet määrittyvät automaattisesti todennäköisyyksien ja palautusprosentin perusteella, mutta niitä voi myös muokata (yli 90 % aiheuttaa tällä hetkellä pienemmän kuin 1 kertoimen palautusprosentin vuoksi, jolloin lomaketta ei hyväksytä ilman kertoimien alentamista)
 
@@ -155,6 +153,25 @@ Yllä *:offer_id* on käyttäjältä saatu parametri
   
   Kupongilla olevien vetokohteiden statuksen päivitys ("hit", "miss" tai "nil", kupongin merkitseminen voitoksi, tappioksi tai mitätöidyksi ("win", "loss", "void), pelaajan saldon lisäys,jos kuponki on voitollinen. Jos yksikin kohde kupongilla on väärin, niin kuponki merkitään heti tappioksi, vaikka osa kupongilla olevista muista kohteista olisi vielä ratkeamatta.
     
-    Jos ottelun tulos on void, eli ottelu on mitätöity, niin silloin kaikki kyseisen ottelun vetokohteeseen liittyvien betting_offer_of_coupon:ien status arvoksi asetetaan "nil" ja vastaavasti bet_coupon:in bet_status arvoksi asetetaan "void". Tämä tarkoittaa sitä, että kaikille pelaajille, joilla on kupongissa mitätöity ottelu palautetaan panokset. Eli vaikka kaikki muut ottelut olisivat oikein, niin yhdenkin ottelun mitätöinti aiheuttaa panoksien palautuksen. Todellisuudessa ottelutuloksien mitätöinti on hyvin harvinainen tapahtuma. 
+    Jos ottelun tulos on void, eli ottelu on mitätöity, niin silloin kaikki kyseisen ottelun vetokohteeseen liittyvien betting_offer_of_coupon:ien status arvoksi asetetaan "nil" ja vastaavasti bet_coupon:in bet_status arvoksi asetetaan "void". Tämä tarkoittaa sitä, että kaikille pelaajille, joilla on kupongissa mitätöity ottelu palautetaan panokset. Eli vaikka kaikki muut ottelut olisivat oikein, niin yhdenkin ottelun mitätöinti aiheuttaa panoksien palautuksen. Todellisuudessa ottelutuloksien mitätöinti on hyvin harvinainen tapahtuma.
+    
+    ```SQL
+    UPDATE sport_match SET result_1x2 = '<haluttu tulos>' WHERE id = <haluttu id>;
+    
+    SELECT id FROM betting_offer WHERE match_id = <päivitetty match id>;
+    UPDATE betting_offer SET active = 0, closed = 1 WHERE id = <juuri selvitetty id>;
+    ```
+    
+    Selvitetään kaikki betting_offeriin liittyvät betting_offer_of_couponit:
+    
+    ```SQL
+    SELECT id FROM betting_offer_of_coupon WHERE betting_offer_id = <selvitetty offer id >;
+    ```
+    
+    Kustakin betting_offer_of_couponista selvitetään siihen liittyvä kuponki
+    
+    ```SQL
+    SELECT id FROM bet_coupon, betting_offer_of_couppon WHERE bet_coupon.id = betting_offer_of_coupon.bet_coupon_id;
+    ```
 
 * Pelaaja voi nähdä vetohistoriaansa pelatun rahan ja voittojen sekä vetokuponkien määrän muodossa
