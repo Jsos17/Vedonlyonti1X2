@@ -20,9 +20,11 @@
 
 * Admin voi tarkastella vetokohteisiin pelattua rahamäärää ja kuinka monella kupongilla kohde on (turnover statistics).
 
+    ```SQL
     SELECT sport_match.home, sport_match.away, sport_match.id, betting_offer.id, 
     COUNT(bet_coupon.id), SUM(bet_coupon.stake_eur), SUM(bet_coupon.stake_cent), sport_match.start_time 
     FROM sport_match, betting_offer, bet_coupon, betting_offer_of_coupon WHERE betting_offer.match_id = 			 sport_match.id AND betting_offer_of_coupon.betting_offer_id = betting_offer.id AND betting_offer_of_coupon.bet_coupon_id = bet_coupon.id GROUP BY sport_match.id, betting_offer.id
+    ```
 
 * Lisäksi admin voi tarkastella tarkemmin yksittäisen kohteen pelivaihdon jakautumista eri vaihtoehtojen kesken
 
