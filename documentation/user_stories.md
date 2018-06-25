@@ -33,8 +33,9 @@
 * Lisäksi admin voi tarkastella tarkemmin yksittäisen kohteen pelivaihdon jakautumista eri vaihtoehtojen kesken
 
     ```SQL
-    SELECT sport_match.home, sport_match.away, COUNT(bet_coupon.id), betting_offer_of_coupon.choice_1x2, 
-    SUM(bet_coupon.stake_eur), SUM(bet_coupon.stake_cent), sport_match.prob_1, sport_match.prob_x, sport_match.prob_2 
+    SELECT sport_match.home, sport_match.away, COUNT(bet_coupon.id), 
+    betting_offer_of_coupon.choice_1x2, SUM(bet_coupon.stake_eur), SUM(bet_coupon.stake_cent), 
+    sport_match.prob_1, sport_match.prob_x, sport_match.prob_2 
     FROM sport_match, betting_offer, bet_coupon, betting_offer_of_coupon 
     WHERE betting_offer_id = :offer_id AND betting_offer.match_id = sport_match.id 
     AND betting_offer_of_coupon.betting_offer_id = betting_offer.id 
