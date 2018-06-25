@@ -14,6 +14,12 @@
 
 * Pelaaja voi muuttaa salasanaansa
 
+    ```SQL
+    UPDATE bettor SET password = '$5$rounds=535000$.HMHKCwt/FrPsre7$yD.iNvoNjrMd6mdtwHRrYZK1.5WGyMLFl75WvTCwkP2' 
+    WHERE id = <haluttu id>;
+    ```
+    Tässä salasana on hashatyssä muodossa kuten se tallennetaan tietokantaankin
+    
 * Pelaaja voi siirtää rahaa tililleen ja rahaa pois tililtä
 
 * Pelaaja voi rekisteröityä, jonka jälkeen hän voi kirjautua ja siirtää tililleen rahaa. Sen jälkeen hän voi lyödä vetoa liittämällä vetokuponkiin (Bet_coupon) yhden tai useamman vetokohteen (Betting_offer)
