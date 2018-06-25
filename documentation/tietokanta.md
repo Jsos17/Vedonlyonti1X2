@@ -40,7 +40,7 @@ Tietokannan kaikki taulut ovat **ensimmäisessä normaalimuodossa**, koska:
 
 Tietokannan kaikki taulut ovat myös **toisessa normaalimuodossa**, koska jokaisen taulun pääavain on määritelty yhden sarakkeen avulla, ja koska taulut ovat ensimmäisessä normaalimuodossa.
 
-Tietokannan **kaikki taulut paitsi Bet_coupon ja Bettor ovat myös kolmannessa normaalimuodossa**, sillä niiden sarakkeet eitvät ole transitiivisesti riippuvaisia taulujen pääavaimesta. 
+Tietokannan **kaikki taulut paitsi Bet_coupon ja Bettor ovat myös kolmannessa normaalimuodossa**, sillä niiden sarakkeet eivät ole transitiivisesti riippuvaisia taulujen pääavaimesta. 
 
 **Bet_coupon** taulussa *possible_win_eur* ja *possible_win_cent* ovat funktionaalisesti riippuvaisia sarakejoukosta *combined_odds*, *stake_eur* ja *stake_cent* ja näin ollen *possible_win_eur* ja *possible_win_cent* ovat myös transitiivisesti riippuvaisia taulun pääavaimesta. Tarkalleen ottaen voiton määriä ei välttämättä tarvitsisi tallentaa, mutta toisaalta tämä tilanne vähentää usein toistuvaa voiton uudelleen laskemista, tekee maksettavan voiton ja sen miten se pyöristetään yksiselitteiseksi, kun se kerran on laskettu, sekä helpottaa myös ohjelmointia.
 
