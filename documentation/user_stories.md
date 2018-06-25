@@ -10,20 +10,20 @@ Sovellus tallentaa tietokantaan automaattisesti Role-tauluun entryt "CUSTOMER" j
     INSERT INTO role (name) VALUES = 'CUSTOMER';
     INSERT INTO role (name) VALUES = 'ADMIN';
     ```
-    Id selviää kyslyllä:
+Id selviää kyslyllä:
     
     ```SQL
     SELECT id FROM role WHERE name = 'CUSTOMER';
     SELECT id FROM role WHERE name = 'ADMIN';
     ```
     
-    User_role entryjen luonti, olkoon bettor_id = 1 ja customer id = 1, admin id = 2:
+User_role entryjen luonti, olkoon bettor_id = 1 ja customer id = 1, admin id = 2:
     
     ```SQL
     INSERT INTO user_role (bettor_id, role_id) VALUES (1, 1)
     INSERT INTO user_role (bettor_id, role_id) VALUES (1, 2)
     ```
-    Käyttäjän asetus adminiksi (oletus admin id = 2):
+Käyttäjän asetus adminiksi (oletus admin id = 2):
     
     ```SQL
     DELETE FROM user_role WHERE bettor_id = 1 AND role_id = 1;
