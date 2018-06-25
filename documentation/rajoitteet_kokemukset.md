@@ -14,7 +14,9 @@ Tähän asiaan läheisesti liittyy esimerkiksi se miten käyttäjän saldo pitä
 
 Käytettävyydessä ja ulkoasussa olisi varmasti parannettavaa.
 
-Automaattiseen kertoimenlaskentaan liittyy se ongelma, että jos tapahtuman todennäköisyys on yli 90 niin kerroin menee alle yhden ja se pitää manuaalisesti muuttaa ja lisäksi muita kertoimia pitää säätää manuaalisesti alas huomattavasti jotta laskennallinen 90% palautus validoituu. Koen kuitenkin, että tämän kanssa painiminen menee tämän kurssin aihepiirin ulkopuolelle ja siksi olen tyytynyt sihen mitä on toteutettu.
+Automaattiseen kertoimenlaskentaan liittyy se ongelma, että jos tapahtuman todennäköisyys on yli 90 niin kerroin menee alle yhden ja se pitää manuaalisesti muuttaa ja lisäksi muita kertoimia pitää säätää manuaalisesti alas huomattavasti jotta laskennallinen 90% palautus validoituu. Koen kuitenkin, että tämän kanssa painiminen menee tämän kurssin aihepiirin ulkopuolelle ja siksi olen tyytynyt sihen mitä on toteutettu. Se vaan vaatii admin-käyttäjältä hiukan manuaalista työtä.
+
+Ottelun luomisessa ajankohdan syöttö on hiukan kömpelö ja mahdollisesti turhauttava.
 
 ## Omat kokemukset
 
