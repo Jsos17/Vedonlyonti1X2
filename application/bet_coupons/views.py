@@ -25,7 +25,12 @@ def bet_coupons_index():
         elif coupon.bet_status == "tbd":
             pending += 1
 
-    profit = sum_eur_cent(0, wins_cent_total - stakes_cent_total)
+    profit_cents = wins_cent_total - stakes_cent_total
+    profit = 0
+    if profit_cents < 0:
+        profit = -1 * sum_eur_cent(0, abs(profit_cents))
+    else:
+        profit = sum_eur_cent(0, wins_cent_total - stakes_cent_total)
     winnings = sum_eur_cent(0, wins_cent_total)
     stakes = sum_eur_cent(0, stakes_cent_total)
     tuple_list = [winnings, stakes, profit]
