@@ -178,10 +178,10 @@ Yllä *:offer_id* on käyttäjältä saatu parametri
     
     ```SQL
     SELECT bet_coupon.id FROM bet_coupon, betting_offer_of_coupon 
-    WHERE bet_coupon.id = <betting_offer_of_couponin>.bet_coupon_id;
+    WHERE bet_coupon.id = < saatu betting_offer_of_coupon>.bet_coupon_id;
     ```
     
-    Jonka jälkeen mahdollisesti tämä kuponki betting_offer_of_coupon statukseksi asetetaan "hit", "miss" tai "nil" ja bet_couponin bet_status asetetaan voitoksi, tappioksi tai mitätöidyksi
+    Jonka jälkeen mahdollisesti betting_offer_of_coupon statukseksi asetetaan "hit", "miss" tai "nil" ja bet_couponin bet_status asetetaan voitoksi, tappioksi tai mitätöidyksi
     
     ```SQL
     UPDATE betting_offer_of_coupon SET status = "hit" WHERE id = <offer_of_coupon_id>;
