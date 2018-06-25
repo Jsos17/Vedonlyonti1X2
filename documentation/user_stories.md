@@ -26,7 +26,7 @@
     ```SQL
     DELETE FROM user_role WHERE bettor_id = 1 AND role_id = 1;
     ```
-    Muutoksen voi myös tehdä pelkästään päivittämällä olemassaolevaa user_role entryä (jos niitä on vain yksi):
+    Muutoksen adminiksi voi myös tehdä pelkästään päivittämällä olemassaolevaa user_role entryä (jos niitä on vain yksi):
     
     ```SQL
     UPDATE user_role SET role_id = 2 WHERE user_role.bettor_id = 1;
