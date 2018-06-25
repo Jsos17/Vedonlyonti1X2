@@ -44,7 +44,7 @@ Tietokannan **kaikki taulut paitsi Bet_coupon ja Bettor ovat myös kolmannessa n
 
 **Bet_coupon** taulussa *possible_win_eur* ja *possible_win_cent* ovat funktionaalisesti riippuvaisia sarakejoukosta *combined_odds*, *stake_eur* ja *stake_cent* ja näin ollen *possible_win_eur* ja *possible_win_cent* ovat myös transitiivisesti riippuvaisia taulun pääavaimesta. Tarkalleen ottaen voiton määriä ei välttämättä tarvitsisi tallentaa, mutta toisaalta tämä tilanne vähentää usein toistuvaa voiton uudelleen laskemista, tekee maksettavan voiton ja sen miten se pyöristetään yksiselitteiseksi, kun se kerran on laskettu, sekä helpottaa myös ohjelmointia.
 
-**Bettor** taulussa username on uniikki joten taulun kaikki muut sarakkeet ovat transitiivisesti riippuvaisia pääavaimesta. En kuitenkaan näe mitään hyötyä taulun pilkkomisesta pienempiin osiin, ja toisaalta käyttäjänimen uniikkiuden estäminen taas aiheuttaa tarpeettomia ongelmia. 
+**Bettor** taulussa username on uniikki, joten taulun kaikki muut sarakkeet ovat transitiivisesti riippuvaisia pääavaimesta. En kuitenkaan näe mitään hyötyä taulun pilkkomisesta pienempiin osiin, ja toisaalta käyttäjänimen uniikkiuden estäminen taas aiheuttaa tarpeettomia ongelmia. 
 
 ## Indeksointi
 

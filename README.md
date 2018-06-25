@@ -14,15 +14,15 @@ Asiakas voi muuttaa salasanaansa ja lisätä saldoaan. Lisäksi asiakas voi pois
 
 Asiakas ei voi perua vetoa sen jälkeen kun se on lyöty. Vedon lyötyään asiakas näkee mahdollisen voiton määrän. Asiakas voi lyödä useita vetoja samasta kohteesta (eri kupongeille).
 
-Asiakas voi yhdistellä useita kohteita samaan vetokuponkiin. Asiakas voittaa jos kaikki vetokupongin kohteet ovat oikein ja häviää muulloin.
+Asiakas voi yhdistellä useita kohteita samaan vetokuponkiin. Asiakas voittaa, jos kaikki vetokupongin kohteet ovat oikein ja häviää muulloin.
 
 Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin voi tarkastella kaikkien kohteiden vaihtoja ja käytettävissä olevien otteluiden listoja. Admin voi lisätä otteluita ja asettaa niiden tuloksen.
 
-### Alustava luokkakaavio
+### Tietokannan rakenne
 
-[Bet1X2 luokkakaavio](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/documentation/Bet1X2_luokkakaavio.jpg)
+[Tietokantarakenne](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/documentation/tietokanta.md)
 
-### Alustava tietokantakaavio
+### Tietokantakaavio
 
 [Bet1X2 tietokantakaavio](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/documentation/Bet1X2_tietokantakaavio.jpg)
 
