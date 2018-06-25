@@ -1,8 +1,10 @@
 from flask import render_template, request, redirect, url_for, flash
-from flask_login import login_user, logout_user, login_required, current_user
-from application import app, db
+from flask_login import login_user, logout_user, current_user
+from application import app, db, login_required
 from application.bet_coupons.models import Bet_coupon
 from application.auth.models import Bettor
+from application.roles.models import Role
+from application.user_roles.models import User_role
 from application.auth.forms import LoginForm, BettorForm, PasswordChangeForm, MoneyInForm, MoneyOutForm
 from application.money_handler import to_cents, sum_eur_cent
 from passlib.hash import sha256_crypt
@@ -23,7 +25,7 @@ def auth_login():
     return redirect(url_for("index"))
 
 @app.route("/auth/logout")
-@login_required
+@login_required()
 def auth_logout():
     bets = Bet_coupon.query.filter_by(bettor_id = current_user.id, bet_status = "no bets").all()
     for bet in bets:
@@ -48,28 +50,37 @@ def bettor_create():
     b = Bettor(form.username.data, pw, 0, 0)
     db.session().add(b)
     db.session().commit()
+    # etsitään customer roolia, jonka pitäisi olla Role-taulussa, mutta jos ei ole, luodaan se
+    role = Role.query.filter_by(name="CUSTOMER").first()
+    if role == None:
+        role = Role("CUSTOMER")
+        db.session().add(role)
+        db.session().commit()
+
+    # kiinnitetään rooli pelaajalle liitostauluun
+    user_role = User_role()
+    user_role.bettor_id = b.id
+    user_role.role_id = role.id
+    db.session().add(user_role)
+    db.session().commit()
     flash("Account created successfully, please login to your account")
     flash("After you have logged in, you can transfer money to your account")
 
     return redirect(url_for("auth_login"))
 
 @app.route("/auth/show/", methods=["GET"])
-@login_required
+@login_required()
 def bettor_show():
     return render_template("auth/show_user.html")
 
 @app.route("/auth/cancel_update/", methods=["POST"])
-@login_required
+@login_required(role="CUSTOMER")
 def bettor_cancel_update():
     return render_template("auth/show_user.html")
 
 @app.route("/auth/delete/", methods=["GET"])
-@login_required
+@login_required(role="CUSTOMER")
 def bettor_delete():
-    if current_user.role == "ADMIN":
-        flash("Admin cannot delete account through the application")
-        return render_template("auth/show_user.html")
-
     coupons = Bet_coupon.query.filter_by(bettor_id = current_user.id).all()
     for coupon in coupons:
         if coupon.bet_status == "tbd":
@@ -80,12 +91,8 @@ def bettor_delete():
     return render_template("auth/delete_confirmation.html")
 
 @app.route("/auth/delete/", methods=["POST"])
-@login_required
+@login_required(role="CUSTOMER")
 def bettor_delete_confirmation():
-    if current_user.role == "ADMIN":
-        flash("Admin cannot delete account through the application")
-        return render_template("auth/show_user.html")
-
     coupons = Bet_coupon.query.filter_by(bettor_id = current_user.id).all()
     b = Bettor.query.get(current_user.id)
     db.session().delete(b)
@@ -93,13 +100,10 @@ def bettor_delete_confirmation():
     flash("Account deleted successfully")
 
     return redirect(url_for("index"))
+    
 @app.route("/auth/change_password", methods=["GET", "POST"])
-@login_required
+@login_required(role="CUSTOMER")
 def bettor_change_password():
-    if current_user.role == "ADMIN":
-        flash("Admin password change is not activated at the moment")
-        return render_template("auth/show_user.html")
-
     if request.method == "GET":
         form = PasswordChangeForm()
         return render_template("auth/change_password.html", form = form)
@@ -115,7 +119,7 @@ def bettor_change_password():
         return render_template("auth/show_user.html")
 
 @app.route("/auth/money_out", methods=["GET", "POST"])
-@login_required
+@login_required(role="CUSTOMER")
 def bettor_transfer_out():
     if request.method == "GET":
         form = MoneyOutForm()
@@ -137,7 +141,7 @@ def bettor_transfer_out():
         return render_template("auth/show_user.html")
 
 @app.route("/auth/money_in", methods=["GET", "POST"])
-@login_required
+@login_required(role="CUSTOMER")
 def bettor_transfer_in():
     if request.method == "GET":
         form = MoneyInForm()

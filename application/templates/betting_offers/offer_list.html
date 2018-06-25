@@ -25,20 +25,24 @@
       <td>{{ match_offer[1].odds_x }}</td>
       <td>{{ match_offer[1].odds_2 }}</td>
       <td>{{ match_offer[1].max_stake }}</td>
-      {% if current_user.role != "ADMIN" %}
-      <td>
-        <input type="radio" name={{ match_offer[1].id }} value="Add" checked="checked"> Add to bet coupon
-        <input type="radio" name={{ match_offer[1].id }} value="Remove" checked="checked"> Remove from bet coupon
-      </td>
+      {% if current_user.is_authenticated %}
+        {% for role in current_user.roles() if role == "CUSTOMER" %}
+        <td>
+          <input type="radio" name={{ match_offer[1].id }} value="Add" checked="checked"> Add to bet coupon
+          <input type="radio" name={{ match_offer[1].id }} value="Remove" checked="checked"> Remove from bet coupon
+        </td>
+        {% endfor %}
       {% endif %}
     </tr>
     {% endfor %}
-    {% if current_user.role != "ADMIN" and match_offer_tuples|length > 0 %}
-    <tr>
-      <td>
-        <input type="submit" value="Create a bet coupon"/>
-      </td>
-    </tr>
+    {% if current_user.is_authenticated %}
+      {% for role in current_user.roles() if role == "CUSTOMER" and match_offer_tuples|length > 0 %}
+      <tr>
+        <td>
+          <input type="submit" value="Create a bet coupon"/>
+        </td>
+      </tr>
+      {% endfor %}
     {% endif %}
   </table>
 </form>

@@ -1,6 +1,6 @@
-from application import app, db
+from application import app, db, login_required
 from flask import redirect, render_template, request, url_for, flash
-from flask_login import login_required, current_user
+from flask_login import current_user
 import datetime
 from application.matches.models import Sport_match
 from application.matches import views
@@ -20,12 +20,8 @@ def betting_offers_index():
     return render_template("betting_offers/offer_list.html", match_offer_tuples = match_offer_tuples, type = "all")
 
 @app.route("/betting_offers/admin", methods=["GET"])
-@login_required
+@login_required(role="ADMIN")
 def admin_betting_offers_index():
-    if (current_user.role != "ADMIN"):
-        flash("Please use the provided links")
-        return render_template("index.html")
-
     offers = Betting_offer.query.all()
     match_offer_tuples = []
     for offer in offers:
@@ -34,12 +30,8 @@ def admin_betting_offers_index():
     return render_template("betting_offers/admin_offer_list.html", match_offer_tuples = match_offer_tuples)
 
 @app.route("/betting_offers/new/<match_id>", methods=["GET"])
-@login_required
+@login_required(role="ADMIN")
 def betting_offers_form(match_id):
-    if (current_user.role != "ADMIN"):
-        flash("Please use the provided links")
-        return render_template("index.html")
-
     bo = Betting_offer.query.filter_by(match_id = match_id).first()
     if bo == None:
         m = Sport_match.query.get(match_id)
@@ -56,12 +48,8 @@ def betting_offers_form(match_id):
         return redirect(url_for("matches_show", match_id = match_id))
 
 @app.route("/betting_offers/<match_id>", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def betting_offers_create(match_id):
-    if (current_user.role != "ADMIN"):
-        flash("Please use the provided links")
-        return render_template("index.html")
-
     form = Betting_offerForm(request.form)
     if not form.validate():
         m = Sport_match.query.get(match_id)
@@ -77,12 +65,8 @@ def betting_offers_create(match_id):
     return redirect(url_for("admin_betting_offers_index"))
 
 @app.route("/betting_offers/update/<offer_id>", methods=["GET", "POST"])
-@login_required
+@login_required(role="ADMIN")
 def betting_offers_update(offer_id):
-    if (current_user.role != "ADMIN"):
-        flash("Please use the provided links")
-        return render_template("index.html")
-
     if request.method == "GET":
         bo = Betting_offer.query.get(offer_id)
         m = Sport_match.query.get(bo.match_id)
@@ -106,12 +90,8 @@ def betting_offers_update(offer_id):
         return redirect(url_for("admin_betting_offers_index"))
 
 @app.route("/betting_offers/delete/<offer_id>", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def betting_offers_delete(offer_id):
-    if (current_user.role != "ADMIN"):
-        flash("Please use the provided links")
-        return render_template("index.html")
-
     bofc = Betting_offer_of_coupon.query.filter_by(betting_offer_id = offer_id).all()
     bo = Betting_offer.query.get(offer_id)
 

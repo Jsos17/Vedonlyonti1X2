@@ -1,6 +1,6 @@
-from application import app, db
+from application import app, db, login_required
 from flask import redirect, render_template, request, url_for, flash
-from flask_login import login_required, current_user
+from flask_login import current_user
 import datetime
 from application.matches.models import Sport_match
 from application.betting_offers.models import Betting_offer
@@ -11,40 +11,24 @@ from application.matches.forms import MatchForm, SetResultForm
 from application.money_handler import sum_eur_cent, to_cents
 
 @app.route("/matches", methods=["GET"])
-@login_required
+@login_required(role="ADMIN")
 def matches_index():
-    if (current_user.role != "ADMIN"):
-        flash("Please use the provided links")
-        return render_template("index.html")
-
     return render_template("matches/list.html", matches = Sport_match.query.all())
 
 @app.route("/matches/new/")
-@login_required
+@login_required(role="ADMIN")
 def matches_form():
-    if (current_user.role != "ADMIN"):
-        flash("Please use the provided links")
-        return render_template("index.html")
-
     return render_template("matches/new.html", form = MatchForm())
 
 @app.route("/matches/show/<match_id>", methods=["GET"])
-@login_required
+@login_required(role="ADMIN")
 def matches_show(match_id):
-    if (current_user.role != "ADMIN"):
-        flash("Please use the provided links")
-        return render_template("index.html")
-
     return render_template("matches/show_match.html", match = Sport_match.query.get(match_id),
                            betting_offer = Betting_offer.query.filter_by(match_id = match_id).first())
 
 @app.route("/matches/update/<match_id>/", methods=["GET", "POST"])
-@login_required
+@login_required(role="ADMIN")
 def matches_update(match_id):
-    if (current_user.role != "ADMIN"):
-        flash("Please use the provided links")
-        return render_template("index.html")
-
     if request.method == "POST":
         form = MatchForm(request.form)
         if not form.validate():
@@ -65,12 +49,8 @@ def matches_update(match_id):
         return render_template("matches/update.html", form = form, match_id = match_id)
 
 @app.route("/matches/set_result/<match_id>/", methods=["GET", "POST"])
-@login_required
+@login_required(role="ADMIN")
 def matches_set_result(match_id):
-    if (current_user.role != "ADMIN"):
-        flash("Please use the provided links")
-        return render_template("index.html")
-
     m = Sport_match.query.get(match_id)
     old_result = m.result_1x2
     if request.method == "POST":
@@ -133,12 +113,8 @@ def matches_set_result(match_id):
         return render_template("matches/set_result.html", form = form, match_id = match_id, old_result = old_result)
 
 @app.route("/matches/<match_id>/delete/", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def matches_delete(match_id):
-    if (current_user.role != "ADMIN"):
-        flash("Please use the provided links")
-        return render_template("index.html")
-
     bo = Betting_offer.query.filter_by(match_id = match_id).first()
     if bo == None:
         m = Sport_match.query.get(match_id)
@@ -151,12 +127,8 @@ def matches_delete(match_id):
         return redirect(url_for("matches_show", match_id = match_id))
 
 @app.route("/matches/", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def matches_create():
-    if (current_user.role != "ADMIN"):
-        flash("Please use the provided links")
-        return render_template("index.html")
-
     form = MatchForm(request.form)
     if not form.validate():
         return render_template("matches/new.html", form = form)

@@ -4,28 +4,24 @@
 <table cellspacing="8">
   <tr align="left">
     <th>User name</th>
-    {% if current_user.role != "ADMIN" %}
+    {% for role in current_user.roles() if role == "CUSTOMER" %}
     <th>Balance/Eur</th>
-    {% endif %}
+    {% endfor %}
   </tr>
   <tr align="left">
     <td>{{ current_user.username }}</td>
-    {% if current_user.role != "ADMIN" %}
+    {% for role in current_user.roles() if role == "CUSTOMER" %}
     <td>
       {% if current_user.balance_cent < 10 %}
         {{ current_user.balance_eur ~ ".0" ~ current_user.balance_cent }}
       {% else %}
         {{ current_user.balance_eur ~ "." ~ current_user.balance_cent }}
       {% endif %}
+    {% endfor %}
     </td>
-    {% endif %}
   </tr>
-  {% if current_user.role != "ADMIN" %}
   <tr>
-    <td>
-      <a href="{{ url_for('bettor_change_password') }}">Change password</a>
-    </td>
-  </tr>
+  {% for role in current_user.roles() if role == "CUSTOMER" %}
   <tr>
     <td>
       <a href="{{ url_for('bettor_transfer_in') }}">Deposit money</a>
@@ -36,11 +32,15 @@
       <a href="{{ url_for('bettor_transfer_out') }}">Withdraw money</a>
     </td>
   </tr>
+    <td>
+      <a href="{{ url_for('bettor_change_password') }}">Change password</a>
+    </td>
+  </tr>
   <tr>
     <td>
       <a href="{{ url_for('bettor_delete') }}">Start account deletion process</a>
     </td>
   </tr>
-  {% endif %}
+  {% endfor %}
 </table>
 {% endblock %}
