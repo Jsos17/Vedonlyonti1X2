@@ -85,7 +85,9 @@ Huomioita:
 
 Jos tapahtuman todennäköisyys on 90 % tai yli niin kertoimet menevät alle 1:n johtuen vielä puutteellisesta laskentamekanismista, ja tällöin kertoimia pitää säätää manuaalisesti jotta lomake validoidaan. 
 
+* Kaikki toiminnallisuudet eivät näy esimerkiksi otteluun tai vetokohteisiin liittyen, koska esimerkiksi vetokohteen kertoimien muuttaminen, jos ottelu on jo ratkennut ei ole mielekästä, samoin tuloksen asetus useita kertoja jne
 * Ottelun (sport_match) voi poistaa vain jos siihen ei liity vetokohdetta (betting_offer).
 * Vetokohteen (betting_offer) voi poistaa, jos kohteesta ei ole lyöty vetoa
-* Admin ei voi poistaa tiliä (ainakaan vielä)
+* Pelaaja voi poistaa tilin, jos hänellä ei ole avoimia vetoja
+* Admin ei voi poistaa tiliä
 
