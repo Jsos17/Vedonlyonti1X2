@@ -14,7 +14,7 @@
     SELECT id FROM role WHERE name = 'ADMIN';
     ```
     
-    Oletuksena, että customerin role_id = 1 ja adminin role_id = 2
+    Oletuksena, että customerin role_id = 1 ja adminin role_id = 2 ja olkoon bettor_id = 1
     
     ```SQL
     INSERT INTO user_role (bettor_id, role_id) VALUES (1, 1)
