@@ -83,7 +83,7 @@ Admin näkee:
 
 Huomioita:
 
-Jos tapahtuman todennäköisyys on 90 % tai yli niin kertoimet menevät alle 1:n johtuen vielä puutteellisesta laskentamekanismista, ja tällöin kertoimia pitää säätää manuaalisesti jotta lomake validoidaan. 
+Jos tapahtuman todennäköisyys on 90 % tai yli niin kertoimet menevät alle 1:n johtuen puutteellisesta laskentamekanismista, ja tällöin kertoimia pitää säätää manuaalisesti jotta lomake validoidaan. 
 
 * Kaikki toiminnallisuudet eivät näy esimerkiksi otteluun tai vetokohteisiin liittyen, koska esimerkiksi vetokohteen kertoimien muuttaminen, jos ottelu on jo ratkennut ei ole mielekästä, samoin tuloksen asetus useita kertoja jne
 * Ottelun (sport_match) voi poistaa vain jos siihen ei liity vetokohdetta (betting_offer).
