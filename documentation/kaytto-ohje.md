@@ -48,11 +48,10 @@ Jos käyttäjään liittyy vain yksi rooli:
 
     ```SQL
     SELECT user_role.id FROM user_role WHERE user_role_bettor_id = <haluttu id>;
-   	```
-
+    ```
 
     ```SQL
-	UPDATE user_role SET role_id = 2 WHERE user_role.bettor_id = <haluttu id>;
+    UPDATE user_role SET role_id = 2 WHERE user_role.bettor_id = <haluttu id>;
     ```
 
 ### Admin-näkymät
