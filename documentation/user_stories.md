@@ -194,4 +194,4 @@ Yllä *:offer_id* on käyttäjältä saatu parametri
     SELECT FROM bet_coupon WHERE betttor_id = current_user.id;
     ```
     
-    Jonka jälkeen saadut kupongit on soveluksessa käyty ohjelmallisesti läpi ja laskettu niiden voitot+panosten palautukset ja panokset erikseen. 
+    Jonka jälkeen saadut kupongit on sovelluksessa käyty ohjelmallisesti läpi ja laskettu niiden voitot+panosten palautukset ja panokset erikseen. 
