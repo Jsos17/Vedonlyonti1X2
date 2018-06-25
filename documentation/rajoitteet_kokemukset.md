@@ -24,10 +24,10 @@ Ottelun luomisessa ajankohdan syöttö on hiukan kömpelö ja mahdollisesti turh
 
 ## Omat kokemukset
 
-Minulla ei ollut mitään kokemusta Pythonista saati sitten websovellus-ohjelmoinnista. Työmäärä on ollut huomattavasti suurempi kuin esimerkiksi kevään 2018 Ohjelmistotekniikan menetelmät kurssilla (eli OTM-harjoitustyössä) siitäkin huolimatta, että tämän kurssin opintopistemäärä on 4 kun OTM:llä se oli 5 ja näin myös työmäärässä pitäisi näkyä ero. Python on kuitenkin ollut suhteellisen helppo oppia. 
+Minulla ei ollut mitään kokemusta Pythonista saati sitten websovellus-ohjelmoinnista. Työmäärä on ollut huomattavasti suurempi kuin esimerkiksi kevään 2018 Ohjelmistotekniikan menetelmät kurssilla (eli OTM-harjoitustyössä) siitäkin huolimatta, että tämän kurssin opintopistemäärä on 4 kun OTM:llä se oli 5. Python on kuitenkin ollut suhteellisen helppo oppia. 
 
-Valtaisat ongelmat ovatkin olleet tietokanta/websovellus-ohjelmoinnissa. Osa kirjastojen virallisista dokumentaatioista on hyvin epämääräisiä ja puutteellisia sekä monesti esimerkit ovat liian yksinkertaisia. Monesti myös oikean tiedon löytämisessä on ollut suuria vaikeuksia. 
+Valtaisat ongelmat ovatkin olleet tietokanta/websovellus-ohjelmoinnissa. Osa kirjastojen virallisista dokumentaatioista on hyvin epämääräisiä ja puutteellisia sekä monesti esimerkit ovat liian yksinkertaisia. Monesti myös oikean tiedon löytämisessä on ollut suuria vaikeuksia.
 
-Esimerkiksi sulkujen poisto ylikirjoitetusta *login_required:n* "is_authenticated" funktiosta korjasi (toivottavasti) ajoittaisesti esiintyvän "TypeError: 'bool' object is not callable" ongelman, mutta tämäkin on taas täyttä nopanheittoa siitä oliko tämä nyt oikea ratkaisu vai ei ja toimiiko se nyt varmasti herokussa... . 
+Esimerkiksi sulkujen poisto ylikirjoitetusta *login_required:n* "is_authenticated" funktiosta korjasi (toivottavasti) ajoittaisesti esiintyvän "TypeError: 'bool' object is not callable" ongelman, mutta tämäkin on taas täyttä nopanheittoa siitä oliko tämä nyt oikea ratkaisu vai ei ja toimiiko se nyt varmasti myös herokussa. 
 
-Tiedon välitys turvallisesti, ja erityisesti mitkä ovat "Industry best practices" on monessa tilanteessa ollut arvailujen varassa ja mielestäni tietoturvan suhteen ei pitäisi joutua nojautumaan googlettamiseen.
+Tiedon välitys turvallisesti, ja erityisesti mitkä ovat "Industry best practices" on monessa tilanteessa ollut arvailujen varassa ja mielestäni tietoturvan suhteen on ikävää joutua nojautumaan googlettamiseen.
