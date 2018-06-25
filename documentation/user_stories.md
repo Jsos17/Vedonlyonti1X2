@@ -32,7 +32,7 @@
 
     ```SQL
     INSERT INTO sport_match (home, away, prob_1, prob_x, prob_2, start_time, result_1x2)
-    VALUES ('Barcelona', 'Real Madrid', 41, 28, 31, '2018-06-26 18:00', 'tbd');
+    VALUES ('Barcelona', 'Real Madrid', 41, 28, 31, '2018-06-26 18:00:00.000000', 'tbd');
     ```
     
     ```SQL
