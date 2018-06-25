@@ -69,7 +69,27 @@
     
 * Pelaaja voi siirtää rahaa tililleen ja rahaa pois tililtä
 
-* Pelaaja voi rekisteröityä, jonka jälkeen hän voi kirjautua ja siirtää tililleen rahaa. Sen jälkeen hän voi lyödä vetoa liittämällä vetokuponkiin (Bet_coupon) yhden tai useamman vetokohteen (Betting_offer)
+    ```SQL
+    SELECT balance_eur, balance_cent FROM bettor WHERE id = <haluttu id>;
+    
+    UPDATE bettor SET balance_eur = <uusi_arvo>, balance_cent = <uusi arvo>
+    WHERE id = <haluttu id>;
+    ```
+
+* Pelaaja voi rekisteröityä, jonka jälkeen hän voi kirjautua ja siirtää tililleen rahaa. Sen jälkeen hän voi lyödä vetoa liittämällä vetokuponkiin (Bet_coupon) yhden tai useamman vetokohteen (Betting_offer_of_coupon)
+
+    ```SQL
+    INSERT INTO bet_coupon (bettor_id, combined_odds, stake_eur, stake_cent, possible_win_eur,
+    possible_win_cent, bet_status) VALUES (<pelaajan id>, 1, 0, 0, 0, 0, 'no bets');
+    
+    UPDATE bet_coupon SET combined_odds = <yhteiskerroin>, stake_eur= <panos>, stake_cent = <panos>,
+    possible_win_eur = <laskettu>, possible_win_cent = <laskettu>, bet_status = 'tbd'
+    WHERE id = <haluttu id>;
+    ```
+    
+    Eli ensin luodaan tyhjä kuponki, ja kun siihen on liitetty Betting_offer_of_couponeja niin niiden perusteella lasketaan yhteiskerroin, asetetaan panos ja edellisten perusteella lasketaan mahdollinen voitto ja lopulta päivitetään kuponki.
+    
+    
 
 * Admin voi tarkastella vetokohteisiin pelattua rahamäärää ja kuinka monella kupongilla kohde on (turnover statistics).
 
