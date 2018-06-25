@@ -42,6 +42,7 @@ def matches_update(match_id):
         match.prob_2 = form.prob_2.data
         match.start_time = form.start_time.data
         db.session().commit()
+        flash("Match updated successfully")
 
         return redirect(url_for("matches_show", match_id = match_id))
     elif request.method == "GET":
@@ -106,6 +107,7 @@ def matches_set_result(match_id):
                         coupon.bet_status = "loss"
 
             db.session().commit()
+            flash("Setting of result successful")
 
         return redirect(url_for("matches_show", match_id = match_id))
     elif request.method == "GET":
@@ -120,6 +122,7 @@ def matches_delete(match_id):
         m = Sport_match.query.get(match_id)
         db.session().delete(m)
         db.session().commit()
+        flash("Match deleted successfully")
 
         return redirect(url_for("matches_index"))
     else:
@@ -138,5 +141,6 @@ def matches_create():
 
     db.session().add(m)
     db.session().commit()
+    flash("Match created successfully")
 
     return redirect(url_for("matches_index"))
