@@ -177,8 +177,8 @@ Yllä *:offer_id* on käyttäjältä saatu parametri
     Kustakin betting_offer_of_couponista selvitetään siihen liittyvä kuponki
     
     ```SQL
-    SELECT id FROM bet_coupon, betting_offer_of_couppon 
-    WHERE bet_coupon.id = betting_offer_of_coupon.bet_coupon_id;
+    SELECT bet_coupon.id FROM bet_coupon, betting_offer_of_coupon 
+    WHERE bet_coupon.id = <betting_offer_of_couponin>.bet_coupon_id;
     ```
     
     Jonka jälkeen mahdollisesti tämä kuponki betting_offer_of_coupon statukseksi asetetaan "hit", "miss" tai "nil" ja bet_couponin bet_status asetetaan voitoksi, tappioksi tai mitätöidyksi
