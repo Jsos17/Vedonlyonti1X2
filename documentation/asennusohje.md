@@ -75,4 +75,4 @@ Herokuun lähetys:
     
 Tämän jälkeen saat tietää tietokannan osoitteen joka on muotoa https://"joku-app".herokuapp.com/
 
-[GitHub-integraation](https://devcenter.heroku.com/articles/github-integration) avulla voit järejestää Herokussa olevan sovelluksen automaattisen päivityksen jos teet muutoksia sovellukseen ja pushaat ne GitHubiin.
+[GitHub-integraation](https://devcenter.heroku.com/articles/github-integration) avulla voit järjestää Herokussa olevan sovelluksen automaattisen päivityksen, jos teet muutoksia sovellukseen ja pushaat ne GitHubiin.
