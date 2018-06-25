@@ -2,9 +2,7 @@
 
 ## Käyttäjäryhmät
 
-* Sovelluksella on oletuksena kaksi käyttäjäryhmää: CUSTOMER ja ADMIN, joille on oma taulu *Role* ja oletuksena uuteen käyttäjään liitetään aina rooli "CUSTOMER" ja komentoriviltä voi tavallisen käyttäjän asettaa "ADMIN":ksi ja suositeltavaa on, että samalla poistetaan entry "CUSTOMER" käyttäjältä, joka juuri asetettiin adminiksi. Role-taulun avulla käyttäjäryhmiä on tarpeen vaatiessa helppo laajentaa
-
-Sovellus tallentaa tietokantaan automaattisesti Role-tauluun entryt "CUSTOMER" ja "ADMIN":
+* Sovelluksella on oletuksena kaksi käyttäjäryhmää: CUSTOMER ja ADMIN, joille on oma taulu *Role* ja oletuksena uuteen käyttäjään liitetään aina rooli "CUSTOMER" ja komentoriviltä voi tavallisen käyttäjän asettaa "ADMIN":ksi ja suositeltavaa on, että samalla poistetaan entry "CUSTOMER" käyttäjältä, joka juuri asetettiin adminiksi. Role-taulun avulla käyttäjäryhmiä on tarpeen vaatiessa helppo laajentaa. Sovellus tallentaa tietokantaan automaattisesti Role-tauluun entryt "CUSTOMER" ja "ADMIN":
 
     ```SQL
     INSERT INTO role (name) VALUES = 'CUSTOMER';
