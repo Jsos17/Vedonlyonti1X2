@@ -14,10 +14,14 @@
     SELECT id FROM role WHERE name = 'ADMIN';
     ```
     
+    Oletuksena, että customerin role_id = 1 ja adminin role_id = 2
+    
     ```SQL
     INSERT INTO user_role (bettor_id, role_id) VALUES (1, 1)
     INSERT INTO user_role (bettor_id, role_id) VALUES (1, 2)
     ```
+    
+    Poistetaan adminilta customer-rooli
     
     ```SQL
     DELETE FROM user_role WHERE bettor_id = 1 AND role_id = 1;
