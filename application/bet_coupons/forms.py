@@ -33,15 +33,37 @@ def validate_stake_places(form, field):
         if len(split_eur_cent[1]) > 2:
             raise validators.ValidationError("Only two decimal places allowed")
 
-def validate_acceptable_range(form, field):
-    return
+def validate_acceptable_range_eur(form, field):
+    try:
+        e = int(field.data)
+        if e < 0:
+            raise validators.StopValidation("Something went wrong")
+    except (TypeError, ValueError):
+        raise validators.StopValidation("Something went wrong")
+
+def validate_acceptable_range_cent(form, field):
+    try:
+        c = int(field.data)
+        if c < 0 or c > 99:
+            raise validators.StopValidation("Something went wrong")
+    except (TypeError, ValueError):
+        raise validators.StopValidation("Something went wrong")
+
+def validate_range_max_stake(form, field):
+    try:
+        s = float(field.data)
+        if s < 0.0 or s > 100.0:
+            raise validators.StopValidation("Something went wrong")
+    except (TypeError, ValueError):
+        raise validators.StopValidation("Something went wrong")
+
 
 class Bet_couponForm(FlaskForm):
     stake = DecimalField("Stake/Eur (minimum = 0.10 Eur)", places = 2, validators=[validators.NumberRange(min=0.10, max=100.0),
                          validate_stake_places, validate_min_max_stake, validate_balance])
-    bettor_balance_eur = HiddenField("", validators=[validate_acceptable_range])
-    bettor_balance_cent = HiddenField("", validators=[validate_acceptable_range])
-    max_stake = HiddenField("", validators=[validate_acceptable_range])
+    bettor_balance_eur = HiddenField("", validators=[validate_acceptable_range_eur])
+    bettor_balance_cent = HiddenField("", validators=[validate_acceptable_range_cent])
+    max_stake = HiddenField("", validators=[validate_range_max_stake])
 
     class Meta:
         csrf = False

@@ -100,7 +100,7 @@ def bettor_delete_confirmation():
     flash("Account deleted successfully")
 
     return redirect(url_for("index"))
-    
+
 @app.route("/auth/change_password", methods=["GET", "POST"])
 @login_required(role="CUSTOMER")
 def bettor_change_password():

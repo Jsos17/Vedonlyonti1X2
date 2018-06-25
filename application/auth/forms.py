@@ -3,6 +3,7 @@ from wtforms import PasswordField, StringField, IntegerField, DecimalField, Hidd
 from application.auth.models import Bettor
 from application.money_handler import to_cents
 from passlib.hash import sha256_crypt
+from application.bet_coupons.forms import validate_acceptable_range_eur, validate_acceptable_range_cent
 
 def validate_places(form, field):
     if field.data == None:
@@ -47,11 +48,19 @@ def validate_old_password(form, field):
         if sha256_crypt.verify(form.old_password.data, b.password) == False:
             raise validators.ValidationError("Old password does not match")
 
+def validate_id_range(form, field):
+    try:
+        identity = int(field.data)
+        if identity < 1:
+            raise validators.StopValidation("Something went wrong")
+    except (TypeError, ValueError):
+        raise validators.StopValidation("Something went wrong")
+
 class PasswordChangeForm(FlaskForm):
     old_password = PasswordField("Old password", [validate_old_password])
     new_password = PasswordField("New password", [validators.Length(min=8, max=144), validators.EqualTo('new_confirm', message='Passwords must match')])
     new_confirm = PasswordField("Confirm new password")
-    bettor_id = HiddenField("")
+    bettor_id = HiddenField("", validators=[validate_id_range])
 
     class Meta:
         csrf = False
@@ -70,7 +79,7 @@ def validate_balance(form, field):
         out_cents = int(100 * form.money_out.data)
         bal_cents = to_cents(int(form.balance_eur.data), int(form.balance_cent.data))
     except (ValueError, TypeError):
-        raise validators.ValidationError("Something went wrong")
+        raise validators.StopValidation("Something went wrong")
         return
 
     if out_cents > bal_cents:
@@ -79,8 +88,8 @@ def validate_balance(form, field):
 class MoneyOutForm(FlaskForm):
     money_out = DecimalField("Withdraw: (min = 10.00 eur, max = 10 000.00 eur, format: eur.cent)",
                              places = 2, validators=[validators.NumberRange(min=0.0, max=10000.0), validate_places, validate_balance])
-    balance_eur = HiddenField("")
-    balance_cent = HiddenField("")
+    balance_eur = HiddenField("", validators=[validate_acceptable_range_eur])
+    balance_cent = HiddenField("", validators=[validate_acceptable_range_cent])
 
     class Meta:
         csrf = False

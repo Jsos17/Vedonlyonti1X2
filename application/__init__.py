@@ -17,7 +17,6 @@ app.config["SECRET_KEY"] = urandom(32)
 from flask_login import LoginManager, current_user
 login_manager = LoginManager()
 login_manager.init_app(app)
-
 login_manager.login_view = "auth_login"
 login_manager.login_message = "Please login to use this functionality."
 
@@ -26,7 +25,7 @@ def login_required(role="ANY"):
     def wrapper(fn):
         @wraps(fn)
         def decorated_view(*args, **kwargs):
-            if current_user.is_authenticated():
+            if current_user.is_authenticated:
                 for bettor_role in current_user.roles():
                     if role == "ANY" or role == bettor_role:
                         return fn(*args, **kwargs)
@@ -38,7 +37,6 @@ def login_required(role="ANY"):
     return wrapper
 
 from application import views
-
 from application.matches import views
 from application.matches import models
 from application.betting_offers import views
