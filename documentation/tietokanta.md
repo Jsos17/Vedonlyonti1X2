@@ -11,7 +11,7 @@
 * Sport_match kuvaa ottelua
 * Betting_offer kuvaa vedonlyöntikohdetta
 * Bet_coupon kuvaa vedonlyöntikuponkia
-* Betting_offer_of_coupon on liitostaulu Bet_couponin* ja *Bettting_offerin* ja se kuvaa kupongin yksittäistä vetokohde-valintaa
+* *Betting_offer_of_coupon* on liitostaulu *Bet_couponin* ja *Bettting_offerin* ja se kuvaa kupongin yksittäistä vetokohde-valintaa
 * Bettor kuvaa käyttäjää (nimentä olisi voinut olla ehkä neutraalimpi user, koska myös adminia mallinnetaan tämän kautta)
 * Role kuvaa rooleja, jotka voivat liittyä käyttäjään/pelaajaan. Oletuksena on olemassa roolit "CUSTOMER" ja "ADMIN" ja nämä entryt luodaan automaattisesti tietokantaan. Kuitenkin erillinen taulu mahdollistaa roolien laajentamisen tulevaisuudessa
 * User_role on liitostaulu *Bettorin* ja *Role:n* välillä, eli on mahdollista että käyttäjään liittyy useampi rooli. Käytännössä kun asiakas luo tilin liitetään häneen "CUSTOMER" rooli ja muita rooleja ei sovelluksen kautta voi liittää. "ADMIN"-rooli voidaan asettaa komentorivin kautta, ja tällöin on suositeltavaa, että rooli "CUSTOMER" poistetaan, koska ADMIN ei tee mitään CUSTOMER-roolin oikeuksilla.
@@ -28,7 +28,7 @@ Täysi CRUD liittyy *Sport_matchiin*, *Betting_offeriin* ja *Bettoriin*, tietyin
 
 ## Normalisointi
 
-Tietokannan kaikki taulut ovat ensimmäisessä normaalimuodossa, koska:
+Tietokannan kaikki taulut ovat **ensimmäisessä normaalimuodossa**, koska:
 
 * Minkään taulun sarake ei sisällä listoja
 * Taulujen sarakkeet eivät muodosta toistuvia ryhmiä
@@ -38,11 +38,13 @@ Tietokannan kaikki taulut ovat ensimmäisessä normaalimuodossa, koska:
 * Koska pääavaimet ovat kussakin taulussa uniikkeja, niin tauluissa ei voi olla kahta täsmälleen samanlaista riviä
 * Rivien järjestys ei vaikuta tietokantataulun toimintaan
 
-Tietokannan kaikki taulut ovat myös toisessa normaalimuodossa, koska jokaisen taulun pääavain on määritelty yhden sarakkeen avulla, ja koska taulut ovat ensimmäisessä normaalimuodossa.
+Tietokannan kaikki taulut ovat myös **toisessa normaalimuodossa**, koska jokaisen taulun pääavain on määritelty yhden sarakkeen avulla, ja koska taulut ovat ensimmäisessä normaalimuodossa.
 
-Tietokannan kaikki taulut **paitsi Bet_coupon** ovat myös kolmannessa normaalimuodossa, sillä niiden sarakkeet eitvät ole transitiivisesti riippuvaisia taulujen pääavaimesta. 
+Tietokannan **kaikki taulut paitsi Bet_coupon ja Bettor ovat myös kolmannessa normaalimuodossa**, sillä niiden sarakkeet eitvät ole transitiivisesti riippuvaisia taulujen pääavaimesta. 
 
 **Bet_coupon** taulussa *possible_win_eur* ja *possible_win_cent* ovat funktionaalisesti riippuvaisia sarakejoukosta *combined_odds*, *stake_eur* ja *stake_cent* ja näin ollen *possible_win_eur* ja *possible_win_cent* ovat myös transitiivisesti riippuvaisia taulun pääavaimesta. Tarkalleen ottaen voiton määriä ei välttämättä tarvitsisi tallentaa, mutta toisaalta tämä tilanne vähentää usein toistuvaa voiton uudelleen laskemista, tekee maksettavan voiton ja sen miten se pyöristetään yksiselitteiseksi, kun se kerran on laskettu, sekä helpottaa myös ohjelmointia.
+
+**Bettor** taulussa username on uniikki joten taulun kaikki muut sarakkeet ovat transitiivisesti riippuvaisia pääavaimesta. En kuitenkaan näe mitään hyötyä taulun pilkkomisesta pienempiin osiin, ja toisaalta käyttäjänimen uniikkiuden estäminen taas aiheuttaa tarpeettomia ongelmia. 
 
 ## Indeksointi
 
