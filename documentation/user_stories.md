@@ -99,7 +99,11 @@
 
     ```SQL
     SELECT balance_eur, balance_cent FROM bettor WHERE id = <haluttu id>;
+    ```
     
+    Pelaajan saldo otetaan selville, jotta siitä voidaan vähentää tai lisätä siihen haluttu määrä.
+    
+    ```SQL
     UPDATE bettor SET balance_eur = <uusi_arvo>, balance_cent = <uusi arvo>
     WHERE id = <haluttu id>;
     ```
