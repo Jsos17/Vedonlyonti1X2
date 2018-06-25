@@ -11,7 +11,7 @@ Sovellus tallentaa tietokantaan automaattisesti Role-tauluun entryt "CUSTOMER" j
     INSERT INTO role (name) VALUES = 'ADMIN';
     ```
     
-Id selviää kyslyllä:
+Id selviää kyselyllä:
     
     ```SQL
     SELECT id FROM role WHERE name = 'CUSTOMER';
