@@ -2,7 +2,9 @@
 
 ## Käyttäjäryhmät
 
-* Sovelluksella on oletuksena kaksi käyttäjäryhmää: CUSTOMER ja ADMIN, joille on oma taulu *Role* ja oletuksena uuteen käyttäjään liitetään aina rooli "CUSTOMER" ja komentoriviltä voi tavallisen käyttäjän asettaa "ADMIN":ksi ja suositeltavaa on, että samalla poistetaan entry "CUSTOMER" käyttäjältä, joka juuri asetettiin adminiksi. Role-taulun avulla käyttäjäryhmiä on tarpeen vaatiessa helppo laajentaa. Sovellus tallentaa tietokantaan automaattisesti Role-tauluun entryt "CUSTOMER" ja "ADMIN":
+* Sovelluksella on oletuksena kaksi käyttäjäryhmää: CUSTOMER ja ADMIN, joille on oma taulu *Role* ja oletuksena uuteen käyttäjään liitetään aina rooli "CUSTOMER" ja komentoriviltä voi tavallisen käyttäjän asettaa "ADMIN":ksi ja suositeltavaa on, että samalla poistetaan entry "CUSTOMER" käyttäjältä, joka juuri asetettiin adminiksi. Role-taulun avulla käyttäjäryhmiä on tarpeen vaatiessa helppo laajentaa. 
+
+Sovellus tallentaa tietokantaan automaattisesti Role-tauluun entryt "CUSTOMER" ja "ADMIN":
 
     ```SQL
     INSERT INTO role (name) VALUES = 'CUSTOMER';
@@ -17,8 +19,8 @@
     Oletuksena, että customerin role_id = 1 ja adminin role_id = 2 ja olkoon bettor_id = 1
     
     ```SQL
-    INSERT INTO user_role (bettor_id, role_id) VALUES (1, 1)
-    INSERT INTO user_role (bettor_id, role_id) VALUES (1, 2)
+    INSERT INTO user_role (bettor_id, role_id) VALUES (1, 1);
+    INSERT INTO user_role (bettor_id, role_id) VALUES (1, 2);
     ```
     
     Poistetaan adminilta customer-rooli
