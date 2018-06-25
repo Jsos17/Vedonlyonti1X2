@@ -32,7 +32,7 @@ Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin 
 
 ### Toteutus, työn rajoitteet ja omat kokemukset
 
-[Toteutus/rajoitteet/kokemukset](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/documentation/rajoitteet_kokemukset.md)
+[Toteutus/rajoitteet/puutteet/kokemukset](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/documentation/rajoitteet_kokemukset.md)
 
 ### Asennusohje
 
