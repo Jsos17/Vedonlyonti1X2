@@ -12,6 +12,8 @@ Indeksoinnin puute heikentää sovelluksen tehokkuutta, koska esimerkiksi haut n
 
 Sivutuksen puute vaikuttaa lähinnä käyttökokemuksen miellyttävyyteen.
 
+Näin kompleksisessa työssä testit olisivat hyvin hyödyllisä mutta sellaista ei vaadittu eikä ohjeistettu, ja niiden toteuttaminen olisi tuonut huomattavasti lisää työaikaa. Kuitenkin tästä seuraa se, että helposti työhön voi jäädä bugeja, joita ei huomaa ennen kuin on liian myöhäistä.
+
 Koodi voisi hyötyä paikon refaktoroinnista ja esimerkiksi Hiddenfieldien validointi on paikoin heitetty hatusta, koska on vaikea tietää miten ne pitäisi validoida, kun oletuksena siellä on itse parametrina annettu tieto mutta toisaalta niitä voi päästä joku peukaloimaan. Tähän asiaan läheisesti liittyy esimerkiksi se miten käyttäjän saldo pitäisi tarkistaa, kun teoriassa hidden fieldeihin pääsee käsiksi ja näin ollen mikään niiden kautta välitetty tieto ei välttämättä ole luotettavaa.
 
 Käytettävyydessä ja ulkoasussa olisi varmasti parannettavaa.
