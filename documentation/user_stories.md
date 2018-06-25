@@ -38,7 +38,7 @@
     UPDATE sport_match SET result_1x2 = '<haluttu tulos>' WHERE id = <haluttu id>;
     ```
 
-* Tuloksen asetuksessa adminin pitää näppäillä kaksi kertaa sama tulos, jotta vältytään huolimattomuusvirheiltä, koska tuloksen asetus käynnistää mahdollisesti voitonmaksuja pelaajille.
+* Tuloksen asetuksessa adminin pitää näppäillä (sovelluksessa) kaksi kertaa sama tulos, jotta vältytään huolimattomuusvirheiltä, koska tuloksen asetus käynnistää mahdollisesti voitonmaksuja pelaajille. Lisäksi lomakkeessa on erillinen BooleanField hyväksyntä painike, joka pitää olla valittuna
 
 * Admin voi liittää otteluihin vetokohteita (Betting_offer), kertoimet määrittyvät automaattisesti todennäköisyyksien ja palautusprosentin perusteella, mutta niitä voi myös muokata (yli 90 % aiheuttaa tällä hetkellä pienemmän kuin 1 kertoimen palautusprosentin vuoksi, jolloin lomaketta ei hyväksytä ilman kertoimien alentamista)
 
