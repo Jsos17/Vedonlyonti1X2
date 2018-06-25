@@ -24,6 +24,8 @@ Onnistuneen vedon jälkeen sinut ohjataan sivulle, missä näet pelihistoriasi, 
 
 Paina *Show acccount* linkkiä, jonka jälkeen voit siirtää rahaa tilillesi *Deposit money* tai sieltä pois *Withdraw money*, vaihtaa salasanan *Change password* tai aloittaa tilin poiston *Start account deletion process*.
 
+*Change password* kysyy vanhan salasanan ja kaksi kertaa uuden salasanan, ja nämä salasanat tallennetaan hashattyinä, joten edes tietokannan näkevällä ei ole pääsyä näihin salasanoihin.
+
 Nappi *Start account deletion process* ohjaa sinut sivulle missä voit varmistaa halusi poistaa tilisi, jos sinulla ei ole vielä avoimena olevia vetoja. Painamalla *Yes, delete my account* poistat tilisi pysyvästi ja *No, don't delete my account* nappi ei poista tiliäsi. Voit myös poistua tästä näkymästä painamalla jotain sivun linkkiä.
 
 ## Tili, Role-taulu ja User_role taulu
@@ -97,7 +99,7 @@ Sama näkymä kuin pelajalla, paitsi että kupongin luomismahdollisuus on poiste
 
 #### Adminin tili
 
-Jos käyttäjällä on pelkästään ADMIN-rooli ei hän juuri näe tilitietojaan, jos käyttäjällä on sekä CUSTOMER että ADMIN rooli näkee hän samat näkymät kuin CUSTOMER
+Jos käyttäjällä on pelkästään ADMIN-rooli ei hän käytännössä voi tehdä mittä tililleen koska haluttu estää esimerkiksi esimerkkitilin poisto ja normaalikäyttäjään kuitenkin liittyy täysi CRUD. jos käyttäjällä on sekä CUSTOMER että ADMIN rooli näkee hän samat näkymät kuin CUSTOMER.
 
 ### Search betting offers
 
