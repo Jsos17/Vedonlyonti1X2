@@ -15,7 +15,8 @@
 * Pelaaja voi muuttaa salasanaansa
 
     ```SQL
-    UPDATE bettor SET password = '$5$rounds=535000$.HMHKCwt/FrPsre7$yD.iNvoNjrMd6mdtwHRrYZK1.5WGyMLFl75WvTCwkP2' 
+    UPDATE bettor 
+    SET password = '$5$rounds=535000$.HMHKCwt/FrPsre7$yD.iNvoNjrMd6mdtwHRrYZK1.5WGyMLFl75WvTCwkP2' 
     WHERE id = <haluttu id>;
     ```
     Tässä salasana on hashatyssä muodossa kuten se tallennetaan tietokantaankin
