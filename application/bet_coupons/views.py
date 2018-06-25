@@ -26,20 +26,16 @@ def bet_coupons_index():
             pending += 1
 
     profit_cents = wins_cent_total - stakes_cent_total
-    profit = 0
-    if profit_cents < 0:
-        profit = -1 * sum_eur_cent(0, abs(profit_cents))
-    else:
-        profit = sum_eur_cent(0, wins_cent_total - stakes_cent_total)
+    profit = round(profit_cents / 100, 2)
     winnings = sum_eur_cent(0, wins_cent_total)
     stakes = sum_eur_cent(0, stakes_cent_total)
-    tuple_list = [winnings, stakes, profit]
+    tuple_list = [winnings, stakes]
 
     coupon_count = len(coupons)
     determined = coupon_count - pending
 
-    return render_template("bet_coupons/bettor_history.html", tuple_list = tuple_list, coupon_count = coupon_count,
-                           pending = pending, determined = determined, user_coupons = coupons)
+    return render_template("bet_coupons/bettor_history.html", tuple_list = tuple_list, profit = profit, 
+                           coupon_count = coupon_count, pending = pending, determined = determined, user_coupons = coupons)
 
 @app.route("/bet_coupons/new/", methods=["POST"])
 @login_required(role="CUSTOMER")
