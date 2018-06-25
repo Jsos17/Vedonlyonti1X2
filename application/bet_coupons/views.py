@@ -34,7 +34,7 @@ def bet_coupons_index():
     coupon_count = len(coupons)
     determined = coupon_count - pending
 
-    return render_template("bet_coupons/bettor_history.html", tuple_list = tuple_list, profit = profit, 
+    return render_template("bet_coupons/bettor_history.html", tuple_list = tuple_list, profit = profit,
                            coupon_count = coupon_count, pending = pending, determined = determined, user_coupons = coupons)
 
 @app.route("/bet_coupons/new/", methods=["POST"])
@@ -83,6 +83,13 @@ def bet_coupons_create():
         flash("Please, re-check your betting selections")
         return render_template("bet_coupons/new_bet_coupon.html", form = form, match_offer_tuples = match_offer_tuples, max_stake = maximum_stake)
 
+    # extra check for balance
+    stake_cents = int(100 * form.stake.data)
+    balance_cents = to_cents(current_user.balance_eur, current_user.balance_cent)
+    if stake_cents > balance_cents:
+        flash("Your stake exceeds your balance")
+        return redirect(url_for("bet_coupons_index"))
+
     coupon = Bet_coupon()
     coupon.bettor_id = current_user.id
     db.session().add(coupon)
@@ -103,12 +110,10 @@ def bet_coupons_create():
                 boc.betting_offer_id = offer_id
                 db.session().add(boc)
 
-    stake_cents = int(100 * form.stake.data)
     stake_eur_cent = sum_eur_cent(0, stake_cents)
     coupon.set_bet_details(combined_odds, stake_eur_cent[0], stake_eur_cent[1])
 
     # subtract stake from bettor's balance
-    balance_cents = to_cents(current_user.balance_eur, current_user.balance_cent)
     new_balance = sum_eur_cent(0, balance_cents - stake_cents)
 
     b = Bettor.query.get(current_user.id)
