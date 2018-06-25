@@ -1,10 +1,10 @@
-# Totetus, työn rajoitteet ja omat kokemukset
+# Totetus, työn rajoitteet ja puuttuvat ominaisuudt sekä omat kokemukset
 
 ## Toteutus
 
 Suurinpiirtein kaikki mitä suunniteltiin sovelluksen toimannallisuuksiksi on toteutettu poislukien ajoitettu kohteen sulkeutuminen ja adminin mahdollisuus tarkastella menestyksellisiä pelaajia heidän pelihistorian kautta.. Ajatuksena oli populoida tietokanta myös jollain generoidulla ottelulistalla, mutta tämä jäi ajanpuutteen vuoksi toteuttamatta. Jos näin olisi ollut, olisi adminin työ ollut huomattavasti helpompaa kun muutamalla klikkauksella olisi voinut luoda vetokohteen.
 
-## Työn rajoitteet
+## Työn rajoitteet ja puuttuvat ominaisuudet
 
 Merkittäviä puutteita ovat indeksoinnin puuttuminen ja sivutuksen puuttuminen.
 
