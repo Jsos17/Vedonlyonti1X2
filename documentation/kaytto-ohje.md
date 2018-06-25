@@ -16,29 +16,44 @@ Mene kohtaan *List betting offers* ja valitse mitkä vetokohteet (betting_offer)
 
 Tämän jälkeen avautuvassa näkymässä valitse jokaiseen otteluun haluamasi vaihtoehto 1 (kotivoitto), x (tasapeli) tai 2 (vierasvoitto). Lopuksi valitse panos euroina ja centteinä ja paina *Place bet* nappia.
 
-Jos lomakkeessa oli jotain virheellistä ole tarkkana, että valitsemasi vetovaihtoehdot ovat edelleen oikein. (Toimitus huomauttaa: tarkoitus on korjata/tehdä parempi tästä kohdasta)
+Jos lomakkeessa oli jotain virheellistä pitää valinnat tehdä uudelleen sillä ne tyhjenevät.
 
-Onnistuneen vedon jälkeen sinut ohjataan sivulle, missä näet kuponkisi listattuna ja voit tarkastella niitä tarkemmin linkkien kautta.
+Onnistuneen vedon jälkeen sinut ohjataan sivulle, missä näet pelihistoriasi, kuponkisi listattuna ja voit tarkastella niitä tarkemmin linkkien kautta.
 
 ### Tili
 
-Paina *Show acccount* linkkiä, jonka jälkeen voit päivittää tiliä *Update details* painikkeen kautta (Toimitus huomauttaa: Tällä hetkellä pelkästään rahamäärän muuttaminen mahdollista = ongelmallista)
+Paina *Show acccount* linkkiä, jonka jälkeen voit siirtää rahaa tilillesi *Deposit money* tai sieltä pois *Withdraw money*, vaihtaa salasanan *Change password* tai aloittaa tilin poiston *Start account deletion process*.
 
 Nappi *Start account deletion process* ohjaa sinut sivulle missä voit varmistaa halusi poistaa tilisi, jos sinulla ei ole vielä avoimena olevia vetoja. Painamalla *Yes, delete my account* poistat tilisi pysyvästi ja *No, don't delete my account* nappi ei poista tiliäsi. Voit myös poistua tästä näkymästä painamalla jotain sivun linkkiä.
 
-## Admin
+## Tili, Role-taulu ja User_role taulu
 
-Normaalin pelaajatilin voi muuttaa Admin-tiliksi asettamalla komentoriviltä 
+Tietokantaan luodaan Role-tauluun automaattisesti entryt name = "CUSTOMER" ja name = "ADMIN". Kaikkiin uusiin käyttäjiin liitetään automaattisesti liitostaulu *User_role* entry missä *role_id* vastaa CUSTOMER entryn id:tä.
 
-    UPDATE bettor SET role='ADMIN' WHERE username = <haluttu username> tai
 
-    UPDATE bettor SET role='ADMIN' WHERE id = <haluttu id>
+Jos oletetaan, että adminin entry Role-taulussa on: id=2, name='ADMIN' ja käyttäjän id = 8, niin käyttäjän roolin asetus adminiksi tapahtuu seuraavasti tietokannanhallintajärjestelmän kautta:
 
-Admin tilin voi muuttaa takaisin Normaaliksi pelaaja-tiliksi asettamalla komentoriviltä
+    ```SQL
+    INSERT INTO user_role (bettor_id, role_id) VALUES (8, 2);
+    ```
 
-    UPDATE bettor SET role='CUSTOMER' WHERE username = <haluttu username> tai
+Jos käyttäjä asetetaan adminiksi on häneltä hyvä poistaa sen jälkeen rooli CUSTOMER, oletuksena id=1, name='CUSTOMER' ja käyttäjä id edelleen id = 8:
 
-    UPDATE bettor SET role='CUSTOMER' WHERE id = <haluttu id>
+    ```SQL
+    DELETE FROM user_role WHERE bettor_id = 8 AND role_id = 1;
+    ```
+Saman toiminnallisuuden voisi myös tehdä vain päivittämällä olemassa olevaa *User_role* taulun entryä role_id:n osalta.
+
+Jos käyttäjään liittyy vain yksi rooli:
+
+    ```SQL
+    SELECT user_role.id FROM user_role WHERE user_role_bettor_id = <haluttu id>;
+   	```
+
+
+    ```SQL
+	UPDATE user_role SET role_id = 2 WHERE user_role.bettor_id = <haluttu id>;
+    ```
 
 ### Admin-näkymät
 
@@ -48,29 +63,27 @@ Listaa kaikki käytettävissä olevat ottelut ja niiden todennäköisyysarviot
 
 #### Access match information
 
+Jos ottelun tulos ei ole vielä ratkennut, niin seuraavat linkit näkyvät:
+
 * *Add offer* to match -ohjaa vetokohteen lisäämisnäkymään, jos kohdetta ei vielä ole olemassa
 
 * *Update match* -ohjaa päivitysnäkymään, jossa voi päivittää kaikkia ottelun tietoja, paitsi tulosta kts. alla
  
-* *Set result* -ohjaa ottelutuloksen asetusnäkymään. Tämä toimenpide on "lopullinen" (komentoriviltä tuloksen muutos toki onnistuu, mutta ei sovelluksen kautta enää), sillä se käynnistää ottelutuloksesta riippuvaisten tietokohteiden päivityksen ja esimerkiksi mahdolliset voitonmaksut. Tämän vuoksi tuloksen varmistustoimenpide on tarkoitus lisätä.
+* *Set result* -ohjaa ottelutuloksen asetusnäkymään. Tämä toimenpide on "lopullinen" (komentoriviltä tuloksen muutos toki onnistuu, mutta ei sovelluksen kautta enää), sillä se käynnistää ottelutuloksesta riippuvaisten tietokohteiden päivityksen ja esimerkiksi mahdolliset voitonmaksut. Tulos pitää syöttää kahteen kertaan ja vielä varmistaa checkboxin avulla, mahdollisten voitonmaksujen vuoksi.
+
+	Ottelun tulos voi olla:
+	void = ottelu on mitätöity jostain syystä
+	1 = kotivoitto
+	x = tasapeli
+	2 = vierasvoitto
+
+Jos otteluun ei liity vetokohdetta, niin ottelun poistolinkki näkyy:
 
 * *Delete match* - poistaa ottelun yhdellä klikkauksella, jos otteluun ei vielä ole liitetty vetokohdetta
 
 #### Add a match
 
 Tässä voi lisätä ottelun ja liittää siihen todennäköisyysarvion kokonaisluku-prosentteina. 
-
-Ottelun tulos voi olla:
-
-tbd = to be decided eli ottelun tulos varmistuu myöhemmin
-
-void = ottelu on mitätöity jostain syystä
-
-1 = kotivoitto
-
-x = tasapeli
-
-2 = vierasvoitto
 
 #### Turnover statistics ~ Pelivaihtojen tilastot
 
@@ -94,4 +107,8 @@ Sama näkymä kuin pelajalla, paitsi että kupongin luomismahdollisuus on poiste
 
 #### Adminin tili
 
-Toistaiseksi admin ei voi tarkastella tiliään koska, siihen liittyisi vain "rahat" (ongelmallista)
+Jos käyttäjällä on pelkästään ADMIN-rooli ei hän juuri näe tilitietojaan, jos käyttäjällä on sekä CUSTOMER että ADMIN rooli näkee hän samat näkymät kuin CUSTOMER
+
+### Search betting offers
+
+Tarjoaa yksinkertaisen hakutoiminnon ottelun/vetokohteen hakemiseen koti- tai vierasjoukkueen nimen perusteella ja samalla mahdollisuuden lyödä heti vetoa löydetyistä kohteista, jos käyttäjä on CUSTOMER. ADMIN näkee vain pelkät hakutulokset.
