@@ -1,5 +1,34 @@
 # Käyttäjätarinat/User stories ja esimerkki-SQL-kyselyitä niihin liittyen
 
+## Käyttäjäryhmät
+
+* Sovelluksella on oletuksena kaksi käyttäjäryhmää: CUSTOMER ja ADMIN, joille on oma taulu *Role* ja oletuksena uuteen käyttäjään liitetään aina rooli "CUSTOMER" ja komentoriviltä voi tavallisen käyttäjän asettaa "ADMIN":ksi ja suositeltavaa on, että samalla poistetaan entry "CUSTOMER" käyttäjältä, joka juuri asetettiin adminiksi. Role-taulun avulla käyttäjäryhmiä on tarpeen vaatiessa helppo laajentaa
+
+Sovellus tallentaa tietokantaan automaattisesti Role-tauluun entryt "CUSTOMER" ja "ADMIN":
+
+    ```SQL
+    INSERT INTO role (name) VALUES = 'CUSTOMER';
+    INSERT INTO role (name) VALUES = 'ADMIN';
+    ```
+    Id selviää kyslyllä:
+    
+    ```SQL
+    SELECT id FROM role WHERE name = 'CUSTOMER';
+    SELECT id FROM role WHERE name = 'ADMIN';
+    ```
+    
+    User_role entryjen luonti, olkoon bettor_id = 1 ja customer id = 1, admin id = 2:
+    
+    ```SQL
+    INSERT INTO user_role (bettor_id, role_id) VALUES (1, 1)
+    INSERT INTO user_role (bettor_id, role_id) VALUES (1, 2)
+    ```
+    Käyttäjän asetus adminiksi (oletus admin id = 2):
+    
+    ```SQL
+    DELETE FROM user_role WHERE bettor_id = 1 AND role_id = 1;
+    ```
+    
 * Admin voi lisätä, muokata, nähdä ja poistaa otteluita (CRUD) (Poisto ehdollinen: riippuu siitä onko otteluun lisätty vetokohde eli betting_offer). Tuloksen asettamiseen on erillinen linkki ja muiden ottelun attribuuttien muokkaukseen oma näkymä. Tulos voidaan asettaa yhden kerran (tbd:stä -> void, 1, x, 2).
 
     ```SQL
