@@ -4,7 +4,7 @@
 
 ### Rekisteröinti
 
-Paina linkkiä *Create an account* ja anna käyttäjänimi, salasana, ja aloitussaldo. Rekisterötymisen jälkeen pitää erikseen kirjautua vielä sisään.
+Paina linkkiä *Create an account* ja anna käyttäjänimi, salasana ja salasana uudelleen. Rekisterötymisen jälkeen pitää erikseen kirjautua vielä sisään. Salasana on hashatty, joten sitä ei saa tietoon vaikka näkisi tietokannan.
 
 ### Kirjautuminen
 
@@ -14,11 +14,11 @@ Paina linkkiä *Login* ja anna käyttäjätunnuksesi ja salasanasi
 
 Mene kohtaan *List betting offers* ja valitse mitkä vetokohteet (betting_offer) haluat mukaan kupongille ja paina sitten *Create a bet coupon* nappia
 
-Tämän jälkeen avautuvassa näkymässä valitse jokaiseen otteluun haluamasi vaihtoehto 1 (kotivoitto), x (tasapeli) tai 2 (vierasvoitto). Lopuksi valitse panos euroina ja centteinä ja paina *Place bet* nappia.
+Tämän jälkeen avautuvassa näkymässä valitse jokaiseen otteluun haluamasi vaihtoehto 1 (kotivoitto), x (tasapeli) tai 2 (vierasvoitto). Lopuksi valitse panos eur.cent muodossa tai pelkästään kokonaisluku euroina ja paina *Place bet* nappia.
 
-Jos lomakkeessa oli jotain virheellistä pitää valinnat tehdä uudelleen sillä ne tyhjenevät.
+Jos lomakkeessa oli jotain virheellistä tai tilisi saldo ei riitä kattamaan panosta, pitää valinnat tehdä uudelleen sillä ne tyhjenevät.
 
-Onnistuneen vedon jälkeen sinut ohjataan sivulle, missä näet pelihistoriasi, kuponkisi listattuna ja voit tarkastella niitä tarkemmin linkkien kautta.
+Onnistuneen vedon jälkeen sinut ohjataan sivulle, missä näet pelihistoriasi, kuponkisi listattuna ja voit tarkastella niitä tarkemmin linkkien kautta. Varmasti huomaat myös miten tilisi saldo oikeass yläkulmassa muuttuu.
 
 ### Tili
 
@@ -81,7 +81,7 @@ Tässä voi lisätä ottelun ja liittää siihen todennäköisyysarvion kokonais
 
 Näyttää kuinka paljon rahaa kohteista on lyöty vetoa ja kuinka monella kupongilla kohde on
 
-Linkki *Show distribution of turnover* näyttä vielä kootusti kohteen tiedot siten, että rahan jakautuminen eri vaihtoehtojen kesken näytetään ja samalla alkuperäiset todennäköisyysarviot näytetään, jotta voitaisiin tehdä päätös siitä, pitääkö esim jonkun vaihtoehdon kertoimia laskea ja toista nostaa
+Linkki *Show distribution of turnover* näyttää vielä kootusti kohteen tiedot siten, että rahan jakautuminen eri vaihtoehtojen kesken näytetään ja samalla alkuperäiset todennäköisyysarviot näytetään, jotta voitaisiin tehdä päätös siitä, pitääkö esimerkiksi jonkun vaihtoehdon kertoimia laskea ja toista nostaa tai pitäsikö kohde sulkea.
 
 #### Manage betting offers
 
@@ -91,7 +91,7 @@ Jos kohteesta ei ole lyöty vetoa niin tämän näkymän kautta kohteen voi pois
 
 Jotta kohteen voi poistaa on se ensin asetettava ei-aktiiviseksi, jotta se ei näy enää pelaajille *List betting offers* listauksessa.
 
-HUOMAUTUS (Samanaikaisuuden hallinnan ongelma): Tilannetta jossa admin on poistamassa pelikohdetta samalla kun pelaaja on jo valinnut kohteen kupongilleen, ja sitten admin poistaa kohteen ennenkuin pelaaja asettaa vedon ei ole testattu/tämä luultavasti aiheuttaa ongelmia. Eli siis pelaaja on valinnut kohteen kupongille ja siirtynyt pelivaihtoehtojen ja panoksen valintanäkymään ennen kuin admin ehti muuttamaan kohteen ei-aktiiviseksi, mutta samanaikaisesti admin voi poistaa kohteen koska vielä kohteesta ei ole lyöty vetoa.
+HUOMAUTUS (Samanaikaisuuden hallinnan ongelma): Tilannetta jossa admin on poistamassa pelikohdetta samalla kun pelaaja on jo valinnut kohteen kupongilleen, ja sitten admin poistaa kohteen ennenkuin pelaaja asettaa vedon ei ole testattu/tämä mahdollisesti aiheuttaa ongelmia. Eli siis pelaaja on valinnut kohteen kupongille ja siirtynyt pelivaihtoehtojen ja panoksen valintanäkymään ennen kuin admin ehti muuttamaan kohteen ei-aktiiviseksi, mutta samanaikaisesti admin voi poistaa kohteen koska vielä kohteesta ei ole lyöty vetoa.
 
 #### List betting offers
 
@@ -99,7 +99,7 @@ Sama näkymä kuin pelajalla, paitsi että kupongin luomismahdollisuus on poiste
 
 #### Adminin tili
 
-Jos käyttäjällä on pelkästään ADMIN-rooli ei hän käytännössä voi tehdä mittä tililleen koska haluttu estää esimerkiksi esimerkkitilin poisto ja normaalikäyttäjään kuitenkin liittyy täysi CRUD. jos käyttäjällä on sekä CUSTOMER että ADMIN rooli näkee hän samat näkymät kuin CUSTOMER.
+Jos käyttäjällä on pelkästään ADMIN-rooli ei hän käytännössä voi tehdä mitään tililleen koska on haluttu estää esimerkiksi esimerkkitilin poisto ja normaalikäyttäjään kuitenkin liittyy täysi CRUD. jos käyttäjällä on sekä CUSTOMER että ADMIN rooli näkee hän samat näkymät kuin CUSTOMER ja voi itse asiassa asettaa vetoja, mnkä vuoksi ei ole toivottavaa että näin olisi.
 
 ### Search betting offers
 
