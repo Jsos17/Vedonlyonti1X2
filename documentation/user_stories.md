@@ -1,4 +1,4 @@
-# Käyttäjätarinat/User stories
+# Käyttäjätarinat/User stories ja esimerkki-SQL-kyselyitä niihin liittyen
 
 * Admin voi lisätä, muokata, nähdä ja poistaa otteluita (CRUD) (Poisto ehdollinen: riippuu siitä onko otteluun lisätty vetokohde eli betting_offer). Tuloksen asettamiseen on erillinen linkki ja muiden ottelun attribuuttien muokkaukseen oma näkymä. Tulos voidaan asettaa yhden kerran (tbd:stä -> void, 1, x, 2).
 
