@@ -26,6 +26,12 @@
     ```SQL
     DELETE FROM user_role WHERE bettor_id = 1 AND role_id = 1;
     ```
+    Muutoksen voi myös tehdä pelkästään päivittämällä olemassaolevaa user_role entryä (jos niitä on vain yksi):
+    
+    ```SQL
+    UPDATE user_role SET role_id = 2 WHERE user_role.bettor_id = 1;
+    ```
+    
 ## Käyttäjätarinat ja SQL-kyselyt    
 
 * Admin voi lisätä, muokata, nähdä ja poistaa otteluita (CRUD) (Poisto ehdollinen: riippuu siitä onko otteluun lisätty vetokohde eli betting_offer). Tuloksen asettamiseen on erillinen linkki ja muiden ottelun attribuuttien muokkaukseen oma näkymä. Tulos voidaan asettaa yhden kerran (tbd:stä -> void, 1, x, 2).
