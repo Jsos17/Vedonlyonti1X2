@@ -65,7 +65,9 @@ Admin näkee:
 
 * admin voi asettaa ottelun tuloksen, mikä käynnistää tuloksesta riippuvien tietokohteiden päivityksen
 
-### Linkki herokuun 
+### Linkki herokuun
+
+**HUOM Tietokantaan lisättiin taulut Role ja User_role (liitostaulu), ja tämän vuoksi kaikki herokun taulut poistettiin ma 25.6.2018 n. klo 04:13. Tämän vuoksi jotkin ohjeista voivat olla vanhentuneita (korjataan ennen loppudeadlinea)**
 
 **HUOM** Kaikki taulut poistettiin ja asennettiin uudelleen pe 22.6.2018 n.~ klo 3.45, koska bet_coupon vierasavain bettor_id muutettiin: nullable=True, jotta pelaajan tilin poisto onnistuu ja kupongit jäävät olemassa oleviksi tietokantaan vierasavaimena NULL (python None)
 
