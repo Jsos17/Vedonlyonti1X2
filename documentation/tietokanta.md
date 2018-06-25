@@ -24,7 +24,7 @@ Täysi CRUD liittyy *Sport_matchiin*, *Betting_offeriin* ja *Bettoriin*, tietyin
 
 *Betting_offer* voidaan poistaa, jos siihen ei liity *Betting_offer_of_couponeja* (ja siten myös *Bet_couponeja*) eli, jos vetokohteesta ei ole lyöty vetoa JA jos betting_offer on asetettu ei-aktiiviseksi. Kohdetta voi myös päivittää eli esimerkiksi kertoimia muuttaa. Kerroinmuutokset eivät vaikuta jo asetettuihin vetoihin, sillä jokaisen pelaajan "saama" kerroin on talletettu *Betting_offer_of_coupon* entryyn mallintaen todellisuutta.
 
-*Bettor* vodaan poistaa (eli pelaaja voi poistaa tilinsä), jos kaikki hänen vetonsa ovat ratkenneet. Tällöin myös pelaajaan liittyvä User_role entry poistetaan, mutta sen sijaan kaikki pelaajaan littyvät vetokupongit jäävät olemaan olemassa, siten että niiden vierasavaimeksi tulee null. Päivitystoiminnallisuus liittyy salasanan vaihtoon ja tilin balanssin muuttamiseen rahansiirroilla, panoksien asettamisella ja voittojen saamisella.
+*Bettor* vodaan poistaa (eli pelaaja voi poistaa tilinsä), jos kaikki hänen vetonsa ovat ratkenneet. Tällöin myös pelaajaan liittyvä User_role entry poistetaan, mutta sen sijaan kaikki pelaajaan littyvät vetokupongit jäävät olemaan olemassa, siten että niiden vierasavaimeksi tulee null. Päivitystoiminnallisuus liittyy salasanan vaihtoon ja tilin balanssin muuttamiseen rahansiirroilla, panoksien asettamisella ja voittojen saamisella. Jos bettorin rooli on pelkkä ADMIN ei tällainen käyttäjä pääse poistamaan tiliään sovelluksen kautta.
 
 ## Normalisointi
 
