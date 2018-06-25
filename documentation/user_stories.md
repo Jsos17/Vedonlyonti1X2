@@ -197,7 +197,7 @@ Yllä *:offer_id* on käyttäjältä saatu parametri
 * Pelaaja voi nähdä vetohistoriaansa pelatun rahan ja voittojen sekä vetokuponkien määrän muodossa
 
     ```SQL
-    SELECT FROM bet_coupon WHERE betttor_id = current_user.id;
+    SELECT FROM bet_coupon WHERE bettor_id = current_user.id;
     ```
     
     Jonka jälkeen saadut kupongit on sovelluksessa käyty ohjelmallisesti läpi ja laskettu niiden voitot+panosten palautukset ja panokset erikseen. 
