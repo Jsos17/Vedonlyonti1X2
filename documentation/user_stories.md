@@ -142,7 +142,7 @@
     AND betting_offer_of_coupon.bet_coupon_id = bet_coupon.id 
     GROUP BY sport_match.id, betting_offer_of_coupon.choice_1x2;
     ```
-Yllä *:offer* on käyttäjältä saatu parametri
+Yllä *:offer_id* on käyttäjältä saatu parametri
 
 * Admin voi asettaa ottelun tuloksen, ja sen jälkeen kaikki tuloksesta riippuvien tietokohteiden tapahtumat käynnistyvät:
   
