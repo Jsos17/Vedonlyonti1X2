@@ -76,3 +76,23 @@ Herokuun lähetys:
 Tämän jälkeen saat tietää tietokannan osoitteen joka on muotoa https://"joku-app".herokuapp.com/
 
 [GitHub-integraation](https://devcenter.heroku.com/articles/github-integration) avulla voit järjestää Herokussa olevan sovelluksen automaattisen päivityksen, jos teet muutoksia sovellukseen ja pushaat ne GitHubiin.
+
+## Adminin luonti sekä Role ja User_role taulut
+
+Ensiksi normaalin käyttäjän voi luoda sovelluksen kautta ja sitten komentoriviltä ottamalla yhteyden tietokantaan, voi muuttaa tämän kyseisen käyttäjän roolia seuraavaksi kuvatulla tavalla.
+
+Tietokantaan luodaan Role-tauluun automaattisesti entryt name = "CUSTOMER" ja name = "ADMIN". Kaikkiin uusiin käyttäjiin liitetään automaattisesti liitostaulu *User_role* entry missä *role_id* vastaa CUSTOMER entryn id:tä.
+
+Jos oletetaan, että adminin entry Role-taulussa on: id=2, name='ADMIN' ja käyttäjän id = 8, niin käyttäjän roolin asetus adminiksi tapahtuu seuraavasti tietokannanhallintajärjestelmän kautta:
+
+    INSERT INTO user_role (bettor_id, role_id) VALUES (8, 2);
+
+Jos käyttäjä asetetaan adminiksi on häneltä hyvä poistaa sen jälkeen rooli CUSTOMER, oletuksena id=1, name='CUSTOMER' ja käyttäjä id edelleen id = 8:
+
+    DELETE FROM user_role WHERE bettor_id = 8 AND role_id = 1;
+
+Saman toiminnallisuuden voisi myös tehdä vain päivittämällä olemassa olevaa *User_role* taulun entryä role_id:n osalta.
+
+Jos käyttäjään liittyy vain yksi rooli (muutoin tauluun tulee duplikaatti role_id:n ja bettor_id:n suhteen):
+
+    UPDATE user_role SET role_id = 2 WHERE user_role.bettor_id = <haluttu id>;
