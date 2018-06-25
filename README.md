@@ -30,6 +30,10 @@ Asiakas voi tarkastella vetohistoriaansa ja tarjolla olevia vetokohteita. Admin 
 
 [User stories](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/documentation/user_stories.md)
 
+### Toteutus, työn rajoitteet ja omat kokemukset
+
+[Toteutus/rajoitteet/kokemukset](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/documentation/rajoitteet_kokemukset.md)
+
 ### Asennusohje
 
 [Asennusohje](https://github.com/Jsos17/Vedonlyonti1X2/blob/master/documentation/asennusohje.md)
