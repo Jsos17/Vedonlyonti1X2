@@ -23,12 +23,25 @@
     ```SQL
     SELECT sport_match.home, sport_match.away, sport_match.id, betting_offer.id, 
     COUNT(bet_coupon.id), SUM(bet_coupon.stake_eur), SUM(bet_coupon.stake_cent), sport_match.start_time 
-    FROM sport_match, betting_offer, bet_coupon, betting_offer_of_coupon WHERE betting_offer.match_id = 
-    sport_match.id AND betting_offer_of_coupon.betting_offer_id = betting_offer.id AND 
-    betting_offer_of_coupon.bet_coupon_id = bet_coupon.id GROUP BY sport_match.id, betting_offer.id
+    FROM sport_match, betting_offer, bet_coupon, betting_offer_of_coupon 
+    WHERE betting_offer.match_id = sport_match.id 
+    AND betting_offer_of_coupon.betting_offer_id = betting_offer.id 
+    AND betting_offer_of_coupon.bet_coupon_id = bet_coupon.id 
+    GROUP BY sport_match.id, betting_offer.id;
     ```
 
 * Lisäksi admin voi tarkastella tarkemmin yksittäisen kohteen pelivaihdon jakautumista eri vaihtoehtojen kesken
+
+    ```SQL
+    SELECT sport_match.home, sport_match.away, COUNT(bet_coupon.id), betting_offer_of_coupon.choice_1x2, 
+    SUM(bet_coupon.stake_eur), SUM(bet_coupon.stake_cent), sport_match.prob_1, sport_match.prob_x, sport_match.prob_2 
+    FROM sport_match, betting_offer, bet_coupon, betting_offer_of_coupon 
+    WHERE betting_offer_id = :offer_id AND betting_offer.match_id = sport_match.id 
+    AND betting_offer_of_coupon.betting_offer_id = betting_offer.id 
+    AND betting_offer_of_coupon.bet_coupon_id = bet_coupon.id 
+    GROUP BY sport_match.id, betting_offer_of_coupon.choice_1x2;
+    ```
+Yllä *:offer* on käyttäjältä saatu parametri
 
 * Admin voi asettaa ottelun tuloksen, ja sen jälkeen kaikki tuloksesta riippuvien tietokohteiden tapahtumat käynnistyvät:
   
