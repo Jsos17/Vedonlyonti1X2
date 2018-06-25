@@ -41,7 +41,7 @@
 
     ```SQL
     INSERT INTO bettor (username, password, balance_eur, balance_cent) 
-    VALUES ('akuankka', '$5$rounds=535000$.HMHKCwt/FrPsre7$yD.iNvoNjrMd6mdtwHRrYZK1.5WGyMLFl75WvTCwkP2', 0, 0);
+    VALUES ('akuankka', '$5$rounds=535000$.HMHKCwt/FrPsre7$yD.iNvoNjrMd6mdtwHRrYZK1.5WGyMLFl75WvTCwkP2',0,0);
     ```
     
     ```SQL
