@@ -171,7 +171,27 @@ Yllä *:offer_id* on käyttäjältä saatu parametri
     Kustakin betting_offer_of_couponista selvitetään siihen liittyvä kuponki
     
     ```SQL
-    SELECT id FROM bet_coupon, betting_offer_of_couppon WHERE bet_coupon.id = betting_offer_of_coupon.bet_coupon_id;
+    SELECT id FROM bet_coupon, betting_offer_of_couppon 
+    WHERE bet_coupon.id = betting_offer_of_coupon.bet_coupon_id;
     ```
+    
+    Jonka jälkeen mahdollisesti tämä kuponki betting_offer_of_coupon statukseksi asetetaan "hit", "miss" tai "nil" ja bet_couponin bet_status asetetaan voitoksi, tappioksi tai mitätöidyksi
+    
+    ```SQL
+    UPDATE betting_offer_of_coupon SET status = "hit" WHERE id = <offer_of_coupon_id>;
+    UPDATE betting_offer_of_coupon SET status = "miss" WHERE id = <offer_of_coupon_id>;
+    UPDATE betting_offer_of_coupon SET status = "nil" WHERE id = <offer_of_coupon_id>;
+    
+    UPDATE bet_coupon SET bet_status = "win" WHERE id = <saatu id>;
+    UPDATE bet_coupon SET bet_status = "loss" WHERE id = <saatu id>;
+    UPDATE bet_coupon SET bet_status = "void" WHERE id = <saatu id>;
+    ```
+    Lisäksi pelaajan tilin päivitys mahdolllisesti käynnistyy, jos kuponki merkitään voitolliseksi tai panokset palautetaan jo kuponki merkitään mitätöidyksi. Tilin saldon muuttamisen käyttäjätarina on käsitelty jo aiemmin rahan siirron yhteydessä ja toiminnallisuus on käytännössä sama.
 
 * Pelaaja voi nähdä vetohistoriaansa pelatun rahan ja voittojen sekä vetokuponkien määrän muodossa
+
+    ```SQL
+    SELECT FROM bet_coupon WHERE betttor_id = current_user.id;
+    ```
+    
+    Jonka jälkeen saadut kupongit käydään ohjelmallisesti läpi ja lasketaan niiden voitot+panosten palautukset ja panokset erikseen.
