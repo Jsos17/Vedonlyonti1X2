@@ -186,7 +186,7 @@ Yllä *:offer_id* on käyttäjältä saatu parametri
     UPDATE bet_coupon SET bet_status = "loss" WHERE id = <saatu id>;
     UPDATE bet_coupon SET bet_status = "void" WHERE id = <saatu id>;
     ```
-    Lisäksi pelaajan tilin päivitys mahdolllisesti käynnistyy, jos kuponki merkitään voitolliseksi tai panokset palautetaan jo kuponki merkitään mitätöidyksi. Tilin saldon muuttamisen käyttäjätarina on käsitelty jo aiemmin rahan siirron yhteydessä ja toiminnallisuus on käytännössä sama.
+    Lisäksi pelaajan tilin päivitys mahdolllisesti käynnistyy, jos kuponki merkitään voitolliseksi tai panokset palautetaan ja kuponki merkitään mitätöidyksi. Tilin saldon muuttamisen käyttäjätarina on käsitelty jo aiemmin rahan siirron yhteydessä ja toiminnallisuus on käytännössä sama.
 
 * Pelaaja voi nähdä vetohistoriaansa pelatun rahan ja voittojen sekä vetokuponkien määrän muodossa
 
@@ -194,4 +194,4 @@ Yllä *:offer_id* on käyttäjältä saatu parametri
     SELECT FROM bet_coupon WHERE betttor_id = current_user.id;
     ```
     
-    Jonka jälkeen saadut kupongit käydään ohjelmallisesti läpi ja lasketaan niiden voitot+panosten palautukset ja panokset erikseen.
+    Jonka jälkeen saadut kupongit on soveluksessa käyty ohjelmallisesti läpi ja laskettu niiden voitot+panosten palautukset ja panokset erikseen. 
