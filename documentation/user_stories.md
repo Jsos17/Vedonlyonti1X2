@@ -1,4 +1,4 @@
-# Käyttäjätarinat/User stories ja esimerkki-SQL-kyselyitä niihin liittyen
+# Käyttäjäryhmät, käyttäjätarinat ja esimerkki-SQL-kyselyitä niihin liittyen
 
 ## Käyttäjäryhmät
 
@@ -26,7 +26,8 @@
     ```SQL
     DELETE FROM user_role WHERE bettor_id = 1 AND role_id = 1;
     ```
-    
+## Käyttäjätarinat ja SQL-kyselyt    
+
 * Admin voi lisätä, muokata, nähdä ja poistaa otteluita (CRUD) (Poisto ehdollinen: riippuu siitä onko otteluun lisätty vetokohde eli betting_offer). Tuloksen asettamiseen on erillinen linkki ja muiden ottelun attribuuttien muokkaukseen oma näkymä. Tulos voidaan asettaa yhden kerran (tbd:stä -> void, 1, x, 2).
 
     ```SQL
