@@ -2,15 +2,61 @@
 
 * Admin voi lisätä, muokata, nähdä ja poistaa otteluita (CRUD) (Poisto ehdollinen: riippuu siitä onko otteluun lisätty vetokohde eli betting_offer). Tuloksen asettamiseen on erillinen linkki ja muiden ottelun attribuuttien muokkaukseen oma näkymä. Tulos voidaan asettaa yhden kerran (tbd:stä -> void, 1, x, 2).
 
+    ```SQL
+    INSERT INTO sport_match (home, away, prob_1, prob_x, prob_2, start_time, result_1x2)
+    VALUES ('Barcelona', 'Real Madrid', 41, 28, 31, '2018-06-26 18:00', 'tbd');
+    ```
+    
+    ```SQL
+    UPDATE sport_match SET result_1x2 = '<haluttu tulos>' WHERE id = <haluttu id>;
+    ```
+
 * Tuloksen asetuksessa adminin pitää näppäillä kaksi kertaa sama tulos, jotta vältytään huolimattomuusvirheiltä, koska tuloksen asetus käynnistää mahdollisesti voitonmaksuja pelaajille.
 
 * Admin voi liittää otteluihin vetokohteita (Betting_offer), kertoimet määrittyvät automaattisesti todennäköisyyksien ja palautusprosentin perusteella, mutta niitä voi myös muokata (yli 90 % aiheuttaa tällä hetkellä pienemmän kuin 1 kertoimen palautusprosentin vuoksi, jolloin lomaketta ei hyväksytä ilman kertoimien alentamista)
 
-* Admin voi poistaa vetokohteen, jos siitä ei ole lyöty vetoa (CRUD)
+     ```SQL
+     INSERT INTO betting_offer (match_id, odds_1, odds_x, odds_2, max_stake, active, closed)
+     VALUES (<haluttu id>, 2.71, 3.31, 2.24, 100.0, 1, 0);
+     ```
 
-* Pelaaja voi rekisteröityä, muokata tilitietoja (salasana, saldo), nähdä tilinsä tiedot, ja poistaa tilinsä (CRUD). Poisto on ehdollinen siten, että pelaajan kaikkien vetokuponkien tulee olla ratkennut. Eli jos yhdenkin bet_couponin bet_status on "tbd", niin poistoa ei sallita. 
+* Admin voi poistaa vetokohteen, jos siitä ei ole lyöty vetoa ja kun se on asetettu ei-aktiiviseksi (CRUD)
+
+    ```SQL
+    SELECT * FROM betting_offer_of_coupon WHERE betting_offer_id = <haluttu id>:
+    ```
+    
+    Jos tämä haku ei tuota tulosta, kohteen voi poistaa jos se on ei-aktiivinen. Tässä vain asetus ei-aktiiviseksi
+    
+    ```SQL
+    UPDATE betting_offer SET active = 0 WHERE id = <haluttu id>;
+    ```
+    
+    Itse poisto:
+    
+    ```SQL
+    DELETE FROM betting-offer WHERE id = <haluttu id>;
+
+* Pelaaja voi rekisteröityä, muokata tilitietoja (salasana, saldo), nähdä tilinsä tiedot, ja poistaa tilinsä (CRUD). Poisto on ehdollinen siten, että pelaajan kaikkien vetokuponkien tulee olla ratkennut. Eli jos yhdenkin bet_couponin bet_status on "tbd", niin poistoa ei sallita.
+
+    ```SQL
+    INSERT INTO bettor (username, password, balance_eur, balance_cent) 
+    VALUES ('akuankka', '$5$rounds=535000$.HMHKCwt/FrPsre7$yD.iNvoNjrMd6mdtwHRrYZK1.5WGyMLFl75WvTCwkP2', 0, 0);
+    ```
+    
+    ```SQL
+    SELECT * FROM bettor WHERE username = 'akuankka';
+    ```
+    
+    ```SQL
+    DELETE FROM bettor WHERE id = <haluttu id>;
+    ```
 
 * Kun pelaaja poistaa tilinsä, niin jos hänellä on ollut olemassa pelikuponkeja, niin niiden vierasavaimeksi tulee null, eli pelaajaan liittyviä pelikuponkeja ei poisteta järjestelmästä.
+
+    ```SQL
+    DELETE FROM bettor WHERE id = <haluttu id>
+    ```
 
 * Pelaaja voi muuttaa salasanaansa
 
