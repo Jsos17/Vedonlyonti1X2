@@ -48,7 +48,7 @@ username: pelaaja1
 
 password: 12345678
 
-Tavallinen käyttäjä näkee pelkästään vetotarjoukset listana ja  voi lyödä vetoja niistä. Lisäksi käyttäjä näkee oman tilinsä ja asetetut vetokupongit.
+Tavallinen käyttäjä näkee pelkästään vetotarjoukset listana ja  voi lyödä vetoja niistä. Lisäksi käyttäjä näkee oman tilinsä, voi siirtää rahaa, vaihtaa salasanan ja poistaa tilinsä (ehdollisesti) sekä hän näkee pelihistoriansa. Käyttäjä voi myös etsiä vetokohteita joukkueen nimen tai sen osan perusteella
 
 ### Admin
 
@@ -65,7 +65,7 @@ Admin näkee:
 
 * voi hallinnoida vetotarjouksia (Manage betting offers) esim. muuttamalla sen ei-aktiiviseksi jolloin kohde ei enää näy tavalliselle käyttäjälle 
 
-* admin ei voi asettaa vetoja
+* pelkällä admin-roolilla varustettu käyttäjä ei voi asettaa vetoja, eikä hän voi muokata tiliään, jotta joku ei käy vaihtamassa esimerkkitilin salasanaa tai poistamassa esimerkki-admintiliä
 
 * admin voi asettaa ottelun tuloksen, mikä käynnistää tuloksesta riippuvien tietokohteiden päivityksen
 
