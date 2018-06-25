@@ -52,6 +52,76 @@ Erillisiä indeksejä ei ole asetettu, eli käytännössä vain avaimiin liittyy
 
 ## CREATE TABLE -lauseet
 
-
+	CREATE TABLE sport_match (
+		id INTEGER NOT NULL, 
+		home VARCHAR(144) NOT NULL, 
+		away VARCHAR(144) NOT NULL, 
+		prob_1 INTEGER NOT NULL, 
+		prob_x INTEGER NOT NULL, 
+		prob_2 INTEGER NOT NULL, 
+		start_time DATETIME NOT NULL, 
+		result_1x2 VARCHAR(4) NOT NULL, 
+		PRIMARY KEY (id)
+	);
+	CREATE TABLE role (
+		id INTEGER NOT NULL, 
+		name VARCHAR(10) NOT NULL, 
+		PRIMARY KEY (id), 
+		UNIQUE (name)
+	);
+	CREATE TABLE bettor (
+		id INTEGER NOT NULL, 
+		username VARCHAR(144) NOT NULL, 
+		password VARCHAR(144) NOT NULL, 
+		balance_eur INTEGER NOT NULL, 
+		balance_cent INTEGER NOT NULL, 
+		PRIMARY KEY (id), 
+		UNIQUE (username)
+	);
+	CREATE TABLE betting_offer (
+		id INTEGER NOT NULL, 
+		match_id INTEGER NOT NULL, 
+		odds_1 FLOAT NOT NULL, 
+		odds_x FLOAT NOT NULL, 
+		odds_2 FLOAT NOT NULL, 
+		max_stake FLOAT NOT NULL, 
+		active BOOLEAN NOT NULL, 
+		closed BOOLEAN NOT NULL, 
+		PRIMARY KEY (id), 
+		FOREIGN KEY(match_id) REFERENCES sport_match (id), 
+		CHECK (active IN (0, 1)), 
+		CHECK (closed IN (0, 1))
+	);
+	CREATE TABLE bet_coupon (
+		id INTEGER NOT NULL, 
+		bettor_id INTEGER, 
+		combined_odds FLOAT NOT NULL, 
+		stake_eur INTEGER NOT NULL, 
+		stake_cent INTEGER NOT NULL, 
+		possible_win_eur INTEGER NOT NULL, 
+		possible_win_cent INTEGER NOT NULL, 
+		bet_status VARCHAR(10) NOT NULL, 
+		PRIMARY KEY (id), 
+		FOREIGN KEY(bettor_id) REFERENCES bettor (id)
+	);
+	CREATE TABLE user_role (
+		id INTEGER NOT NULL, 
+		bettor_id INTEGER NOT NULL, 
+		role_id INTEGER NOT NULL, 
+		PRIMARY KEY (id), 
+		FOREIGN KEY(bettor_id) REFERENCES bettor (id), 
+		FOREIGN KEY(role_id) REFERENCES role (id)
+	);
+	CREATE TABLE betting_offer_of_coupon (
+		id INTEGER NOT NULL, 
+		betting_offer_id INTEGER NOT NULL, 
+		bet_coupon_id INTEGER NOT NULL, 
+		choice_1x2 VARCHAR(1) NOT NULL, 
+		odds FLOAT NOT NULL, 
+		status VARCHAR(10) NOT NULL, 
+		PRIMARY KEY (id), 
+		FOREIGN KEY(betting_offer_id) REFERENCES betting_offer (id), 
+		FOREIGN KEY(bet_coupon_id) REFERENCES bet_coupon (id)
+	);
 
 
