@@ -73,6 +73,6 @@ Herokuun lähetys:
     git commit -m "Initial commit"
     git push heroku master
     
-Tämän jälkeen saat tietää tietokannan osoitteen joka on muotoa "https://joku-app.herokuapp.com/"
+Tämän jälkeen saat tietää tietokannan osoitteen joka on muotoa https://"joku-app".herokuapp.com/
 
 [GitHub-integraation](https://devcenter.heroku.com/articles/github-integration) avulla voit järejestää Herokussa olevan sovelluksen automaattisen päivityksen jos teet muutoksia sovellukseen ja pushaat ne GitHubiin.
