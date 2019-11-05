@@ -73,14 +73,6 @@ Admin näkee:
 
 ### Linkki herokuun
 
-**HUOM Tietokantaan lisättiin taulut Role ja User_role (liitostaulu), ja tämän vuoksi kaikki herokun taulut poistettiin ma 25.6.2018 n. klo 04:13)**
-
-**HUOM** Kaikki taulut poistettiin ja asennettiin uudelleen pe 22.6.2018 n.~ klo 3.45, koska bet_coupon vierasavain bettor_id muutettiin: nullable=True, jotta pelaajan tilin poisto onnistuu ja kupongit jäävät olemassa oleviksi tietokantaan vierasavaimena NULL (python None)
-
-**HUOM2** Salasanojen tallennus hashattuna 23.6.2018 n. klo 21:51, minkä johdosta herokun käyttäjätaulujen entryjä poistetaan ja luodaan uudelleen hashatyillä salasanoilla
-
-**HUOM3 Adminin salasanan vaihto otettu pois käytöstä, jotta esimerkkitilin salasanaa ei pääse kukaan muuttamaan ja tilille pääsee**
-
 [Bet1X2App](https://bet1x2-app.herokuapp.com/)
 
 Huomioita:
