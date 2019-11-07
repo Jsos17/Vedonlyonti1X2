@@ -54,10 +54,6 @@ Tavallinen käyttäjä näkee pelkästään vetotarjoukset listana ja  voi lyöd
 
 ### Admin
 
-username: hallinto
-
-password: 12345678
-
 Admin näkee: 
 * ottelulistan, voi lisätä otteluita 
 
