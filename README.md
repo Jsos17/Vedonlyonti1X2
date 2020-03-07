@@ -1,5 +1,17 @@
 # Bet1X2App/Tietokantasovellus alkukesä 2018
 
+## Laboratory work: Database application
+
+### Bookmaker Bet1X2
+
+Bet1X2 is a fictional bookmaker which offers only 1X2 type betting (the possible outcomes of a sporting event, for example a soccer match, are *a home win (1)*, *a draw (X)* or *an away win (2)*). Typically, this type of betting is offered in Europe for football (soccer) betting. This project was done for the University of Helsinki course *Laboratory work: Database application* during May and June of the year 2018. 
+
+The project consists of implementing the basic functionality of the website of the bookmaker Bet1X2. On Bet1X2's website, customers can create accounts, deposit or withdraw (fictional) money and, most importantly, place bets on 1X2 type events. Administrators can add matches and set the odds in such a way that the customer has no arbitrage opportunities. Instead, at least theoretically, the arbitrage is on the bookmaker's side.
+
+The pricing of match outcomes (i.e. bookmaking) consists of the administrator assigning (subjective) probabilities for different outcomes 1, X and 2 (which must sum to 1). Then the odds are calculated in such a way that the expected profit of the bookmaker is 10 % from every bet. This is assuming that the total amount of money is distributed according to the assigned probabilities. Naturally, in reality odds would have to be changed, if the total money wagered on the match was distributed significantly differently than the assigned probabilities. However, this functionality was not implemented in the project. 
+
+Additionally, if the probability of an outcome (1, X or 2) is greater or equal to 90 %, then the odds have to be set manually, since the odds calculation mechanism does not handle this case. This is because the point of the course was to integrate a database to a web application, and to implement proper validation of forms. Therefore, the odds calculation mechanism was an extra feature from this vantage point. In any case, having an outcome whose (subjective) probability is >=90%, would be rare in typical 1X2 betting, for example in soccer matches.
+
 ## Vedonvälittäjä Bet1X2
 
 [Bet1X2App](https://bet1x2-app.herokuapp.com/)
