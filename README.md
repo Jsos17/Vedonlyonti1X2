@@ -10,11 +10,11 @@ The project consists of implementing the basic functionality of the website of t
 
 The pricing of match outcomes (i.e. bookmaking) consists of the administrator assigning (subjective) probabilities for different outcomes 1, X and 2 (which must sum to 1). Then the odds are calculated in such a way that the expected profit of the bookmaker is 10 % from every bet. This is assuming that the total amount of money is distributed according to the assigned probabilities. Naturally, in reality odds would have to be changed, if the total money wagered on the match was distributed significantly differently than the assigned probabilities. However, this functionality was not implemented in the project. 
 
-Additionally, if the probability of an outcome (1, X or 2) is greater or equal to 90 %, then the odds have to be set manually, since the odds calculation mechanism does not handle this case. This is because the point of the course was to integrate a database to a web application, and to implement proper validation of forms. Therefore, the odds calculation mechanism was an extra feature from this vantage point. In any case, having an outcome whose (subjective) probability is >=90%, would be rare in typical 1X2 betting, for example in soccer matches.
-
-## Vedonvälittäjä Bet1X2
+Additionally, if the probability of an outcome (1, X or 2) is greater or equal to 90 %, then the odds have to be set manually, since the odds calculation mechanism does not handle this case. This is because the point of the course was to integrate a database to a web application, and to implement proper validation of forms. Therefore, the odds calculation mechanism was an extra feature from this vantage point. In any case, having an outcome whose (subjective) probability is greater or equal to 90 %, would be rare in typical 1X2 betting, for example in soccer matches.
 
 [Bet1X2App](https://bet1x2-app.herokuapp.com/)
+
+## Vedonvälittäjä Bet1X2
 
 Vedonvälitystoimisto Bet1X2 tarjoaa pelkästään 1X2-tyyppisiä vetoja rekisteröityneille asiakkailleen internetsivullaan.
 
