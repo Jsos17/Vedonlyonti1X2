@@ -4,7 +4,7 @@
 
 ### Bookmaker Bet1X2
 
-Bet1X2 is a fictional bookmaker which offers only 1X2 type betting (the possible outcomes of a sporting event, for example a soccer match, are *a home win (1)*, *a draw (X)* or *an away win (2)*). Typically, this type of betting is offered in Europe for football (soccer) betting. This project was done for the University of Helsinki course *Laboratory work: Database application* during May and June of the year 2018. 
+Bet1X2 is a fictional bookmaker which offers only 1X2 type betting (the possible outcomes of a sporting event, for example a soccer match, are *a home win (1)*, *a draw (X)* or *an away win (2)*). Typically, this type of betting is offered in Europe for football (soccer) betting. This project was done for the University of Helsinki course *Laboratory work: Database application* during May and June of the year 2018. This was also the first project where I coded in Python.
 
 The project consists of implementing the basic functionality of the website of the bookmaker Bet1X2. On Bet1X2's website, customers can create accounts, deposit or withdraw (fictional) money and, most importantly, place bets on 1X2 type events. Administrators can add matches and set the odds in such a way that the customer has no arbitrage opportunities. Instead, at least theoretically, the arbitrage is on the bookmaker's side.
 
