@@ -2,7 +2,7 @@
 
 ## Toteutus
 
-Suurinpiirtein kaikki mitä suunniteltiin sovelluksen toimannallisuuksiksi on toteutettu poislukien ajoitettu kohteen sulkeutuminen ja adminin mahdollisuus tarkastella menestyksellisiä pelaajia heidän pelihistorian kautta.. Ajatuksena oli populoida tietokanta myös jollain generoidulla ottelulistalla, mutta tämä jäi ajanpuutteen vuoksi toteuttamatta. Jos näin olisi ollut, olisi adminin työ ollut huomattavasti helpompaa kun muutamalla klikkauksella olisi voinut luoda vetokohteen.
+Suurinpiirtein kaikki mitä suunniteltiin sovelluksen toimannallisuuksiksi on toteutettu poislukien ajoitettu kohteen sulkeutuminen ja adminin mahdollisuus tarkastella menestyksellisiä pelaajia heidän pelihistorian kautta. Ajatuksena oli populoida tietokanta myös jollain generoidulla ottelulistalla, mutta tämä jäi ajanpuutteen vuoksi toteuttamatta. Jos näin olisi ollut, olisi adminin työ ollut huomattavasti helpompaa kun muutamalla klikkauksella olisi voinut luoda vetokohteen.
 
 ## Työn rajoitteet ja puuttuvat ominaisuudet
 
@@ -22,7 +22,7 @@ Automaattiseen kertoimenlaskentaan liittyy se ongelma, että jos tapahtuman tode
 
 Ottelun luomisessa ajankohdan syöttö on hiukan kömpelö ja mahdollisesti turhauttava.
 
-*Betting_offerin* attribuutit active ja closed sisältävät jonkinverran redundanssia, koska kohteen ajastettu sulkeminen ei totetutunut ja näin mahdollisesti pelkkä yksi boolean value olisi riittänyt.
+*Betting_offerin* attribuutit active ja closed sisältävät jonkinverran redundanssia, koska kohteen ajastettu sulkeminen ei toteutunut ja näin mahdollisesti pelkkä yksi boolean value olisi riittänyt.
 
 Pelaajan historiaan olisi voinut liittää myös rahansiirtohistorian ja kuponkeihin ajan milloin on pelattu, ja näin pelaaja olisi voinut tarkastella historiaansa myös ajallisesti.
 
